@@ -1,0 +1,16 @@
+{
+  "name": "restapi-express-mongodb",
+  "version": "0.1.0",
+  "description": "API Rest desenvolvida com NodeJs, Express e Mongodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Thiago Lima <tglimatech@outlook.com> (https://github.com/tglima/restapi-express-mongodb)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tglima/restapi-express-mongodb/issues"
+  },
+  "homepage": "https://github.com/tglima/restapi-express-mongodb#readme"
+}
