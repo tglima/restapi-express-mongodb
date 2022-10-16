@@ -15,5 +15,6 @@
         "ecmaVersion": "latest"
     },
     "rules": {
+        "eol-last": ["error", "never"]
     }
 }
