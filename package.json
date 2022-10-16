@@ -4,6 +4,7 @@
   "description": "API Rest desenvolvida com NodeJs, Express e Mongodb",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
