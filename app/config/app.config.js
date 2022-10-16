@@ -7,5 +7,8 @@ const appConfig = {
   {
     port: 4200,
   },
+  token: {
+    minutesExpiration: 300, secret: 'secretBearerToken', tokenType: 'Bearer',
+  },
 };
 module.exports = appConfig;
