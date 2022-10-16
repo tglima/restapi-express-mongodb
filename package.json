@@ -12,5 +12,10 @@
   "bugs": {
     "url": "https://github.com/tglima/restapi-express-mongodb/issues"
   },
-  "homepage": "https://github.com/tglima/restapi-express-mongodb#readme"
+  "homepage": "https://github.com/tglima/restapi-express-mongodb#readme",
+  "devDependencies": {
+    "eslint": "^8.25.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-security": "^1.5.0"
+  }
 }
