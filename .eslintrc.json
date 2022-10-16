@@ -15,6 +15,7 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-        "eol-last": ["error", "never"]
+        "eol-last": ["error", "never"],
+        "import/newline-after-import": 0
     }
 }
