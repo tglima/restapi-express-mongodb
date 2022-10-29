@@ -10,5 +10,8 @@ const appConfig = {
   token: {
     minutesExpiration: 300, secret: 'secretBearerToken', tokenType: 'Bearer',
   },
+  db: {
+    username: 'applicationdb', password: 'passAppDB',
+  },
 };
 module.exports = appConfig;
