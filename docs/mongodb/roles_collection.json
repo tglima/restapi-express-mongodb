@@ -1,0 +1,17 @@
+[{
+  "IdRole": 1,
+  "NmRole": "SysAdmin",
+  "IsActive": true
+},{
+  "IdRole": 2,
+  "NmRole": "Admin",
+  "IsActive": true
+},{
+  "IdRole": 3,
+  "NmRole": "User",
+  "IsActive": true
+},{
+  "IdRole": 999,
+  "NmRole": "Guest",
+  "IsActive": true
+}]

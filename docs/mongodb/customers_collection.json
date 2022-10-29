@@ -1,0 +1,221 @@
+[{
+  "IdCustomer": 1,
+  "NmCustomer": "Agatha da Conceição",
+  "DeGender": "F",
+  "DtBirth": {
+    "$date": {
+      "$numberLong": "977281200000"
+    }
+  },
+  "NuDocument": "97112918359",
+  "DeEmail": "agathaconceicao@email.com",
+  "NuDDD": "27",
+  "NuPhone": "975206325",
+  "IdUserRegister": 2,
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true
+},{
+  "IdCustomer": 2,
+  "NmCustomer": "João Vitor Ribeiro",
+  "DeGender": "M",
+  "DtBirth": {
+    "$date": {
+      "$numberLong": "1009854000000"
+    }
+  },
+  "NuDocument": "81222260514",
+  "DeEmail": "joaovitor@email.com",
+  "NuDDD": "63",
+  "NuPhone": "946675738",
+  "IdUserRegister": 2,
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true
+},{
+  "IdCustomer": 3,
+  "NmCustomer": "Clara Silveira",
+  "DeGender": "F",
+  "DtBirth": {
+    "$date": {
+      "$numberLong": "992142000000"
+    }
+  },
+  "NuDocument": "97626058615",
+  "DeEmail": "clarasilveira@email.com",
+  "NuDDD": "14",
+  "NuPhone": "924799906",
+  "IdUserRegister": 2,
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true
+},{
+  "IdCustomer": 4,
+  "NmCustomer": "Benjamin Carvalho",
+  "DeGender": "M",
+  "DtBirth": {
+    "$date": {
+      "$numberLong": "937537200000"
+    }
+  },
+  "NuDocument": "29746188712",
+  "DeEmail": "benjamincarvalho@email.com",
+  "NuDDD": "99",
+  "NuPhone": "992669426",
+  "IdUserRegister": 3,
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true
+},{
+  "IdCustomer": 5,
+  "NmCustomer": "Maria Fernanda Araújo",
+  "DeGender": "F",
+  "DtBirth": {
+    "$date": {
+      "$numberLong": "928206000000"
+    }
+  },
+  "NuDocument": "48164734080",
+  "DeEmail": "mariafernanda@email.com",
+  "NuDDD": "11",
+  "NuPhone": "908372062",
+  "IdUserRegister": 3,
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true
+},{
+  "IdCustomer": 6,
+  "NmCustomer": "Davi Lucca Freitas",
+  "DeGender": "M",
+  "DtBirth": {
+    "$date": {
+      "$numberLong": "816663600000"
+    }
+  },
+  "NuDocument": "16536452100",
+  "DeEmail": "davilucca@email.com",
+  "NuDDD": "31",
+  "NuPhone": "935697357",
+  "IdUserRegister": 3,
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true
+},{
+  "IdCustomer": 7,
+  "NmCustomer": "Maria Vitória Ramos",
+  "DeGender": "F",
+  "DtBirth": {
+    "$date": {
+      "$numberLong": "655527600000"
+    }
+  },
+  "NuDocument": "39086928730",
+  "DeEmail": "mariavitória@email.com",
+  "NuDDD": "48",
+  "NuPhone": "999926223",
+  "IdUserRegister": 3,
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true
+},{
+  "IdCustomer": 8,
+  "NmCustomer": "Fernando Vieira",
+  "DeGender": "M",
+  "DtBirth": {
+    "$date": {
+      "$numberLong": "484110000000"
+    }
+  },
+  "NuDocument": "05526687961",
+  "DeEmail": "fernandovieira@email.com",
+  "NuDDD": "21",
+  "NuPhone": "929085969",
+  "IdUserRegister": 3,
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true
+},{
+  "IdCustomer": 9,
+  "NmCustomer": "Maysa Pereira",
+  "DeGender": "F",
+  "DtBirth": {
+    "$date": {
+      "$numberLong": "323578800000"
+    }
+  },
+  "NuDocument": "47319814684",
+  "DeEmail": "maysapereira@email.com",
+  "NuDDD": "36",
+  "NuPhone": "902021023",
+  "IdUserRegister": 3,
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true
+},{
+  "IdCustomer": 10,
+  "NmCustomer": "João Teixeira",
+  "DeGender": "M",
+  "DtBirth": {
+    "$date": {
+      "$numberLong": "160455600000"
+    }
+  },
+  "NuDocument": "96677747751",
+  "DeEmail": "joaoteixeira@email.com",
+  "NuDDD": "69",
+  "NuPhone": "992504502",
+  "IdUserRegister": 3,
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true
+},{
+  "IdCustomer": 11,
+  "NmCustomer": "Isis Rodrigues",
+  "DeGender": "F",
+  "DtBirth": {
+    "$date": {
+      "$numberLong": "16167600000"
+    }
+  },
+  "NuDocument": "91596052945",
+  "DeEmail": "isisrodrigues@email.com",
+  "NuDDD": "25",
+  "NuPhone": "930455863",
+  "IdUserRegister": 3,
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true
+}]

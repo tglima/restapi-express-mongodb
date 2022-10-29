@@ -1,0 +1,27 @@
+[{
+  "IdContactMessage": 1,
+  "NmContact": "teste",
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1665439915424"
+    }
+  },
+  "DeEmail": "contato@email.com",
+  "DeTelephone": "",
+  "DeMessage": "Mensagem sem telefone de contato",
+  "WasRead": false,
+  "IsActive": true
+},{
+  "IdContactMessage": 2,
+  "NmContact": "teste",
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1665439948000"
+    }
+  },
+  "DeEmail": "",
+  "DeTelephone": "48999999999",
+  "DeMessage": "Mensagem sem e-mail de contato",
+  "WasRead": false,
+  "IsActive": true
+}]

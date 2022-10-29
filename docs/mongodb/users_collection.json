@@ -1,0 +1,49 @@
+[{
+  "IdUser": 1,
+  "NmUser": "SysAdmin",
+  "DeUserName": "tglima.dev",
+  "DePassword": "sys.admin",
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IsActive": true,
+  "IdRole": 1
+},{
+  "IdUser": 2,
+  "NmUser": "admin",
+  "DeUserName": "admin",
+  "DePassword": "#321@admin",
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IdRole": 2,
+  "IsActive": true
+},{
+  "IdUser": 3,
+  "NmUser": "user",
+  "DeUserName": "user",
+  "DePassword": "#321@user",
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IdRole": 3,
+  "IsActive": true
+},{
+  "IdUser": 4,
+  "NmUser": "Guest",
+  "DeUserName": "Guest",
+  "DePassword": "",
+  "DtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "IdRole": 999,
+  "IsActive": true
+}]
