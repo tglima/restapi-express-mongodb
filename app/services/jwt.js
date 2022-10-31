@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const appConfig = require('../config/app.config');
+const User = require('../models/User');
 
 exports.checkAuth = async (reqData) => {
   let response = {
@@ -21,6 +22,46 @@ exports.checkAuth = async (reqData) => {
     response = {
       statusCode: 200, success: true, jsonBody: token,
     };
+  }
+
+  return response;
+};
+
+exports.checkAuthDb = async (reqBody) => {
+  const response = {
+    statusCode: 401, success: false, jsonBody: 'Invalid credentials',
+  };
+
+  try {
+    const user = await User.findOne(
+      { DeUserName: reqBody.username, DePassword: reqBody.password, IsActive: true },
+    );
+
+    if (user === undefined || user === null) {
+      return response;
+    }
+
+    const token = {};
+    const id = reqBody.username;
+
+    token.acess_token = jwt.sign(
+      { id },
+      appConfig.token.secret,
+      { expiresIn: (60 * appConfig.token.minutesExpiration) },
+    );
+
+    token.token_type = appConfig.token.tokenType;
+    token.expires_in = 60 * appConfig.token.minutesExpiration;
+    token.date_time_expiration = new Date(+new Date() + (60 * appConfig.token.minutesExpiration));
+    response.statusCode = 200;
+    response.success = true;
+    response.jsonBody = token;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    response.statusCode = 500;
+    response.success = false;
+    response.jsonBody = 'Internarl Server Error';
   }
 
   return response;
