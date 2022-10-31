@@ -4,10 +4,12 @@ const app = express();
 const mongoose = require('mongoose');
 const appConfig = require('./app/config/app.config');
 const homeRoutes = require('./app/routes/home');
+const formMessageRoutes = require('./app/routes/form-message');
 const jwtRoutes = require('./app/routes/jwt');
 app.use(bodyParser.json());
 
 app.use(`/api/v${appConfig.api.nuVersion}`, homeRoutes);
+app.use(`/api/v${appConfig.api.nuVersion}`, formMessageRoutes);
 app.use(`/api/v${appConfig.api.nuVersion}`, jwtRoutes);
 
 mongoose
