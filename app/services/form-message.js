@@ -5,19 +5,7 @@ exports.SaveMessage = async (reqBody) => {
     statusCode: 400, success: false, jsonBody: 'Bad Request',
   };
 
-  const {
-    nmContact, deEmail, deMessage, deTelephone,
-  } = reqBody;
-
-  const message = {};
-
-  message.NmContact = nmContact;
-  message.DeEmail = deEmail;
-  message.DeTelephone = deTelephone;
-  message.DeMessage = deMessage;
-  message.IdContactMessage = 4;
-  // eslint-disable-next-line no-console
-  console.error(message);
+  const message = reqBody;
 
   try {
     await Message.create(message);
