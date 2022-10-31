@@ -1,2 +1,4 @@
 use admin
-db.createUser({user: "applicationdb", pwd: "passAppDB", roles:[{role: "readWrite" , db:"applicationdb"}]})
+db.createUser({ user: "userdb", pwd: "userpass_mongodb", roles: [ { role: "readWrite", db: "applicationdb" } ] })
+use applicationdb
+db.createUser({ user: "userdb", pwd: "userpass_mongodb", roles: [ { role: "readWrite", db: "applicationdb" } ] })
