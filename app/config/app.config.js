@@ -11,7 +11,7 @@ const appConfig = {
     minutesExpiration: 300, secret: 'secretBearerToken', tokenType: 'Bearer',
   },
   db: {
-    username: 'applicationdb', password: 'passAppDB',
+    username: 'userdb', password: 'userpass_mongodb', serverAndPort: 'localhost:27017', nmDatabase: 'applicationdb',
   },
 };
 module.exports = appConfig;
