@@ -1,49 +1,49 @@
 [{
-  "IdUser": 1,
-  "NmUser": "SysAdmin",
-  "DeUserName": "tglima.dev",
-  "DePassword": "sys.admin",
-  "DtRegister": {
+  "idUser": 1,
+  "nmUser": "SysAdmin",
+  "deUserName": "tglima.dev",
+  "dePassword": "sys.admin",
+  "dtRegister": {
     "$date": {
       "$numberLong": "1664593200000"
     }
   },
-  "IsActive": true,
-  "IdRole": 1
+  "isActive": true,
+  "idRole": 1
 },{
-  "IdUser": 2,
-  "NmUser": "admin",
-  "DeUserName": "admin",
-  "DePassword": "#321@admin",
-  "DtRegister": {
+  "idUser": 2,
+  "nmUser": "admin",
+  "deUserName": "admin",
+  "dePassword": "#321@admin",
+  "dtRegister": {
     "$date": {
       "$numberLong": "1664593200000"
     }
   },
-  "IdRole": 2,
-  "IsActive": true
+  "idRole": 2,
+  "isActive": true
 },{
-  "IdUser": 3,
-  "NmUser": "user",
-  "DeUserName": "user",
-  "DePassword": "#321@user",
-  "DtRegister": {
+  "idUser": 3,
+  "nmUser": "user",
+  "deUserName": "user",
+  "dePassword": "#321@user",
+  "dtRegister": {
     "$date": {
       "$numberLong": "1664593200000"
     }
   },
-  "IdRole": 3,
-  "IsActive": true
+  "idRole": 3,
+  "isActive": true
 },{
-  "IdUser": 4,
-  "NmUser": "Guest",
-  "DeUserName": "Guest",
-  "DePassword": "",
-  "DtRegister": {
+  "idUser": 4,
+  "nmUser": "Guest",
+  "deUserName": "Guest",
+  "dePassword": "",
+  "dtRegister": {
     "$date": {
       "$numberLong": "1664593200000"
     }
   },
-  "IdRole": 999,
-  "IsActive": true
+  "idRole": 999,
+  "isActive": true
 }]
