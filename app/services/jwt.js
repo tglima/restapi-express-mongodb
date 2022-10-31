@@ -2,31 +2,6 @@ const jwt = require('jsonwebtoken');
 const appConfig = require('../config/app.config');
 const User = require('../models/User');
 
-exports.checkAuth = async (reqData) => {
-  let response = {
-    statusCode: 401, success: false, jsonBody: 'Invalid credentials',
-  };
-
-  if (reqData.body.username === 'user' && reqData.body.password === '#321@user') {
-    const token = {};
-    const id = reqData.body.username;
-    token.acess_token = jwt.sign(
-      { id },
-      appConfig.token.secret,
-
-      { expiresIn: (60 * appConfig.token.minutesExpiration) },
-    );
-    token.token_type = appConfig.token.tokenType;
-    token.expires_in = 60 * appConfig.token.minutesExpiration;
-    token.date_time_expiration = new Date(+new Date() + (60 * appConfig.token.minutesExpiration));
-    response = {
-      statusCode: 200, success: true, jsonBody: token,
-    };
-  }
-
-  return response;
-};
-
 exports.checkAuthDb = async (reqBody) => {
   const response = {
     statusCode: 401, success: false, jsonBody: 'Invalid credentials',
@@ -34,7 +9,7 @@ exports.checkAuthDb = async (reqBody) => {
 
   try {
     const user = await User.findOne(
-      { DeUserName: reqBody.username, DePassword: reqBody.password, IsActive: true },
+      { deUserName: reqBody.username, dePassword: reqBody.password, isActive: true },
     );
 
     if (user === undefined || user === null) {
@@ -42,10 +17,10 @@ exports.checkAuthDb = async (reqBody) => {
     }
 
     const token = {};
-    const id = reqBody.username;
+    const userToken = { idRole: user.idRole, id: user.id, idUser: user.idUser };
 
     token.acess_token = jwt.sign(
-      { id },
+      { id: userToken },
       appConfig.token.secret,
       { expiresIn: (60 * appConfig.token.minutesExpiration) },
     );
