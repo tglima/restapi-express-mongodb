@@ -1,27 +1,28 @@
-[{
-  "IdContactMessage": 1,
-  "NmContact": "teste",
-  "DtRegister": {
-    "$date": {
-      "$numberLong": "1665439915424"
-    }
+[
+  {
+     "nmContact":"Maria Silva",
+     "dtRegister":{
+        "$date":{
+           "$numberLong":"1667254487217"
+        }
+     },
+     "deEmail":"",
+     "deTelephone":"48999999999",
+     "deMessage":"Mensagem sem e-mail de contato",
+     "wasRead":false,
+     "isActive":true
   },
-  "DeEmail": "contato@email.com",
-  "DeTelephone": "",
-  "DeMessage": "Mensagem sem telefone de contato",
-  "WasRead": false,
-  "IsActive": true
-},{
-  "IdContactMessage": 2,
-  "NmContact": "teste",
-  "DtRegister": {
-    "$date": {
-      "$numberLong": "1665439948000"
-    }
-  },
-  "DeEmail": "",
-  "DeTelephone": "48999999999",
-  "DeMessage": "Mensagem sem e-mail de contato",
-  "WasRead": false,
-  "IsActive": true
-}]
+  {
+     "nmContact":"João Silva",
+     "dtRegister":{
+        "$date":{
+           "$numberLong":"1667256092985"
+        }
+     },
+     "deEmail":"contato@email.com",
+     "deTelephone":"",
+     "deMessage":"Mensagem sem telefone de contato",
+     "wasRead":false,
+     "isActive":true
+  }
+]
