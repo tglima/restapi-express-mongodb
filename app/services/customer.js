@@ -10,18 +10,19 @@ exports.FindById = async (req) => {
   if (idCustomer === null || idCustomer === undefined) {
     response.statusCode = 400;
     response.success = false;
-    response.jsonBody = 'Uninformed idCustomer';
+    response.jsonBody = 'Uninformed id';
     return response;
   }
 
   let customer;
 
   try {
-    customer = Customer.findById(idCustomer);
+    customer = await Customer.findById({ _id: idCustomer, isActive: true });
 
     if (customer === undefined || customer === null) {
       return response;
     }
+
     response.statusCode = 200;
     response.success = true;
     response.jsonBody = customer;
@@ -30,7 +31,7 @@ exports.FindById = async (req) => {
     console.error(error);
     response.statusCode = 500;
     response.success = false;
-    response.jsonBody = 'Internarl Server Error';
+    response.jsonBody = 'Internal Server Error';
   }
 
   return response;
