@@ -1,11 +1,11 @@
 const Customer = require('../models/Customer');
 
-exports.FindById = async (reqBody) => {
+exports.FindById = async (req) => {
   const response = {
     statusCode: 404, success: false, jsonBody: 'Not Found',
   };
 
-  const idCustomer = reqBody;
+  const idCustomer = req.params.id;
 
   if (idCustomer === null || idCustomer === undefined) {
     response.statusCode = 400;
