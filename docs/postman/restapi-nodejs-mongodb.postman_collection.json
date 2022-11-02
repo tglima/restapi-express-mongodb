@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "665aa3cd-a54d-4243-9b7d-54cbd982db63",
+		"name": "restapi-nodejs-mongodb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Gerar Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();",
+							"pm.collectionVariables.set(\"acessToken\", responseJson.acess_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBaseAPI}}/auth",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindCustomerById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{acessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlBaseAPI}}/customer/find/id=636280dd78349b02860c0730",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"customer",
+						"find",
+						"id=636280dd78349b02860c0730"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindCustomerByNuDocument",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{acessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlBaseAPI}}/customer/find/nuDocument=97112918359",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"customer",
+						"find",
+						"nuDocument=97112918359"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindAllProduct",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{acessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlBaseAPI}}/product/find",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"product",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindProductById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{acessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlBaseAPI}}/product/find/id=6362870f78349b02860c0745",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"product",
+						"find",
+						"id=6362870f78349b02860c0745"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nmContact\":\"João Silva\",\n    \"deEmail\": \"contato@email.com\",\n    \"deMessage\": \"Mensagem sem telefone de contato\",\n    \"deTelephone\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBaseAPI}}/contact",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"contact"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": "user",
+			"type": "default"
+		},
+		{
+			"key": "password",
+			"value": "#321@user",
+			"type": "default"
+		},
+		{
+			"key": "urlBaseAPI",
+			"value": "http://localhost:4200/api/v1",
+			"type": "default"
+		},
+		{
+			"key": "acessToken",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
