@@ -17,7 +17,7 @@ exports.SaveMessage = async (reqBody) => {
     console.error(error);
     response.statusCode = 500;
     response.success = false;
-    response.jsonBody = 'Internarl Server Error';
+    response.jsonBody = 'Internal Server Error';
   }
 
   return response;
