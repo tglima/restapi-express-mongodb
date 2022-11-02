@@ -11,10 +11,10 @@ const jwtRoutes = require('./app/routes/jwt');
 app.use(bodyParser.json());
 
 app.use(`/api/v${appConfig.api.nuVersion}`, homeRoutes);
-app.use(`/api/v${appConfig.api.nuVersion}`, formMessageRoutes);
-app.use(`/api/v${appConfig.api.nuVersion}`, customerRoutes);
-app.use(`/api/v${appConfig.api.nuVersion}`, productRoutes);
-app.use(`/api/v${appConfig.api.nuVersion}`, jwtRoutes);
+app.use(`/api/v${appConfig.api.nuVersion}/contact`, formMessageRoutes);
+app.use(`/api/v${appConfig.api.nuVersion}/customer`, customerRoutes);
+app.use(`/api/v${appConfig.api.nuVersion}/product`, productRoutes);
+app.use(`/api/v${appConfig.api.nuVersion}/`, jwtRoutes);
 
 mongoose
   .connect(`mongodb://${appConfig.db.username}:${appConfig.db.password}@${appConfig.db.serverAndPort}/${appConfig.db.nmDatabase}`)
