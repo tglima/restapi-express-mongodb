@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const appConfig = require('../config/app.config');
 const User = require('../models/User');
+const AccessRole = require('../models/acessRole');
 
 exports.checkAuthDb = async (reqBody) => {
   const response = {
@@ -17,10 +18,8 @@ exports.checkAuthDb = async (reqBody) => {
     }
 
     const token = {};
-    const userToken = { idRole: user.idRole, id: user.id, idUser: user.idUser };
-
     token.acess_token = jwt.sign(
-      { id: userToken },
+      { idRole: user.idRole, id: user.id, idUserRegister: user.idUser },
       appConfig.token.secret,
       { expiresIn: (60 * appConfig.token.minutesExpiration) },
     );
@@ -42,28 +41,73 @@ exports.checkAuthDb = async (reqBody) => {
   return response;
 };
 
-exports.verifyJWT = (req, res, next) => {
-  const responseUnauthorized = res.status(401).json({ success: false, message: 'Invalid credentials' });
+// eslint-disable-next-line consistent-return
+exports.verifyJWT = async (req, res, next) => {
+  const bearerHeader = req.headers.authorization.replace('Bearer ', '');
 
   if (req.headers.authorization === undefined) {
-    return responseUnauthorized;
+    return res.status(401).json({ success: false, message: 'Invalid credentials' });
+  }
+
+  if (!bearerHeader) {
+    return res.status(401).json({ success: false, message: 'Invalid credentials' });
+  }
+  const userDataReq = await this.getUserDataReq(req);
+
+  let acessRole;
+  try {
+    acessRole = await AccessRole.findOne({ endpoint: req.originalUrl, idRole: userDataReq.idRole });
+
+    if (acessRole === null || acessRole === undefined) {
+      return res.status(401).json({ success: false, message: 'Invalid token' });
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return res.status(401).json({ success: false, message: 'Invalid token' });
+  }
+
+  if (acessRole.idRole === appConfig.superUser.idRole) {
+    return next();
+  }
+
+  const nmMethod = req.method.toString();
+
+  if (nmMethod.toUpperCase() === 'GET' && acessRole.read === true) {
+    return next();
+  }
+
+  if (nmMethod.toUpperCase() === 'POST' && acessRole.post) {
+    return next();
+  }
+
+  return res.status(401).json({ success: false, message: 'User without permission' });
+};
+
+exports.getUserDataReq = async (req) => {
+  const userDataReq = appConfig.guestUser;
+
+  if (req.headers.authorization === undefined) {
+    return userDataReq;
   }
 
   const bearerHeader = req.headers.authorization.replace('Bearer ', '');
   if (!bearerHeader) {
-    return responseUnauthorized;
+    return userDataReq;
   }
 
-  let responseJWTVerify = responseUnauthorized;
-
-  jwt.verify(bearerHeader, appConfig.token.secret, (err, decoded) => {
-    if (err) {
-      return;
+  jwt.verify(bearerHeader, appConfig.token.secret, (error, decoded) => {
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      return userDataReq;
     }
+    userDataReq.id = decoded.id;
+    userDataReq.idUserRegister = decoded.idUserRegister;
+    userDataReq.idRole = decoded.idRole;
 
-    req.userId = decoded.id;
-    responseJWTVerify = next();
+    return userDataReq;
   });
 
-  return responseJWTVerify;
+  return userDataReq;
 };
