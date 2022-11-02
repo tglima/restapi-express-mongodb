@@ -1,0 +1,28 @@
+[
+   {
+      "_id":{
+         "$oid":"63628b9278349b02860c0775"
+      },
+      "idCustomer":"636280dd78349b02860c0730",
+      "idProduct":"6362870f78349b02860c0745",
+      "nmPlan":"Basic",
+      "vlMonthPrice":9.99,
+      "dtStart":{
+         "$date":{
+            "$numberLong":"1672455600000"
+         }
+      },
+      "dtFinish":{
+         "$date":{
+            "$numberLong":"1703991600000"
+         }
+      },
+      "dtRegister":{
+         "$date":{
+            "$numberLong":"1667271600000"
+         }
+      },
+      "idUserRegister":2,
+      "isActive":true
+   }
+]

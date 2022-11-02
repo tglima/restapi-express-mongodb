@@ -1,0 +1,21 @@
+[
+   {
+      "_id":{
+         "$oid":"6362870f78349b02860c0745"
+      },
+      "nmProduct":"Basic",
+      "vlMonthPrice":9.99,
+      "details":{
+         "nmVideoQuality":"Good",
+         "nmResolution":"480p",
+         "qtSimultaneousScreens":1
+      },
+      "dtRegister":{
+         "$date":{
+            "$numberLong":"1667271600000"
+         }
+      },
+      "idUserRegister":2,
+      "isActive":true
+   }
+]

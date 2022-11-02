@@ -1,0 +1,14 @@
+[
+   {
+      "_id":{
+         "$oid":"6362928278349b02860c07e0"
+      },
+      "idRole":999,
+      "post":true,
+      "update":false,
+      "get":false,
+      "delete":false,
+      "endpoint":"/contact",
+      "nmCollection":"contactMessages"
+   }
+]
