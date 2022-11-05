@@ -80,7 +80,7 @@ exports.verifyJWT = async (req, res, next) => {
 
     let urlBase = req.originalUrl;
 
-    if (req.originalUrl.includes('id=')) {
+    if (req.originalUrl.includes('=')) {
 
       const array = req.originalUrl.split('=');
       urlBase = `${array[0]}`;
