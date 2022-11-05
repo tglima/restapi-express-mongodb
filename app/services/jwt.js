@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const appConfig = require('../config/app.config');
 const User = require('../models/User');
-const AccessRole = require('../models/AccessRole');
+const URLAccessControl = require('../models/UrlAccessControl');
 const msgUserWithoutPermission = 'User without permission';
 const msgInvalidCredentials = 'Invalid credentials';
 
@@ -70,8 +70,6 @@ exports.verifyJWT = async (req, res, next) => {
 
   const userDataReq = await this.getUserDataReq(req);
 
-  let acessRole;
-
   try {
 
     if (userDataReq.idRole === appConfig.superUser.idRole) {
@@ -89,13 +87,23 @@ exports.verifyJWT = async (req, res, next) => {
 
     }
 
-    acessRole = await AccessRole.findOne(
-      { endpoint: urlBase, idRole: userDataReq.idRole },
-    );
+    const accessControl = await URLAccessControl.findOne({ url: urlBase, isActive: true });
 
-    if (acessRole === null || acessRole === undefined) {
+    if (accessControl === null || accessControl === undefined) {
 
       return res.status(401).json({ success: false, message: msgUserWithoutPermission });
+
+    }
+
+    if (req.method.toString().toUpperCase() === 'GET' && accessControl.read.idRolesAllowed.includes(userDataReq.idRole)) {
+
+      return next();
+
+    }
+
+    if (req.method.toString().toUpperCase() === 'POST' && accessControl.post.idRolesAllowed.includes(userDataReq.idRole)) {
+
+      return next();
 
     }
 
@@ -104,20 +112,6 @@ exports.verifyJWT = async (req, res, next) => {
     // eslint-disable-next-line no-console
     console.error(error);
     return res.status(401).json({ success: false, message: msgUserWithoutPermission });
-
-  }
-
-  const nmMethod = req.method.toString();
-
-  if (nmMethod.toUpperCase() === 'GET' && acessRole.read === true) {
-
-    return next();
-
-  }
-
-  if (nmMethod.toUpperCase() === 'POST' && acessRole.post) {
-
-    return next();
 
   }
 
