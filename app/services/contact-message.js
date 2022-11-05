@@ -1,4 +1,4 @@
-const Message = require('../models/ContactMessage');
+const ContactMessage = require('../models/ContactMessage');
 
 exports.SaveMessage = async (reqBody) => {
 
@@ -10,7 +10,7 @@ exports.SaveMessage = async (reqBody) => {
 
   try {
 
-    await Message.create(message);
+    await ContactMessage.create(message);
     response.statusCode = 201;
     response.success = true;
     response.jsonBody = 'OK';

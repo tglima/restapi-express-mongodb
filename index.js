@@ -4,14 +4,14 @@ const app = express();
 const mongoose = require('mongoose');
 const appConfig = require('./app/config/app.config');
 const homeRoutes = require('./app/routes/home');
-const formMessageRoutes = require('./app/routes/form-message');
+const contactMessageRoutes = require('./app/routes/contact-message');
 const customerRoutes = require('./app/routes/customer');
 const productRoutes = require('./app/routes/product');
 const jwtRoutes = require('./app/routes/jwt');
 app.use(bodyParser.json());
 
 app.use(`/api/v${appConfig.api.nuVersion}`, homeRoutes);
-app.use(`/api/v${appConfig.api.nuVersion}/contact`, formMessageRoutes);
+app.use(`/api/v${appConfig.api.nuVersion}/contact`, contactMessageRoutes);
 app.use(`/api/v${appConfig.api.nuVersion}/customer`, customerRoutes);
 app.use(`/api/v${appConfig.api.nuVersion}/product`, productRoutes);
 app.use(`/api/v${appConfig.api.nuVersion}/`, jwtRoutes);
