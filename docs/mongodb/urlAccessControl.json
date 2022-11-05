@@ -1,0 +1,105 @@
+[
+   {
+      "url":"/api/v1/",
+      "isActive":true,
+      "post":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "read":{
+         "idRolesAllowed":[
+            2,
+            3
+         ]
+      },
+      "update":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "delete":{
+         "idRolesAllowed":[
+
+         ]
+      }
+   },
+   {
+      "url":"/api/v1/contact",
+      "isActive":true,
+      "post":{
+         "idRolesAllowed":[
+            2,
+            3,
+            999
+         ]
+      },
+      "read":{
+         "idRolesAllowed":[
+        ]
+      },
+      "update":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "delete":{
+         "idRolesAllowed":[
+
+         ]
+      }
+   },
+   {
+      "url":"/api/v1/product/find",
+      "isActive":true,
+      "post":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "read":{
+         "idRolesAllowed":[
+            2,
+            3
+         ]
+      },
+      "update":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "delete":{
+         "idRolesAllowed":[
+
+         ]
+      }
+   },
+   {
+      "_id":{
+         "$oid":"6366acefd2d3d460149de71e"
+      },
+      "url":"/api/v1/product/find/id",
+      "isActive":true,
+      "post":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "read":{
+         "idRolesAllowed":[
+            2,
+            3
+         ]
+      },
+      "update":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "delete":{
+         "idRolesAllowed":[
+
+         ]
+      }
+   }
+]
