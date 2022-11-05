@@ -16,7 +16,7 @@ const schema = new mongoose.Schema(
   { versionKey: false },
 );
 
-schema.methods.toJSON = function () {
+schema.methods.toJSON = function toJSON() {
 
   const obj = this.toObject();
   delete obj.dtRegister;
@@ -25,6 +25,7 @@ schema.methods.toJSON = function () {
   return obj;
 
 };
+
 const Customer = mongoose.model('customers', schema);
 
 module.exports = Customer;
