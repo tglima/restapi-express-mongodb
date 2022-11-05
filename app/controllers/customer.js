@@ -13,3 +13,10 @@ exports.findByNuDocument = async (req, res) => {
   return res.status(response.statusCode).send(response.jsonBody);
 
 };
+
+exports.saveCustomer = async (req, res) => {
+
+  const response = await customerService.SaveCustomer(req);
+  return res.status(response.statusCode).send(response.jsonBody);
+
+};
