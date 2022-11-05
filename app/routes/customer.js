@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const customerController = require('../controllers/customer');
+const jwtService = require('../services/jwt');
 
-router.get('/find/id=:id', customerController.findById);
-router.get('/find/nuDocument=:nuDocument', customerController.findByNuDocument);
+router.get('/find/id=:id', jwtService.verifyJWT, customerController.findById);
+router.get('/find/nuDocument=:nuDocument', jwtService.verifyJWT, customerController.findByNuDocument);
 module.exports = router;
