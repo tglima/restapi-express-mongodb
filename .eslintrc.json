@@ -17,6 +17,6 @@
     "rules": {
         "eol-last": ["error", "never"],
         "import/newline-after-import": 0,
-        "padded-blocks": ["error", { "next-line": "never" }]
+        "padded-blocks": ["error", { "blocks": "always" }]
     }
 }
