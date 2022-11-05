@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const appConfig = require('../config/app.config');
 const User = require('../models/User');
-const AccessRole = require('../models/acessRole');
+const AccessRole = require('../models/AccessRole');
 const msgUserWithoutPermission = 'User without permission';
 const msgInvalidCredentials = 'Invalid credentials';
 
