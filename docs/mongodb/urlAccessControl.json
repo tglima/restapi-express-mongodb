@@ -1,5 +1,8 @@
 [
    {
+      "_id":{
+         "$oid":"6366b91bd2d3d460149de72b"
+      },
       "url":"/api/v1/",
       "isActive":true,
       "post":{
@@ -25,6 +28,9 @@
       }
    },
    {
+      "_id":{
+         "$oid":"6366b91bd2d3d460149de72c"
+      },
       "url":"/api/v1/contact",
       "isActive":true,
       "post":{
@@ -36,7 +42,8 @@
       },
       "read":{
          "idRolesAllowed":[
-        ]
+
+         ]
       },
       "update":{
          "idRolesAllowed":[
@@ -50,6 +57,9 @@
       }
    },
    {
+      "_id":{
+         "$oid":"6366b91bd2d3d460149de72d"
+      },
       "url":"/api/v1/product/find",
       "isActive":true,
       "post":{
@@ -79,6 +89,89 @@
          "$oid":"6366acefd2d3d460149de71e"
       },
       "url":"/api/v1/product/find/id",
+      "isActive":true,
+      "post":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "read":{
+         "idRolesAllowed":[
+            2,
+            3
+         ]
+      },
+      "update":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "delete":{
+         "idRolesAllowed":[
+
+         ]
+      }
+   },
+   {
+      "_id":{
+         "$oid":"6366bd7cd2d3d460149de72e"
+      },
+      "url":"/api/v1/customer/find",
+      "isActive":true,
+      "post":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "read":{
+         "idRolesAllowed":[
+            3
+         ]
+      },
+      "update":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "delete":{
+         "idRolesAllowed":[
+
+         ]
+      }
+   },
+   {
+      "_id":{
+         "$oid":"6366bdb3d2d3d460149de72f"
+      },
+      "url":"/api/v1/customer/find/id",
+      "isActive":true,
+      "post":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "read":{
+         "idRolesAllowed":[
+            2,
+            3
+         ]
+      },
+      "update":{
+         "idRolesAllowed":[
+
+         ]
+      },
+      "delete":{
+         "idRolesAllowed":[
+
+         ]
+      }
+   },
+   {
+      "_id":{
+         "$oid":"6366be62d2d3d460149de730"
+      },
+      "url":"/api/v1/customer/find/nuDocument",
       "isActive":true,
       "post":{
          "idRolesAllowed":[
