@@ -1,5 +1,6 @@
 const Customer = require('../models/Customer');
-const Constant = require('../helpers/constants');
+const constant = require('../helpers/constants');
+const validatorCustomer = require('../validators/customer');
 const jwtService = require('./jwt');
 
 exports.FindById = async (req) => {
@@ -99,8 +100,10 @@ exports.FindByNuDocument = async (req) => {
 exports.SaveCustomer = async (req) => {
 
   const response = {
-    statusCode: 400, success: false, jsonBody: Constant.HTTP_MSG_ERROR_400,
+    statusCode: 400, success: false, jsonBody: constant.HTTP_MSG_ERROR_400,
   };
+
+  let returnValidate = { wasSuccess: true, messages: [] };
 
   try {
 
@@ -108,12 +111,25 @@ exports.SaveCustomer = async (req) => {
 
     customer.idUserRegister = (await jwtService.getUserDataReq(req)).idUserRegister;
 
+    returnValidate = await validatorCustomer.validateSaveCustomer(customer);
+
+    if (!returnValidate.wasSuccess) {
+
+      response.statusCode = 400;
+      response.success = false;
+      response.jsonBody = JSON.parse(JSON.stringify(returnValidate.messages));
+      return response;
+
+    }
+
     const customerDb = await Customer.findOne({ nuDocument: customer.nuDocument, isActive: true });
 
     if (customerDb !== undefined && customerDb !== null) {
 
-      response.jsonBody = 'O número do documento informado, já existe!';
-      response.wasSuccess = false;
+      response.statusCode = 400;
+      response.success = false;
+      returnValidate.messages.push('O número do documento informado, já existe!');
+      response.jsonBody = JSON.parse(JSON.stringify(returnValidate.messages));
       return response;
 
     }
@@ -132,7 +148,7 @@ exports.SaveCustomer = async (req) => {
     console.error(error);
     response.statusCode = 500;
     response.success = false;
-    response.jsonBody = Constant.HTTP_MSG_ERROR_500;
+    response.jsonBody = constant.HTTP_MSG_ERROR_500;
 
   }
 
