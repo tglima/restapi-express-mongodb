@@ -10,20 +10,20 @@ const productRoutes = require('./app/routes/product');
 const jwtRoutes = require('./app/routes/jwt');
 app.use(bodyParser.json());
 
-app.use(`/api/v${appConfig.api.nuVersion}`, homeRoutes);
-app.use(`/api/v${appConfig.api.nuVersion}/contact`, contactMessageRoutes);
-app.use(`/api/v${appConfig.api.nuVersion}/customer`, customerRoutes);
-app.use(`/api/v${appConfig.api.nuVersion}/product`, productRoutes);
-app.use(`/api/v${appConfig.api.nuVersion}/`, jwtRoutes);
+app.use(`/api/v${appConfig.nuVersionApi}`, homeRoutes);
+app.use(`/api/v${appConfig.nuVersionApi}/contact`, contactMessageRoutes);
+app.use(`/api/v${appConfig.nuVersionApi}/customer`, customerRoutes);
+app.use(`/api/v${appConfig.nuVersionApi}/product`, productRoutes);
+app.use(`/api/v${appConfig.nuVersionApi}/`, jwtRoutes);
 
 mongoose
-  .connect(`mongodb://${appConfig.db.username}:${appConfig.db.password}@${appConfig.db.serverAndPort}/${appConfig.db.nmDatabase}`)
+  .connect(appConfig.dbConnection)
   .then(() => {
 
-    app.listen(`${appConfig.server.port}`, () => {
+    app.listen(`${appConfig.serverPort}`, () => {
 
       // eslint-disable-next-line no-console
-      console.log(`MongoDB + Express started! - Express rodando na porta: ${appConfig.server.port}`);
+      console.log(`MongoDB + Express started! - Express rodando na porta: ${appConfig.serverPort}`);
 
     });
 

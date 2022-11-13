@@ -1,23 +1,20 @@
+require('dotenv').config();
 const appConfig = {
-  api:
-  {
-    nuVersion: '1',
-  },
-  server:
-  {
-    port: 4200,
-  },
   token: {
-    minutesExpiration: 300, secret: 'secretBearerToken', tokenType: 'Bearer',
-  },
-  db: {
-    username: 'userdb', password: 'userpass_mongodb', serverAndPort: 'localhost:27017', nmDatabase: 'applicationdb',
+    minutesExpiration: process.env.TOKEN_MINUTES_EXPIRATION,
+    secret: process.env.TOKEN_SECRET,
+    tokenType: process.env.TOKEN_TYPE,
   },
   superUser: {
-    idUser: 1, idRole: 1,
+    idUser: process.env.ID_SUPER_USER, idRole: process.env.ID_SUPER_ROLE,
   },
   guestUser: {
-    idUser: 4, idRole: 999, id: null,
+    idUser: process.env.ID_GUEST_USER, idRole: process.env.ID_GUEST_ROLE, id: null,
   },
+  nuVersionApi: process.env.API_NUVERSION,
+  serverPort: process.env.SERVER_PORT,
+  dbConnection: `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_SERVER}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+
 };
+
 module.exports = appConfig;
