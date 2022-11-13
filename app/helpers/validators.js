@@ -45,7 +45,7 @@ exports.IsValidName = (obj) => {
 
   const name = obj.trim();
 
-  const regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+  const regName = /^((([a-zA-Z\u00C0-\u017F]{2,})([\s]{1}))+([a-zA-Z\u00C0-\u017F]{3,}))*$/;
 
   if (!regName.test(name)) {
 
