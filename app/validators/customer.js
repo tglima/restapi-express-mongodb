@@ -51,7 +51,7 @@ exports.validateSaveCustomer = async (customer) => {
 
     }
 
-    if (!validators.IsValidDDD()) {
+    if (!validators.IsValidDDD(customer.nuDDD)) {
 
       returnValidate.messages.push('O número de telefone informado é inválido!');
       returnValidate.wasSuccess = false;

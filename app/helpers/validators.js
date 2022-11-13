@@ -45,6 +45,7 @@ exports.IsValidName = (obj) => {
 
   const name = obj.trim();
 
+  // eslint-disable-next-line security/detect-unsafe-regex
   const regName = /^((([a-zA-Z\u00C0-\u017F]{2,})([\s]{1}))+([a-zA-Z\u00C0-\u017F]{3,}))*$/;
 
   if (!regName.test(name)) {
@@ -65,6 +66,12 @@ exports.IsValidName = (obj) => {
 
 exports.IsValidDeGender = (obj) => {
 
+  if (!this.HasValue(obj)) {
+
+    return false;
+
+  }
+
   if (obj.toUpperCase() === 'M' || obj.toUpperCase() === 'F') {
 
     return true;
@@ -77,24 +84,21 @@ exports.IsValidDeGender = (obj) => {
 
 exports.IsValidPhoneNumber = (obj) => {
 
-  if (Number.isNaN(Number.parseInt(obj, 2))) {
+  const num = obj.trim();
+  const regNum = /^(?:[2-8]|9[1-9])[0-9]{3}[0-9]{4}$/;
+
+  if (!regNum.test(num)) {
 
     return false;
 
   }
 
-  if (obj <= 100000000) {
-
-    return false;
-
-  }
   return true;
 
 };
 
 exports.IsValidDate = (obj) => {
 
-  const regname = /^\d{4}-\d{1,2}-\d{1,2}$/;
   try {
 
     if (!this.HasValue(obj)) {
@@ -103,6 +107,7 @@ exports.IsValidDate = (obj) => {
 
     }
 
+    const regname = /^\d{4}-\d{1,2}-\d{1,2}$/;
     if (!regname.test(obj)) {
 
       return false;
@@ -133,8 +138,7 @@ exports.IsValidDate = (obj) => {
 
 exports.IsValidDDD = (obj) => {
 
-  const num = Number.parseInt(obj, 2);
-
+  const num = Number.parseInt(obj, 10);
   if (Number.isNaN(num)) {
 
     return false;
