@@ -9,7 +9,7 @@ const schema = new mongoose.Schema(
     deEmail: String,
     nuDDD: String,
     nuPhone: String,
-    idUserRegister: { type: Number, required: true, min: 1 },
+    idUserRegister: { type: String, required: true },
     idLastUserEdit: { type: String, required: true },
     dtRegister: { type: Date, default: new Date().toJSON() },
     dtLastEdit: { type: Date, default: new Date().toJSON() },
