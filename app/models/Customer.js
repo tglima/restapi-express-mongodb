@@ -28,6 +28,7 @@ schema.methods.toJSON = function toJSON() {
   customerJSON.id = obj._id;
   customerJSON.nmCustomer = obj.nmCustomer;
   customerJSON.dtBirth = dtBirth;
+  customerJSON.deGender = obj.deGender;
   customerJSON.nuDocument = obj.nuDocument;
   customerJSON.deEmail = obj.deEmail;
   customerJSON.nuDDD = obj.nuDDD;
