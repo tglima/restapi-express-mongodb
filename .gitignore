@@ -54,7 +54,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+#.env
 
 # Pasta node_modules
 node_modules
