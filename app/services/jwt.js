@@ -87,6 +87,8 @@ exports.verifyJWT = async (req, res, next) => {
 
     }
 
+    urlBase = urlBase.replace(`/api/v${appConfig.api.nuVersion}`, '');
+
     const accessControl = await URLAccessControl.findOne({ url: urlBase, isActive: true });
 
     if (accessControl === null || accessControl === undefined) {
