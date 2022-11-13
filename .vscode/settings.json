@@ -2,5 +2,6 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": true,
     "source.fixAll.eslint": true
-  }
+  },
+  "terminal.integrated.defaultProfile.linux": "zsh"
 }
