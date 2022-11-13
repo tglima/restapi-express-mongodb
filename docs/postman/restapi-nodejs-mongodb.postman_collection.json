@@ -91,14 +91,89 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{urlBaseAPI}}/customer/find/nuDocument=97112918359",
+					"raw": "{{urlBaseAPI}}/customer/find/nuDocument=17816020937",
 					"host": [
 						"{{urlBaseAPI}}"
 					],
 					"path": [
 						"customer",
 						"find",
-						"nuDocument=97112918359"
+						"nuDocument=17816020937"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SaveCustomer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{acessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nmCustomer\": \"Evelyn Agatha Carolina Aparício\",\n  \"deGender\": \"F\",\n  \"dtBirth\": \"1990-08-20\",\n  \"nuDocument\": \"41461295912\",\n  \"deEmail\": \"evelyn_aparicio@embraer.com\",\n  \"nuDDD\": \"\",\n  \"nuPhone\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBaseAPI}}/customer/save",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"customer",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCustomer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{acessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nmCustomer\": \"Simone Eduarda Fernanda Pires\",\n    \"dtBirth\": \"1965-07-02\",\n    \"deGender\": \"F\",\n    \"nuDocument\": \"17816020937\",\n    \"deEmail\": \"simoneeduardapires@lordello.com.br\",\n    \"nuDDD\": \"47\",\n    \"nuPhone\": \"992636586\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBaseAPI}}/customer/update/id=636280dd78349b02860c0730",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"customer",
+						"update",
+						"id=636280dd78349b02860c0730"
 					]
 				}
 			},
