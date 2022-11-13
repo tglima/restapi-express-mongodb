@@ -40,4 +40,101 @@ schema.methods.toJSON = function toJSON() {
 
 const Customer = mongoose.model('customers', schema);
 
-module.exports = Customer;
+exports.findByNuDocument = async (nuDoc) => {
+
+  const result = { wasSuccess: false, customer: null, error: null };
+
+  try {
+
+    result.customer = await Customer.findOne({ isActive: true, nuDocument: nuDoc });
+    result.wasSuccess = true;
+
+  } catch (error) {
+
+    result.customer = null;
+    result.wasSuccess = false;
+    result.error = error;
+
+  }
+
+  return result;
+
+};
+
+exports.findByIdCustomer = async (id) => {
+
+  const result = { wasSuccess: false, customer: null, error: null };
+
+  try {
+
+    result.customer = await Customer.findById({ _id: id, isActive: true });
+    result.wasSuccess = true;
+
+  } catch (error) {
+
+    result.customer = null;
+    result.wasSuccess = false;
+    result.error = error;
+
+  }
+
+  return result;
+
+};
+
+exports.saveNew = async (customer) => {
+
+  const result = { wasSuccess: false, customer: null, error: null };
+
+  try {
+
+    result.customer = await Customer.create(customer);
+    result.wasSuccess = true;
+
+  } catch (error) {
+
+    result.customer = null;
+    result.wasSuccess = false;
+    result.error = error;
+
+  }
+
+  return result;
+
+};
+
+exports.updateCustomer = async (customer) => {
+
+  const result = { wasSuccess: false, customer: null, error: null };
+
+  try {
+
+    await Customer.findByIdAndUpdate(
+      { _id: customer.id },
+      {
+        nmCustomer: customer.nmCustomer,
+        deGender: customer.deGender,
+        dtBirth: customer.dtBirth,
+        nuDocument: customer.nuDocument,
+        deEmail: customer.deEmail,
+        nuDDD: customer.nuDDD,
+        nuPhone: customer.nuPhone,
+        idLastUserEdit: customer.idLastUserEdit,
+        dtLastEdit: new Date().toJSON(),
+      },
+    );
+
+    result.customer = customer;
+    result.wasSuccess = true;
+
+  } catch (error) {
+
+    result.customer = null;
+    result.wasSuccess = false;
+    result.error = error;
+
+  }
+
+  return result;
+
+};
