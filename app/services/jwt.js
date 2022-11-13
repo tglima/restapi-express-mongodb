@@ -109,6 +109,12 @@ exports.verifyJWT = async (req, res, next) => {
 
     }
 
+    if (req.method.toString().toUpperCase() === 'PUT' && accessControl.update.idRolesAllowed.includes(userDataReq.idRole)) {
+
+      return next();
+
+    }
+
   } catch (error) {
 
     // eslint-disable-next-line no-console
