@@ -3,21 +3,27 @@
       "_id":{
          "$oid":"636280dd78349b02860c0730"
       },
-      "nmCustomer":"Agatha da Conceição",
+      "nmCustomer":"Simone Eduarda Fernanda Pires",
       "deGender":"F",
       "dtBirth":{
          "$date":{
-            "$numberLong":"977281200000"
+            "$numberLong":"-142041600000"
          }
       },
-      "nuDocument":"97112918359",
-      "deEmail":"agathaconceicao@email.com",
-      "nuDDD":"27",
-      "nuPhone":"975206325",
-      "idUserRegister":2,
+      "nuDocument":"17816020937",
+      "deEmail":"simoneeduardapires@lordello.com.br",
+      "nuDDD":"47",
+      "nuPhone":"992636586",
+      "idUserRegister":"636280b978349b02860c072c",
+      "idLastUserEdit":"636280b978349b02860c072c",
       "dtRegister":{
          "$date":{
-            "$numberLong":"1664593200000"
+            "$numberLong":"1668368023888"
+         }
+      },
+      "dtLastEdit":{
+         "$date":{
+            "$numberLong":"1668368023888"
          }
       },
       "isActive":true
@@ -26,21 +32,27 @@
       "_id":{
          "$oid":"636280dd78349b02860c0731"
       },
-      "nmCustomer":"João Vitor Ribeiro",
+      "nmCustomer":"Gabriel Mário Paulo Cavalcanti",
       "deGender":"M",
       "dtBirth":{
          "$date":{
-            "$numberLong":"1009854000000"
+            "$numberLong":"-309225600000"
          }
       },
-      "nuDocument":"81222260514",
-      "deEmail":"joaovitor@email.com",
-      "nuDDD":"63",
-      "nuPhone":"946675738",
-      "idUserRegister":2,
+      "nuDocument":"32650270900",
+      "deEmail":"gabriel_mario_cavalcanti@pss.adv.br",
+      "nuDDD":"48",
+      "nuPhone":"981506919",
+      "idUserRegister":"636280b978349b02860c072c",
+      "idLastUserEdit":"636280b978349b02860c072c",
       "dtRegister":{
          "$date":{
-            "$numberLong":"1664593200000"
+            "$numberLong":"1668368023888"
+         }
+      },
+      "dtLastEdit":{
+         "$date":{
+            "$numberLong":"1668368882223"
          }
       },
       "isActive":true
@@ -49,21 +61,27 @@
       "_id":{
          "$oid":"636280dd78349b02860c0732"
       },
-      "nmCustomer":"Clara Silveira",
+      "nmCustomer":"Luiza Elisa Araújo",
       "deGender":"F",
       "dtBirth":{
          "$date":{
-            "$numberLong":"992142000000"
+            "$numberLong":"-717552000000"
          }
       },
-      "nuDocument":"97626058615",
-      "deEmail":"clarasilveira@email.com",
-      "nuDDD":"14",
-      "nuPhone":"924799906",
-      "idUserRegister":2,
+      "nuDocument":"43274629936",
+      "deEmail":"luiza.elisa.araujo@amoreencantos.com",
+      "nuDDD":"47",
+      "nuPhone":"35335466",
+      "idUserRegister":"636280b978349b02860c072c",
+      "idLastUserEdit":"636280b978349b02860c072c",
       "dtRegister":{
          "$date":{
-            "$numberLong":"1664593200000"
+            "$numberLong":"1668368023888"
+         }
+      },
+      "dtLastEdit":{
+         "$date":{
+            "$numberLong":"1668368023888"
          }
       },
       "isActive":true
@@ -72,182 +90,27 @@
       "_id":{
          "$oid":"636280dd78349b02860c0733"
       },
-      "nmCustomer":"Benjamin Carvalho",
+      "nmCustomer":"Victor Martin Filipe da Rocha",
       "deGender":"M",
       "dtBirth":{
          "$date":{
-            "$numberLong":"937537200000"
+            "$numberLong":"-818812800000"
          }
       },
-      "nuDocument":"29746188712",
-      "deEmail":"benjamincarvalho@email.com",
-      "nuDDD":"99",
-      "nuPhone":"992669426",
-      "idUserRegister":3,
+      "nuDocument":"23073948937",
+      "deEmail":"victor_darocha@fertau.com.br",
+      "nuDDD":"47",
+      "nuPhone":"39137037",
+      "idUserRegister":"636280b978349b02860c072c",
+      "idLastUserEdit":"636280b978349b02860c072c",
       "dtRegister":{
          "$date":{
-            "$numberLong":"1664593200000"
+            "$numberLong":"1668368023888"
          }
       },
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280dd78349b02860c0734"
-      },
-      "nmCustomer":"Maria Fernanda Araújo",
-      "deGender":"F",
-      "dtBirth":{
+      "dtLastEdit":{
          "$date":{
-            "$numberLong":"928206000000"
-         }
-      },
-      "nuDocument":"48164734080",
-      "deEmail":"mariafernanda@email.com",
-      "nuDDD":"11",
-      "nuPhone":"908372062",
-      "idUserRegister":3,
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1664593200000"
-         }
-      },
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280dd78349b02860c0735"
-      },
-      "nmCustomer":"Davi Lucca Freitas",
-      "deGender":"M",
-      "dtBirth":{
-         "$date":{
-            "$numberLong":"816663600000"
-         }
-      },
-      "nuDocument":"16536452100",
-      "deEmail":"davilucca@email.com",
-      "nuDDD":"31",
-      "nuPhone":"935697357",
-      "idUserRegister":3,
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1664593200000"
-         }
-      },
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280dd78349b02860c0736"
-      },
-      "nmCustomer":"Maria Vitória Ramos",
-      "deGender":"F",
-      "dtBirth":{
-         "$date":{
-            "$numberLong":"655527600000"
-         }
-      },
-      "nuDocument":"39086928730",
-      "deEmail":"mariavitória@email.com",
-      "nuDDD":"48",
-      "nuPhone":"999926223",
-      "idUserRegister":3,
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1664593200000"
-         }
-      },
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280dd78349b02860c0737"
-      },
-      "nmCustomer":"Fernando Vieira",
-      "deGender":"M",
-      "dtBirth":{
-         "$date":{
-            "$numberLong":"484110000000"
-         }
-      },
-      "nuDocument":"05526687961",
-      "deEmail":"fernandovieira@email.com",
-      "nuDDD":"21",
-      "nuPhone":"929085969",
-      "idUserRegister":3,
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1664593200000"
-         }
-      },
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280dd78349b02860c0738"
-      },
-      "nmCustomer":"Maysa Pereira",
-      "deGender":"F",
-      "dtBirth":{
-         "$date":{
-            "$numberLong":"323578800000"
-         }
-      },
-      "nuDocument":"47319814684",
-      "deEmail":"maysapereira@email.com",
-      "nuDDD":"36",
-      "nuPhone":"902021023",
-      "idUserRegister":3,
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1664593200000"
-         }
-      },
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280dd78349b02860c0739"
-      },
-      "nmCustomer":"João Teixeira",
-      "deGender":"M",
-      "dtBirth":{
-         "$date":{
-            "$numberLong":"160455600000"
-         }
-      },
-      "nuDocument":"96677747751",
-      "deEmail":"joaoteixeira@email.com",
-      "nuDDD":"69",
-      "nuPhone":"992504502",
-      "idUserRegister":3,
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1664593200000"
-         }
-      },
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280dd78349b02860c073a"
-      },
-      "nmCustomer":"Isis Rodrigues",
-      "deGender":"F",
-      "dtBirth":{
-         "$date":{
-            "$numberLong":"16167600000"
-         }
-      },
-      "nuDocument":"91596052945",
-      "deEmail":"isisrodrigues@email.com",
-      "nuDDD":"25",
-      "nuPhone":"930455863",
-      "idUserRegister":3,
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1664593200000"
+            "$numberLong":"1668368023888"
          }
       },
       "isActive":true
