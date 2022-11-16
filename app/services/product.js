@@ -1,35 +1,27 @@
-const Product = require('../models/Product');
+const productModel = require('../models/Product');
+const constant = require('../helpers/constants');
 
 exports.FindAll = async () => {
 
   const response = {
-    statusCode: 404, success: false, jsonBody: 'Not Found',
+    statusCode: 200, success: true, jsonBody: null,
   };
 
-  try {
+  const result = await productModel.findAllProducts();
 
-    const products = await Product.find({ isActive: true });
+  if (!result.wasSuccess) {
 
-    if (products === undefined || products === null) {
-
-      return response;
-
-    }
-
-    response.statusCode = 200;
-    response.success = true;
-    response.jsonBody = products;
-
-  } catch (error) {
-
-    // eslint-disable-next-line no-console
-    console.error(error);
-    response.statusCode = 500;
-    response.success = false;
-    response.jsonBody = 'Internal Server Error';
+    return constant.RESULT_DEF_ERROR_500;
 
   }
 
+  if (result.products === undefined || result.products === null || result.products.length < 1) {
+
+    return constant.RESULT_DEF_ERROR_404;
+
+  }
+
+  response.jsonBody = result.products;
   return response;
 
 };
@@ -37,44 +29,32 @@ exports.FindAll = async () => {
 exports.FindById = async (req) => {
 
   const response = {
-    statusCode: 404, success: false, jsonBody: 'Not Found',
+    statusCode: 200, success: true, jsonBody: null,
   };
 
   const { id } = req.params;
 
   if (id === null || id === undefined) {
 
-    response.statusCode = 400;
-    response.success = false;
-    response.jsonBody = 'Uninformed id';
-    return response;
+    return constant.RESULT_DEF_ERROR_400;
 
   }
 
-  try {
+  const result = await productModel.findProductById(id);
 
-    const product = await Product.findById({ _id: id, isActive: true });
+  if (!result.wasSuccess) {
 
-    if (product === undefined || product === null) {
-
-      return response;
-
-    }
-
-    response.statusCode = 200;
-    response.success = true;
-    response.jsonBody = product;
-
-  } catch (error) {
-
-    // eslint-disable-next-line no-console
-    console.error(error);
-    response.statusCode = 500;
-    response.success = false;
-    response.jsonBody = 'Internal Server Error';
+    return constant.RESULT_DEF_ERROR_500;
 
   }
 
+  if (result.product === undefined || result.product === null) {
+
+    return constant.RESULT_DEF_ERROR_404;
+
+  }
+
+  response.jsonBody = result.product;
   return response;
 
 };
