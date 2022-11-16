@@ -6,17 +6,16 @@ const jwtService = require('./jwt');
 exports.findById = async (req) => {
 
   const response = {
-    statusCode: 404, success: false, jsonBody: 'Not Found',
+    statusCode: 200,
+    success: true,
+    jsonBody: null,
   };
 
   const idCustomer = req.params.id;
 
   if (idCustomer === null || idCustomer === undefined) {
 
-    response.statusCode = constant.HTTP_MSG_ERROR_400;
-    response.success = false;
-    response.jsonBody = 'id Não informado!';
-    return response;
+    return constant.RESULT_DEF_ERROR_400;
 
   }
 
@@ -24,21 +23,16 @@ exports.findById = async (req) => {
 
   if (!result.wasSuccess) {
 
-    response.statusCode = 500;
-    response.success = false;
-    response.jsonBody = constant.HTTP_MSG_ERROR_500;
-    return response;
+    return constant.RESULT_DEF_ERROR_500;
 
   }
 
   if (result.customer === undefined || result.customer === null) {
 
-    return response;
+    return constant.RESULT_DEF_ERROR_404;
 
   }
 
-  response.statusCode = 200;
-  response.success = true;
   response.jsonBody = result.customer;
 
   return response;
@@ -113,10 +107,7 @@ exports.saveCustomer = async (req) => {
 
   if (!result.wasSuccess) {
 
-    response.statusCode = 500;
-    response.success = false;
-    response.jsonBody = constant.HTTP_MSG_ERROR_500;
-    return response;
+    return constant.RESULT_DEF_ERROR_500;
 
   }
 
@@ -134,10 +125,7 @@ exports.saveCustomer = async (req) => {
 
   if (!resultSave.wasSuccess) {
 
-    response.statusCode = 500;
-    response.success = false;
-    response.jsonBody = constant.HTTP_MSG_ERROR_500;
-    return response;
+    return constant.RESULT_DEF_ERROR_500;
 
   }
 
@@ -186,10 +174,7 @@ exports.updateCustomer = async (req) => {
 
   if (!resultFind.wasSuccess) {
 
-    response.statusCode = 500;
-    response.success = false;
-    response.jsonBody = constant.HTTP_MSG_ERROR_500;
-    return response;
+    return constant.RESULT_DEF_ERROR_500;
 
   }
 
@@ -203,10 +188,7 @@ exports.updateCustomer = async (req) => {
 
   if (!resultFindDocument.wasSuccess) {
 
-    response.statusCode = 500;
-    response.success = false;
-    response.jsonBody = constant.HTTP_MSG_ERROR_500;
-    return response;
+    return constant.RESULT_DEF_ERROR_500;
 
   }
 
@@ -225,10 +207,7 @@ exports.updateCustomer = async (req) => {
 
   if (!resultUpdate.wasSuccess) {
 
-    response.statusCode = 500;
-    response.success = false;
-    response.jsonBody = constant.HTTP_MSG_ERROR_500;
-    return response;
+    return constant.RESULT_DEF_ERROR_500;
 
   }
 
