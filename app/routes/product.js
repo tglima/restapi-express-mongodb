@@ -5,5 +5,4 @@ const jwtService = require('../services/jwt');
 
 router.get('/find', jwtService.verifyJWT, productController.findAll);
 router.get('/find/id=:id', jwtService.verifyJWT, productController.findById);
-router.post('', jwtService.verifyJWT, productController.saveNew);
 module.exports = router;
