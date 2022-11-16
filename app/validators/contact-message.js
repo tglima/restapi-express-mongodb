@@ -1,4 +1,5 @@
 const validators = require('../helpers/validators');
+const appConfig = require('../config/app.config');
 
 exports.validateSaveMessage = async (message) => {
 
@@ -12,9 +13,10 @@ exports.validateSaveMessage = async (message) => {
 
   }
 
-  if (!validators.HasValue(message.deMessage) || message.deMessage.trim().length < 30) {
+  if (!validators.HasValue(message.deMessage)
+      || message.deMessage.trim().length < appConfig.qtMinCharMessage) {
 
-    returnValidate.messages.push('Obrigatório informar uma mensagem com pelo menos 30 caracteres!');
+    returnValidate.messages.push(`Obrigatório informar uma mensagem com pelo menos ${appConfig.qtMinCharMessage} caracteres!`);
     returnValidate.wasSuccess = false;
 
   }
