@@ -1,7 +1,25 @@
 exports.HTTP_MSG_ERROR_200 = 'OK';
 exports.HTTP_MSG_ERROR_201 = 'CREATED';
-exports.HTTP_MSG_ERROR_400 = 'Bad Request';
+exports.HTTP_MSG_ERROR_400 = 'Ocorreu uma falha/erro na sua requisição. Reveja os dados enviados e tente novamente!';
 exports.HTTP_MSG_ERROR_401 = 'Invalid credentials';
 exports.HTTP_MSG_ERROR_401_UWP = 'User without permission';
-exports.HTTP_MSG_ERROR_404 = 'Not Found';
-exports.HTTP_MSG_ERROR_500 = 'Internal Server Error';
+exports.HTTP_MSG_ERROR_404 = 'Não encontrado!';
+exports.HTTP_MSG_ERROR_500 = 'Erro interno no servidor!';
+
+exports.RESULT_DEF_ERROR_500 = {
+  statusCode: 500,
+  success: false,
+  jsonBody: this.HTTP_MSG_ERROR_500,
+};
+
+exports.RESULT_DEF_ERROR_400 = {
+  statusCode: 400,
+  success: false,
+  jsonBody: this.HTTP_MSG_ERROR_400,
+};
+
+exports.RESULT_DEF_ERROR_404 = {
+  statusCode: 404,
+  success: false,
+  jsonBody: this.HTTP_MSG_ERROR_404,
+};
