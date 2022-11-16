@@ -9,7 +9,7 @@ const schema = new mongoose.Schema(
       nmResolution: { type: String, required: true },
       qtSimultaneousScreens: { type: Number, min: 0, required: true },
     },
-    idUserRegister: { type: Number, min: 2, required: true },
+    idUserRegister: { type: String, required: true },
     dtRegister: { type: Date, default: new Date().toJSON() },
     isActive: { type: Boolean, default: true },
   },
@@ -18,19 +18,59 @@ const schema = new mongoose.Schema(
 
 schema.methods.toJSON = function toJSON() {
 
-  const prodJSON = {};
+  const productJSON = {};
   const obj = this.toObject();
 
   // eslint-disable-next-line no-underscore-dangle
-  prodJSON.id = obj._id;
-  prodJSON.nmProduct = obj.nmProduct;
-  prodJSON.vlMonthPrice = obj.vlMonthPrice;
-  prodJSON.nuDocument = obj.nuDocument;
-  prodJSON.details = obj.details;
+  productJSON.id = obj._id;
+  productJSON.nmProduct = obj.nmProduct;
+  productJSON.vlMonthPrice = obj.vlMonthPrice;
+  productJSON.nuDocument = obj.nuDocument;
+  productJSON.details = obj.details;
 
-  return prodJSON;
+  return productJSON;
 
 };
 
 const Product = mongoose.model('products', schema);
-module.exports = Product;
+
+exports.findAllProducts = async () => {
+
+  const result = { wasSuccess: false, products: null, error: null };
+
+  try {
+
+    result.products = await Product.find({ isActive: true });
+    result.wasSuccess = true;
+
+  } catch (error) {
+
+    result.products = null;
+    result.wasSuccess = false;
+    result.error = error;
+
+  }
+
+  return result;
+
+};
+
+exports.findProductById = async (idProduct) => {
+
+  const result = { wasSuccess: false, product: null, error: null };
+  try {
+
+    result.product = await Product.findById({ _id: idProduct, isActive: true });
+    result.wasSuccess = true;
+
+  } catch (error) {
+
+    result.product = null;
+    result.wasSuccess = false;
+    result.error = error;
+
+  }
+
+  return result;
+
+};
