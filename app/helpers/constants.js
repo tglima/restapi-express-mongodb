@@ -1,8 +1,8 @@
 exports.HTTP_MSG_ERROR_200 = 'OK';
-exports.HTTP_MSG_ERROR_201 = 'CREATED';
+exports.HTTP_MSG_ERROR_201 = 'Criado com sucesso!';
 exports.HTTP_MSG_ERROR_400 = 'Ocorreu uma falha/erro na sua requisição. Reveja os dados enviados e tente novamente!';
-exports.HTTP_MSG_ERROR_401 = 'Invalid credentials';
-exports.HTTP_MSG_ERROR_401_UWP = 'User without permission';
+exports.HTTP_MSG_ERROR_401 = 'Credenciais inválidas!';
+exports.HTTP_MSG_ERROR_401_UWP = 'Usuário sem permissão!';
 exports.HTTP_MSG_ERROR_404 = 'Não encontrado!';
 exports.HTTP_MSG_ERROR_500 = 'Erro interno no servidor!';
 
