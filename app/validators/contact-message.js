@@ -6,14 +6,14 @@ exports.validateSaveMessage = async (message) => {
   const returnValidate = { wasSuccess: true, messages: [] };
   const nuPhoneFull = message.deTelephone;
 
-  if (!validators.IsValidName(message.nmContact)) {
+  if (!validators.isValidName(message.nmContact)) {
 
     returnValidate.messages.push('Nome inválido!');
     returnValidate.wasSuccess = false;
 
   }
 
-  if (!validators.HasValue(message.deMessage)
+  if (!validators.hasValue(message.deMessage)
       || message.deMessage.trim().length < appConfig.qtMinCharMessage) {
 
     returnValidate.messages.push(`Obrigatório informar uma mensagem com pelo menos ${appConfig.qtMinCharMessage} caracteres!`);
@@ -21,23 +21,23 @@ exports.validateSaveMessage = async (message) => {
 
   }
 
-  if (validators.HasValue(message.deEmail)
-    && !validators.IsValidEmail(message.deEmail)) {
+  if (validators.hasValue(message.deEmail)
+    && !validators.isValidEmail(message.deEmail)) {
 
     returnValidate.messages.push('O e-mail informado é inválidos!');
     returnValidate.wasSuccess = false;
 
   }
 
-  if (!validators.HasValue(message.deEmail)
-      && !validators.HasValue(nuPhoneFull)) {
+  if (!validators.hasValue(message.deEmail)
+      && !validators.hasValue(nuPhoneFull)) {
 
     returnValidate.messages.push('Obrigatório informar o E-mail, ou DDD e Telefone');
     returnValidate.wasSuccess = false;
 
   }
 
-  if (validators.HasValue(nuPhoneFull)) {
+  if (validators.hasValue(nuPhoneFull)) {
 
     if (nuPhoneFull.length < 10 || nuPhoneFull.length > 11) {
 
@@ -50,14 +50,14 @@ exports.validateSaveMessage = async (message) => {
     const nuDDD = nuPhoneFull.substring(0, 2);
     const nuPhone = nuPhoneFull.substring(2);
 
-    if (!validators.IsValidDDD(nuDDD)) {
+    if (!validators.isValidDDD(nuDDD)) {
 
       returnValidate.messages.push('O número de DDD informado é inválido!');
       returnValidate.wasSuccess = false;
 
     }
 
-    if (!validators.IsValidPhoneNumber(nuPhone)) {
+    if (!validators.isValidPhoneNumber(nuPhone)) {
 
       returnValidate.messages.push('O número de telefone informado é inválido!');
       returnValidate.wasSuccess = false;

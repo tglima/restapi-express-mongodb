@@ -4,23 +4,23 @@ exports.validateSaveCustomer = async (customer) => {
 
   const returnValidate = { wasSuccess: true, messages: [] };
 
-  if (!validators.IsValidName(customer.nmCustomer)) {
+  if (!validators.isValidName(customer.nmCustomer)) {
 
     returnValidate.messages.push('Nome inválido!');
     returnValidate.wasSuccess = false;
 
   }
 
-  if (!validators.IsValidDeGender(customer.deGender)) {
+  if (!validators.isValidDeGender(customer.deGender)) {
 
     returnValidate.messages.push('Sexo inválido!');
     returnValidate.wasSuccess = false;
 
   }
 
-  if (!validators.HasValue(customer.deEmail)
-      && !validators.HasValue(customer.nuDDD)
-      && !validators.HasValue(customer.nuPhone)) {
+  if (!validators.hasValue(customer.deEmail)
+      && !validators.hasValue(customer.nuDDD)
+      && !validators.hasValue(customer.nuPhone)) {
 
     returnValidate.messages.push('Obrigatório informar o E-mail, ou DDD e Telefone');
     returnValidate.wasSuccess = false;
@@ -28,30 +28,30 @@ exports.validateSaveCustomer = async (customer) => {
 
   }
 
-  if (validators.HasValue(customer.nuDDD) && !validators.HasValue(customer.nuPhone)) {
+  if (validators.hasValue(customer.nuDDD) && !validators.hasValue(customer.nuPhone)) {
 
     returnValidate.messages.push('Ao informar o DDD é obrigatório informar o número do telefone!');
     returnValidate.wasSuccess = false;
 
   }
 
-  if (!validators.HasValue(customer.nuDDD) && validators.HasValue(customer.nuPhone)) {
+  if (!validators.hasValue(customer.nuDDD) && validators.hasValue(customer.nuPhone)) {
 
     returnValidate.messages.push('Ao informar o número do telefone é obrigatório informar o DDD!');
     returnValidate.wasSuccess = false;
 
   }
 
-  if (validators.HasValue(customer.nuPhone) && validators.HasValue(customer.nuDDD)) {
+  if (validators.hasValue(customer.nuPhone) && validators.hasValue(customer.nuDDD)) {
 
-    if (!validators.IsValidPhoneNumber(customer.nuPhone)) {
+    if (!validators.isValidPhoneNumber(customer.nuPhone)) {
 
       returnValidate.messages.push('O número de telefone informado é inválido!');
       returnValidate.wasSuccess = false;
 
     }
 
-    if (!validators.IsValidDDD(customer.nuDDD)) {
+    if (!validators.isValidDDD(customer.nuDDD)) {
 
       returnValidate.messages.push('O número de telefone informado é inválido!');
       returnValidate.wasSuccess = false;
@@ -60,22 +60,22 @@ exports.validateSaveCustomer = async (customer) => {
 
   }
 
-  if (!validators.IsValidEmail(customer.deEmail)) {
+  if (!validators.isValidEmail(customer.deEmail)) {
 
     returnValidate.messages.push('O e-mail informado é inválidos!');
     returnValidate.wasSuccess = false;
 
   }
 
-  if (!validators.IsValidDate(customer.dtBirth)) {
+  if (!validators.isValidDate(customer.dtBirth)) {
 
     returnValidate.messages.push('A data de nascimento informada é inválida!');
     returnValidate.wasSuccess = false;
 
   }
 
-  if (validators.IsValidDate(customer.dtBirth)
-      && !validators.IsValidAge(customer.dtBirth)) {
+  if (validators.isValidDate(customer.dtBirth)
+      && !validators.isValidAge(customer.dtBirth)) {
 
     returnValidate.messages.push('A data de nascimento informada não corresponde a uma idade válida!');
     returnValidate.wasSuccess = false;

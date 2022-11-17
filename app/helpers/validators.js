@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-exports.HasValue = (obj) => {
+exports.hasValue = (obj) => {
 
   if (obj === undefined || obj === null) {
 
@@ -13,7 +13,7 @@ exports.HasValue = (obj) => {
 
   }
 
-  if (!this.HasNumber(obj) && obj.replace(' ', '').trim().length <= 0) {
+  if (!this.hasNumber(obj) && obj.replace(' ', '').trim().length <= 0) {
 
     return false;
 
@@ -23,7 +23,7 @@ exports.HasValue = (obj) => {
 
 };
 
-exports.HasNumber = (obj) => {
+exports.hasNumber = (obj) => {
 
   if (Number.isNaN(Number.parseInt(obj, 2))) {
 
@@ -41,7 +41,7 @@ exports.HasNumber = (obj) => {
 
 };
 
-exports.IsValidName = (obj) => {
+exports.isValidName = (obj) => {
 
   const name = obj.trim();
 
@@ -64,9 +64,9 @@ exports.IsValidName = (obj) => {
 
 };
 
-exports.IsValidDeGender = (obj) => {
+exports.isValidDeGender = (obj) => {
 
-  if (!this.HasValue(obj)) {
+  if (!this.hasValue(obj)) {
 
     return false;
 
@@ -82,7 +82,7 @@ exports.IsValidDeGender = (obj) => {
 
 };
 
-exports.IsValidPhoneNumber = (obj) => {
+exports.isValidPhoneNumber = (obj) => {
 
   const num = obj.trim();
   const regNum = /^(?:[2-8]|9[1-9])[0-9]{3}[0-9]{4}$/;
@@ -97,11 +97,11 @@ exports.IsValidPhoneNumber = (obj) => {
 
 };
 
-exports.IsValidDate = (obj) => {
+exports.isValidDate = (obj) => {
 
   try {
 
-    if (!this.HasValue(obj)) {
+    if (!this.hasValue(obj)) {
 
       return false;
 
@@ -136,7 +136,7 @@ exports.IsValidDate = (obj) => {
 
 };
 
-exports.IsValidDDD = (obj) => {
+exports.isValidDDD = (obj) => {
 
   const num = Number.parseInt(obj, 10);
   if (Number.isNaN(num)) {
@@ -154,9 +154,9 @@ exports.IsValidDDD = (obj) => {
 
 };
 
-exports.IsValidEmail = (obj) => {
+exports.isValidEmail = (obj) => {
 
-  if (!this.HasValue(obj)) {
+  if (!this.hasValue(obj)) {
 
     return false;
 
@@ -184,7 +184,7 @@ exports.IsValidEmail = (obj) => {
 
 };
 
-exports.IsValidAge = (obj) => {
+exports.isValidAge = (obj) => {
 
   const minAge = 18;
   const maxAge = 100;
