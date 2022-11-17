@@ -1,34 +1,29 @@
-[
-   {
-      "_id":{
-         "$oid":"63628e2b78349b02860c07d4"
-      },
-      "IdRole":1,
-      "NmRole":"SysAdmin",
-      "IsActive":true
-   },
-   {
-      "_id":{
-         "$oid":"63628e2b78349b02860c07d5"
-      },
-      "IdRole":2,
-      "NmRole":"Admin",
-      "IsActive":true
-   },
-   {
-      "_id":{
-         "$oid":"63628e2b78349b02860c07d6"
-      },
-      "IdRole":3,
-      "NmRole":"User",
-      "IsActive":true
-   },
-   {
-      "_id":{
-         "$oid":"63628e2b78349b02860c07d7"
-      },
-      "IdRole":999,
-      "NmRole":"Guest",
-      "IsActive":true
-   }
-]
+[{
+  "_id": {
+    "$oid": "63628e2b78349b02860c07d4"
+  },
+  "IdRole": 1,
+  "NmRole": "SysAdmin",
+  "IsActive": true
+},{
+  "_id": {
+    "$oid": "63628e2b78349b02860c07d5"
+  },
+  "IdRole": 2,
+  "NmRole": "Admin",
+  "IsActive": true
+},{
+  "_id": {
+    "$oid": "63628e2b78349b02860c07d6"
+  },
+  "IdRole": 3,
+  "NmRole": "User",
+  "IsActive": true
+},{
+  "_id": {
+    "$oid": "63628e2b78349b02860c07d7"
+  },
+  "IdRole": 999,
+  "NmRole": "Guest",
+  "IsActive": true
+}]

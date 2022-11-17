@@ -1,21 +1,55 @@
-[
-   {
-      "_id":{
-         "$oid":"6362870f78349b02860c0745"
-      },
-      "nmProduct":"Basic",
-      "vlMonthPrice":9.99,
-      "details":{
-         "nmVideoQuality":"Good",
-         "nmResolution":"480p",
-         "qtSimultaneousScreens":1
-      },
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1667271600000"
-         }
-      },
-      "idUserRegister":2,
-      "isActive":true
-   }
-]
+[{
+  "_id": {
+    "$oid": "6362870f78349b02860c0745"
+  },
+  "nmProduct": "Basic",
+  "vlMonthPrice": 14.99,
+  "details": {
+    "nmVideoQuality": "Good",
+    "nmResolution": "480p",
+    "qtSimultaneousScreens": 1
+  },
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1667271600000"
+    }
+  },
+  "idUserRegister": "636280b978349b02860c072b",
+  "isActive": true
+},{
+  "_id": {
+    "$oid": "63754a2e359f40fbe6af544f"
+  },
+  "nmProduct": "Standard",
+  "vlMonthPrice": 34.99,
+  "details": {
+    "nmVideoQuality": "Better",
+    "nmResolution": "1080p",
+    "qtSimultaneousScreens": 2
+  },
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1667271600000"
+    }
+  },
+  "idUserRegister": "636280b978349b02860c072b",
+  "isActive": true
+},{
+  "_id": {
+    "$oid": "63754aa8359f40fbe6af5450"
+  },
+  "nmProduct": "Premium",
+  "vlMonthPrice": 54.99,
+  "details": {
+    "nmVideoQuality": "Best",
+    "nmResolution": "4K+HDR",
+    "qtSimultaneousScreens": 4
+  },
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1667271600000"
+    }
+  },
+  "idUserRegister": "636280b978349b02860c072b",
+  "isActive": true
+}]

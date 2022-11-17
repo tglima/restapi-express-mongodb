@@ -1,118 +1,141 @@
-[
-   {
-      "_id":{
-         "$oid":"636280dd78349b02860c0730"
-      },
-      "nmCustomer":"Simone Eduarda Fernanda Pires",
-      "deGender":"F",
-      "dtBirth":{
-         "$date":{
-            "$numberLong":"-142041600000"
-         }
-      },
-      "nuDocument":"17816020937",
-      "deEmail":"simoneeduardapires@lordello.com.br",
-      "nuDDD":"47",
-      "nuPhone":"992636586",
-      "idUserRegister":"636280b978349b02860c072c",
-      "idLastUserEdit":"636280b978349b02860c072c",
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1668368023888"
-         }
-      },
-      "dtLastEdit":{
-         "$date":{
-            "$numberLong":"1668368023888"
-         }
-      },
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280dd78349b02860c0731"
-      },
-      "nmCustomer":"Gabriel Mário Paulo Cavalcanti",
-      "deGender":"M",
-      "dtBirth":{
-         "$date":{
-            "$numberLong":"-309225600000"
-         }
-      },
-      "nuDocument":"32650270900",
-      "deEmail":"gabriel_mario_cavalcanti@pss.adv.br",
-      "nuDDD":"48",
-      "nuPhone":"981506919",
-      "idUserRegister":"636280b978349b02860c072c",
-      "idLastUserEdit":"636280b978349b02860c072c",
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1668368023888"
-         }
-      },
-      "dtLastEdit":{
-         "$date":{
-            "$numberLong":"1668368882223"
-         }
-      },
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280dd78349b02860c0732"
-      },
-      "nmCustomer":"Luiza Elisa Araújo",
-      "deGender":"F",
-      "dtBirth":{
-         "$date":{
-            "$numberLong":"-717552000000"
-         }
-      },
-      "nuDocument":"43274629936",
-      "deEmail":"luiza.elisa.araujo@amoreencantos.com",
-      "nuDDD":"47",
-      "nuPhone":"35335466",
-      "idUserRegister":"636280b978349b02860c072c",
-      "idLastUserEdit":"636280b978349b02860c072c",
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1668368023888"
-         }
-      },
-      "dtLastEdit":{
-         "$date":{
-            "$numberLong":"1668368023888"
-         }
-      },
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280dd78349b02860c0733"
-      },
-      "nmCustomer":"Victor Martin Filipe da Rocha",
-      "deGender":"M",
-      "dtBirth":{
-         "$date":{
-            "$numberLong":"-818812800000"
-         }
-      },
-      "nuDocument":"23073948937",
-      "deEmail":"victor_darocha@fertau.com.br",
-      "nuDDD":"47",
-      "nuPhone":"39137037",
-      "idUserRegister":"636280b978349b02860c072c",
-      "idLastUserEdit":"636280b978349b02860c072c",
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1668368023888"
-         }
-      },
-      "dtLastEdit":{
-         "$date":{
-            "$numberLong":"1668368023888"
-         }
-      },
-      "isActive":true
-   }
-]
+[{
+  "_id": {
+    "$oid": "636280dd78349b02860c0730"
+  },
+  "nmCustomer": "Simone Eduarda Fernanda Pires",
+  "deGender": "F",
+  "dtBirth": {
+    "$date": {
+      "$numberLong": "-142041600000"
+    }
+  },
+  "nuDocument": "17816020937",
+  "deEmail": "simoneeduardapires@lordello.com.br",
+  "nuDDD": "47",
+  "nuPhone": "992636586",
+  "idUserRegister": "636280b978349b02860c072c",
+  "idLastUserEdit": "636280b978349b02860c072c",
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1668368023888"
+    }
+  },
+  "dtLastEdit": {
+    "$date": {
+      "$numberLong": "1668372232775"
+    }
+  },
+  "isActive": true
+},{
+  "_id": {
+    "$oid": "636280dd78349b02860c0731"
+  },
+  "nmCustomer": "Gabriel Mário Paulo Cavalcanti",
+  "deGender": "M",
+  "dtBirth": {
+    "$date": {
+      "$numberLong": "-309225600000"
+    }
+  },
+  "nuDocument": "32650270900",
+  "deEmail": "gabriel_mario_cavalcanti@pss.adv.br",
+  "nuDDD": "48",
+  "nuPhone": "981506919",
+  "idUserRegister": "636280b978349b02860c072c",
+  "idLastUserEdit": "636280b978349b02860c072c",
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1668368023888"
+    }
+  },
+  "dtLastEdit": {
+    "$date": {
+      "$numberLong": "1668368882223"
+    }
+  },
+  "isActive": true
+},{
+  "_id": {
+    "$oid": "636280dd78349b02860c0732"
+  },
+  "nmCustomer": "Luiza Elisa Araújo",
+  "deGender": "F",
+  "dtBirth": {
+    "$date": {
+      "$numberLong": "-717552000000"
+    }
+  },
+  "nuDocument": "43274629936",
+  "deEmail": "luiza.elisa.araujo@amoreencantos.com",
+  "nuDDD": "47",
+  "nuPhone": "35335466",
+  "idUserRegister": "636280b978349b02860c072c",
+  "idLastUserEdit": "636280b978349b02860c072c",
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1668368023888"
+    }
+  },
+  "dtLastEdit": {
+    "$date": {
+      "$numberLong": "1668368023888"
+    }
+  },
+  "isActive": true
+},{
+  "_id": {
+    "$oid": "636280dd78349b02860c0733"
+  },
+  "nmCustomer": "Victor Martin Filipe da Rocha",
+  "deGender": "M",
+  "dtBirth": {
+    "$date": {
+      "$numberLong": "-818812800000"
+    }
+  },
+  "nuDocument": "23073948937",
+  "deEmail": "victor_darocha@fertau.com.br",
+  "nuDDD": "47",
+  "nuPhone": "39137037",
+  "idUserRegister": "636280b978349b02860c072c",
+  "idLastUserEdit": "636280b978349b02860c072c",
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1668368023888"
+    }
+  },
+  "dtLastEdit": {
+    "$date": {
+      "$numberLong": "1668371938593"
+    }
+  },
+  "isActive": true
+},{
+  "_id": {
+    "$oid": "6371567ea3137ac56a605a1e"
+  },
+  "nmCustomer": "Evelyn Agatha Carolina Aparício",
+  "deGender": "F",
+  "dtBirth": {
+    "$date": {
+      "$numberLong": "651110400000"
+    }
+  },
+  "nuDocument": "41461295912",
+  "deEmail": "evelyn_aparicio@embraer.com",
+  "nuDDD": "",
+  "nuPhone": "",
+  "idUserRegister": "636280b978349b02860c072c",
+  "idLastUserEdit": "636280b978349b02860c072c",
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1668371984275"
+    }
+  },
+  "dtLastEdit": {
+    "$date": {
+      "$numberLong": "1668371984275"
+    }
+  },
+  "isActive": true
+}]

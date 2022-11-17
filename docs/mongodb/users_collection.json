@@ -1,66 +1,61 @@
-[
-   {
-      "_id":{
-         "$oid":"636280b978349b02860c072a"
-      },
-      "idUser":1,
-      "nmUser":"SysAdmin",
-      "deUserName":"tglima.dev",
-      "dePassword":"sys.admin",
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1664593200000"
-         }
-      },
-      "isActive":true,
-      "idRole":1
-   },
-   {
-      "_id":{
-         "$oid":"636280b978349b02860c072b"
-      },
-      "idUser":2,
-      "nmUser":"admin",
-      "deUserName":"admin",
-      "dePassword":"#321@admin",
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1664593200000"
-         }
-      },
-      "idRole":2,
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280b978349b02860c072c"
-      },
-      "idUser":3,
-      "nmUser":"user",
-      "deUserName":"user",
-      "dePassword":"#321@user",
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1664593200000"
-         }
-      },
-      "idRole":3,
-      "isActive":true
-   },
-   {
-      "_id":{
-         "$oid":"636280b978349b02860c072d"
-      },
-      "idUser":4,
-      "nmUser":"Guest",
-      "deUserName":"Guest",
-      "dePassword":"",
-      "dtRegister":{
-         "$date":{
-            "$numberLong":"1664593200000"
-         }
-      },
-      "idRole":999,
-      "isActive":true
-   }
-]
+[{
+  "_id": {
+    "$oid": "636280b978349b02860c072a"
+  },
+  "idUser": 1,
+  "nmUser": "SysAdmin",
+  "deUserName": "tglima.dev",
+  "dePassword": "sys.admin",
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "isActive": true,
+  "idRole": 1
+},{
+  "_id": {
+    "$oid": "636280b978349b02860c072b"
+  },
+  "idUser": 2,
+  "nmUser": "admin",
+  "deUserName": "admin",
+  "dePassword": "#321@admin",
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "idRole": 2,
+  "isActive": true
+},{
+  "_id": {
+    "$oid": "636280b978349b02860c072c"
+  },
+  "idUser": 3,
+  "nmUser": "user",
+  "deUserName": "user",
+  "dePassword": "#321@user",
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "idRole": 3,
+  "isActive": true
+},{
+  "_id": {
+    "$oid": "636280b978349b02860c072d"
+  },
+  "idUser": 4,
+  "nmUser": "Guest",
+  "deUserName": "Guest",
+  "dePassword": "",
+  "dtRegister": {
+    "$date": {
+      "$numberLong": "1664593200000"
+    }
+  },
+  "idRole": 999,
+  "isActive": true
+}]
