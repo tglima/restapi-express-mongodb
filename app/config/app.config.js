@@ -9,7 +9,7 @@ const appConfig = {
     idUser: process.env.ID_SUPER_USER, idRole: process.env.ID_SUPER_ROLE,
   },
   guestUser: {
-    idUser: process.env.ID_GUEST_USER, idRole: process.env.ID_GUEST_ROLE, id: null,
+    idUser: process.env.ID_GUEST_USER, idRole: process.env.ID_GUEST_ROLE, id: undefined,
   },
   nuVersionApi: process.env.API_NUVERSION,
   serverPort: process.env.SERVER_PORT,
