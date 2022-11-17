@@ -29,36 +29,40 @@ exports.validateSaveMessage = async (message) => {
 
   }
 
-  if (nuPhoneFull.length < 10 || nuPhoneFull.length > 11) {
-
-    returnValidate.messages.push('O número de telefone informado é inválido!');
-    returnValidate.wasSuccess = false;
-    return returnValidate;
-
-  }
-
-  const nuDDD = nuPhoneFull.substring(0, 2);
-  const nuPhone = nuPhoneFull.substring(2);
-
-  if (!validators.IsValidDDD(nuDDD)) {
-
-    returnValidate.messages.push('O número de DDD informado é inválido!');
-    returnValidate.wasSuccess = false;
-
-  }
-
-  if (!validators.IsValidPhoneNumber(nuPhone)) {
-
-    returnValidate.messages.push('O número de telefone informado é inválido!');
-    returnValidate.wasSuccess = false;
-
-  }
-
   if (!validators.HasValue(message.deEmail)
       && !validators.HasValue(nuPhoneFull)) {
 
     returnValidate.messages.push('Obrigatório informar o E-mail, ou DDD e Telefone');
     returnValidate.wasSuccess = false;
+
+  }
+
+  if (validators.HasValue(nuPhoneFull)) {
+
+    if (nuPhoneFull.length < 10 || nuPhoneFull.length > 11) {
+
+      returnValidate.messages.push('O número de telefone informado é inválido!');
+      returnValidate.wasSuccess = false;
+      return returnValidate;
+
+    }
+
+    const nuDDD = nuPhoneFull.substring(0, 2);
+    const nuPhone = nuPhoneFull.substring(2);
+
+    if (!validators.IsValidDDD(nuDDD)) {
+
+      returnValidate.messages.push('O número de DDD informado é inválido!');
+      returnValidate.wasSuccess = false;
+
+    }
+
+    if (!validators.IsValidPhoneNumber(nuPhone)) {
+
+      returnValidate.messages.push('O número de telefone informado é inválido!');
+      returnValidate.wasSuccess = false;
+
+    }
 
   }
 
