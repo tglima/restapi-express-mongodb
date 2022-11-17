@@ -90,8 +90,11 @@ exports.saveCustomer = async (req) => {
   let returnValidate = { wasSuccess: true, messages: [] };
   const customer = req.body;
 
-  customer.idUserRegister = (await jwtService.getUserDataReq(req)).id;
-  customer.idLastUserEdit = (await jwtService.getUserDataReq(req)).id;
+  const { userDataReq } = await jwtService.getUserDataReq(req);
+
+  customer.idUserRegister = userDataReq.id;
+  customer.idLastUserEdit = userDataReq.id;
+
   returnValidate = await validatorCustomer.validateSaveCustomer(customer);
 
   if (!returnValidate.wasSuccess) {
