@@ -18,7 +18,7 @@ const User = mongoose.model('users', schema);
 
 exports.findByUsernameAndPass = async (username, password) => {
 
-  const result = { wasSuccess: false, user: null, error: null };
+  const result = { wasSuccess: false, user: undefined, error: null };
 
   try {
 
@@ -34,7 +34,7 @@ exports.findByUsernameAndPass = async (username, password) => {
 
   } catch (error) {
 
-    result.user = null;
+    result.user = undefined;
     result.wasSuccess = false;
     result.error = error;
 

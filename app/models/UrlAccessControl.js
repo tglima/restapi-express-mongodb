@@ -47,6 +47,8 @@ exports.findByUrlBase = async (urlBase) => {
 
   } catch (error) {
 
+    result.urlAccessControl = undefined;
+    result.wasSuccess = false;
     result.error = error;
 
   }

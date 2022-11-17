@@ -36,7 +36,7 @@ const Product = mongoose.model('products', schema);
 
 exports.findAllProducts = async () => {
 
-  const result = { wasSuccess: false, products: null, error: null };
+  const result = { wasSuccess: false, products: undefined, error: null };
 
   try {
 
@@ -45,7 +45,7 @@ exports.findAllProducts = async () => {
 
   } catch (error) {
 
-    result.products = null;
+    result.products = undefined;
     result.wasSuccess = false;
     result.error = error;
 
