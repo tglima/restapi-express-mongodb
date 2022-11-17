@@ -1,51 +1,118 @@
 const jwt = require('jsonwebtoken');
 const appConfig = require('../config/app.config');
-const User = require('../models/User');
-const URLAccessControl = require('../models/UrlAccessControl');
-const msgUserWithoutPermission = 'User without permission';
-const msgInvalidCredentials = 'Invalid credentials';
+const userModel = require('../models/User');
+const accessControlModel = require('../models/UrlAccessControl');
+const constant = require('../helpers/constants');
+
+const checkPermissionUserReq = async (req) => {
+
+  const result = await this.getUserDataReq(req);
+
+  if (!result.wasSuccess) {
+
+    return false;
+
+  }
+
+  const { userDataReq } = result;
+
+  if (userDataReq.idRole === appConfig.superUser.idRole) {
+
+    return true;
+
+  }
+
+  let urlBase = req.originalUrl;
+
+  if (req.originalUrl.includes('=')) {
+
+    const array = req.originalUrl.split('=');
+    urlBase = `${array[0]}`;
+
+  }
+
+  urlBase = urlBase.replace(`/api/v${appConfig.nuVersionApi}`, '');
+
+  const resultFindAccess = await accessControlModel.findByUrlBase(urlBase);
+
+  if (!resultFindAccess.wasSuccess
+      || resultFindAccess.urlAccessControl === undefined) {
+
+    return false;
+
+  }
+
+  const accessControl = resultFindAccess.urlAccessControl;
+
+  if (req.method.toString().toUpperCase() === 'GET'
+      && accessControl.read.idRolesAllowed.includes(userDataReq.idRole)) {
+
+    return true;
+
+  }
+
+  if (req.method.toString().toUpperCase() === 'POST'
+      && accessControl.post.idRolesAllowed.includes(userDataReq.idRole)) {
+
+    return true;
+
+  }
+
+  if (req.method.toString().toUpperCase() === 'PUT'
+      && accessControl.update.idRolesAllowed.includes(userDataReq.idRole)) {
+
+    return true;
+
+  }
+
+  return false;
+
+};
+
+const generateToken = async (user) => {
+
+  const token = {};
+  token.access_token = jwt.sign(
+    {
+      idRole: user.idRole,
+      id: user.id,
+      idUserRegister: user.idUser,
+    },
+    appConfig.token.secret,
+    { expiresIn: (60 * appConfig.token.minutesExpiration) },
+  );
+
+  token.token_type = appConfig.token.tokenType;
+  token.expires_in = 60 * appConfig.token.minutesExpiration;
+  token.date_time_expiration = new Date(+new Date() + (60 * appConfig.token.minutesExpiration));
+
+  return token;
+
+};
 
 exports.checkAuthDb = async (reqBody) => {
 
   const response = {
-    statusCode: 401, success: false, jsonBody: 'Invalid credentials',
+    statusCode: 401, success: false, jsonBody: constant.HTTP_MSG_ERROR_401,
   };
 
-  try {
+  const resultFind = await userModel.findByUsernameAndPass(reqBody.username, reqBody.password);
 
-    const user = await User.findOne(
-      { deUserName: reqBody.username, dePassword: reqBody.password, isActive: true },
-    );
+  if (resultFind.user === undefined || resultFind.user === null) {
 
-    if (user === undefined || user === null) {
-
-      return response;
-
-    }
-
-    const token = {};
-    token.acess_token = jwt.sign(
-      { idRole: user.idRole, id: user.id, idUserRegister: user.idUser },
-      appConfig.token.secret,
-      { expiresIn: (60 * appConfig.token.minutesExpiration) },
-    );
-
-    token.token_type = appConfig.token.tokenType;
-    token.expires_in = 60 * appConfig.token.minutesExpiration;
-    token.date_time_expiration = new Date(+new Date() + (60 * appConfig.token.minutesExpiration));
-    response.statusCode = 200;
-    response.success = true;
-    response.jsonBody = token;
-
-  } catch (error) {
-
-    // eslint-disable-next-line no-console
-    console.error(error);
-    response.statusCode = 500;
-    response.success = false;
-    response.jsonBody = 'Internal Server Error';
+    return response;
 
   }
+
+  if (!resultFind.wasSuccess) {
+
+    return constant.RESULT_DEF_ERROR_500;
+
+  }
+
+  response.statusCode = 200;
+  response.success = true;
+  response.jsonBody = await generateToken(resultFind.user);
 
   return response;
 
@@ -54,93 +121,34 @@ exports.checkAuthDb = async (reqBody) => {
 // eslint-disable-next-line consistent-return
 exports.verifyJWT = async (req, res, next) => {
 
-  const bearerHeader = req.headers.authorization.replace('Bearer ', '');
+  const mustContinue = await checkPermissionUserReq(req);
 
-  if (req.headers.authorization === undefined) {
+  if (mustContinue) {
 
-    return res.status(401).json({ success: false, message: msgInvalidCredentials });
-
-  }
-
-  if (!bearerHeader) {
-
-    return res.status(401).json({ success: false, message: msgInvalidCredentials });
+    return next();
 
   }
 
-  const userDataReq = await this.getUserDataReq(req);
-
-  try {
-
-    if (userDataReq.idRole === appConfig.superUser.idRole) {
-
-      return next();
-
-    }
-
-    let urlBase = req.originalUrl;
-
-    if (req.originalUrl.includes('=')) {
-
-      const array = req.originalUrl.split('=');
-      urlBase = `${array[0]}`;
-
-    }
-
-    urlBase = urlBase.replace(`/api/v${appConfig.nuVersionApi}`, '');
-
-    const accessControl = await URLAccessControl.findOne({ url: urlBase, isActive: true });
-
-    if (accessControl === null || accessControl === undefined) {
-
-      return res.status(401).json({ success: false, message: msgUserWithoutPermission });
-
-    }
-
-    if (req.method.toString().toUpperCase() === 'GET' && accessControl.read.idRolesAllowed.includes(userDataReq.idRole)) {
-
-      return next();
-
-    }
-
-    if (req.method.toString().toUpperCase() === 'POST' && accessControl.post.idRolesAllowed.includes(userDataReq.idRole)) {
-
-      return next();
-
-    }
-
-    if (req.method.toString().toUpperCase() === 'PUT' && accessControl.update.idRolesAllowed.includes(userDataReq.idRole)) {
-
-      return next();
-
-    }
-
-  } catch (error) {
-
-    // eslint-disable-next-line no-console
-    console.error(error);
-    return res.status(401).json({ success: false, message: msgUserWithoutPermission });
-
-  }
-
-  return res.status(401).json({ success: false, message: msgUserWithoutPermission });
+  return res.status(401).json({ success: false, message: constant.HTTP_MSG_ERROR_401_ALT });
 
 };
 
 exports.getUserDataReq = async (req) => {
 
-  const userDataReq = appConfig.guestUser;
+  const result = { wasSuccess: true, userDataReq: appConfig.guestUser, error: null };
 
-  if (req.headers.authorization === undefined) {
+  let bearerHeader;
 
-    return userDataReq;
+  if (req.headers.authorization !== undefined
+      && req.headers.authorization.includes('Bearer')) {
+
+    bearerHeader = req.headers.authorization.replace('Bearer ', '');
 
   }
 
-  const bearerHeader = req.headers.authorization.replace('Bearer ', '');
   if (!bearerHeader) {
 
-    return userDataReq;
+    return result;
 
   }
 
@@ -148,19 +156,20 @@ exports.getUserDataReq = async (req) => {
 
     if (error) {
 
-      // eslint-disable-next-line no-console
-      console.error(error);
-      return userDataReq;
+      result.error = error;
+      result.wasSuccess = false;
+      return result;
 
     }
-    userDataReq.id = decoded.id;
-    userDataReq.idUserRegister = decoded.idUserRegister;
-    userDataReq.idRole = decoded.idRole;
 
-    return userDataReq;
+    result.userDataReq.id = decoded.id;
+    result.userDataReq.idUserRegister = decoded.idUserRegister;
+    result.userDataReq.idRole = decoded.idRole;
+
+    return result;
 
   });
 
-  return userDataReq;
+  return result;
 
 };
