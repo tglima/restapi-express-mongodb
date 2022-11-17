@@ -135,7 +135,7 @@ exports.verifyJWT = async (req, res, next) => {
 
 exports.getUserDataReq = async (req) => {
 
-  const result = { wasSuccess: true, userDataReq: appConfig.guestUser, error: null };
+  let result = { wasSuccess: true, userDataReq: appConfig.guestUser, error: null };
 
   let bearerHeader;
 
@@ -152,7 +152,7 @@ exports.getUserDataReq = async (req) => {
 
   }
 
-  jwt.verify(bearerHeader, appConfig.token.secret, (error, decoded) => {
+  result = await jwt.verify(bearerHeader, appConfig.token.secret, (error, decoded) => {
 
     if (error) {
 
