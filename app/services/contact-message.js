@@ -1,29 +1,39 @@
-const ContactMessage = require('../models/ContactMessage');
+const messageModel = require('../models/ContactMessage');
+const constant = require('../helpers/constants');
+const messageValidator = require('../validators/contact-message');
 
-exports.SaveMessage = async (reqBody) => {
+exports.SaveMessage = async (req) => {
 
   const response = {
-    statusCode: 400, success: false, jsonBody: 'Bad Request',
+    statusCode: 400, success: false, jsonBody: constant.HTTP_MSG_ERROR_400,
   };
 
-  const message = reqBody;
+  const message = req.body;
+  message.deTelephone = message.deTelephone.replace(/[^0-9]/g, '');
 
-  try {
+  let returnValidate = { wasSuccess: true, messages: [] };
+  returnValidate = await messageValidator.validateSaveMessage(message);
 
-    await ContactMessage.create(message);
-    response.statusCode = 201;
-    response.success = true;
-    response.jsonBody = 'OK';
+  if (!returnValidate.wasSuccess) {
 
-  } catch (error) {
-
-    // eslint-disable-next-line no-console
-    console.error(error);
-    response.statusCode = 500;
+    response.statusCode = 400;
     response.success = false;
-    response.jsonBody = 'Internal Server Error';
+    response.jsonBody = JSON.parse(JSON.stringify(returnValidate.messages));
+    return response;
 
   }
+
+  const resultSave = await messageModel.saveNew(message);
+
+  if (!resultSave.wasSuccess) {
+
+    return constant.RESULT_DEF_ERROR_500;
+
+  }
+
+  response.statusCode = 201;
+  response.success = true;
+  response.jsonBody = constant.HTTP_MSG_ERROR_201;
 
   return response;
 

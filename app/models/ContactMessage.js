@@ -1,13 +1,37 @@
 const mongoose = require('mongoose');
 
-const ContactMessage = mongoose.model('contactMessages', {
-  nmContact: { type: String, required: true },
-  dtRegister: { type: Date, default: new Date().toJSON() },
-  deEmail: String,
-  deTelephone: String,
-  deMessage: { type: String, required: true },
-  wasRead: { type: Boolean, default: false },
-  isActive: { type: Boolean, default: true },
-}, 'contactMessages');
+const schema = new mongoose.Schema(
+  {
+    nmContact: { type: String, required: true },
+    dtRegister: { type: Date, default: new Date().toJSON() },
+    deEmail: String,
+    deTelephone: String,
+    deMessage: { type: String, required: true },
+    wasRead: { type: Boolean, default: false },
+    isActive: { type: Boolean, default: true },
+  },
+  { versionKey: false },
+);
 
-module.exports = ContactMessage;
+const ContactMessage = mongoose.model('contactMessages', schema, 'contactMessages');
+
+exports.saveNew = async (contactMessage) => {
+
+  const result = { wasSuccess: false, contactMessage: null, error: null };
+
+  try {
+
+    result.contactMessage = await ContactMessage.create(contactMessage);
+    result.wasSuccess = true;
+
+  } catch (error) {
+
+    result.contactMessage = null;
+    result.wasSuccess = false;
+    result.error = error;
+
+  }
+
+  return result;
+
+};
