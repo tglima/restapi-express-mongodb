@@ -2,7 +2,7 @@ const messageModel = require('../models/ContactMessage');
 const constant = require('../helpers/constants');
 const messageValidator = require('../validators/contact-message');
 
-exports.SaveMessage = async (req) => {
+exports.saveMessage = async (req) => {
 
   const response = {
     statusCode: 400, success: false, jsonBody: constant.HTTP_MSG_ERROR_400,
@@ -12,7 +12,7 @@ exports.SaveMessage = async (req) => {
   message.deTelephone = message.deTelephone.replace(/[^0-9]/g, '');
 
   let returnValidate = { wasSuccess: true, messages: [] };
-  returnValidate = await messageValidator.validateSaveMessage(message);
+  returnValidate = await messageValidator.validatesaveMessage(message);
 
   if (!returnValidate.wasSuccess) {
 

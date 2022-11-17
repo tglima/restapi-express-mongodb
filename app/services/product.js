@@ -1,7 +1,7 @@
 const productModel = require('../models/Product');
 const constant = require('../helpers/constants');
 
-exports.FindAll = async () => {
+exports.findAll = async () => {
 
   const response = {
     statusCode: 200, success: true, jsonBody: null,
@@ -26,7 +26,7 @@ exports.FindAll = async () => {
 
 };
 
-exports.FindById = async (req) => {
+exports.findById = async (req) => {
 
   const response = {
     statusCode: 200, success: true, jsonBody: null,
