@@ -13,7 +13,7 @@ const appConfig = {
   },
   nuVersionApi: process.env.API_NUVERSION,
   serverPort: process.env.SERVER_PORT,
-  dbConnection: `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_SERVER}:${process.env.DB_PORT}/${process.env.DB_NAME}`,
+  dbConnection: `${process.env.DB_PREFIX_CONN}://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_SERVER}/${process.env.DB_NAME}`,
   qtMinCharMessage: process.env.QT_MIN_CHAR_MESSAGE,
 };
 
