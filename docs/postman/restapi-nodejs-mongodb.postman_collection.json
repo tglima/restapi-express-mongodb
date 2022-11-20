@@ -13,7 +13,7 @@
 					"script": {
 						"exec": [
 							"const responseJson = pm.response.json();",
-							"pm.collectionVariables.set(\"acessToken\", responseJson.acess_token);"
+							"pm.collectionVariables.set(\"accessToken\", responseJson.access_token);"
 						],
 						"type": "text/javascript"
 					}
@@ -54,7 +54,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{acessToken}}",
+							"value": "{{accessToken}}",
 							"type": "string"
 						}
 					]
@@ -83,7 +83,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{acessToken}}",
+							"value": "{{accessToken}}",
 							"type": "string"
 						}
 					]
@@ -112,7 +112,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{acessToken}}",
+							"value": "{{accessToken}}",
 							"type": "string"
 						}
 					]
@@ -149,7 +149,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{acessToken}}",
+							"value": "{{accessToken}}",
 							"type": "string"
 						}
 					]
@@ -187,7 +187,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{acessToken}}",
+							"value": "{{accessToken}}",
 							"type": "string"
 						}
 					]
@@ -215,7 +215,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{acessToken}}",
+							"value": "{{accessToken}}",
 							"type": "string"
 						}
 					]
@@ -243,7 +243,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nmContact\":\"João Silva\",\n    \"deEmail\": \"contato@email.com\",\n    \"deMessage\": \"Mensagem sem telefone de contato\",\n    \"deTelephone\": \"\"\n}",
+					"raw": "{\n    \"nmContact\":\"Maria Silva\",\n    \"deEmail\": \"\",\n    \"deMessage\": \"Mensagem enviada para testes contato\",\n    \"deTelephone\": \"48999999999\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -300,7 +300,7 @@
 			"type": "default"
 		},
 		{
-			"key": "acessToken",
+			"key": "accessToken",
 			"value": "",
 			"type": "default"
 		}
