@@ -92,8 +92,8 @@ exports.saveCustomer = async (req) => {
 
   const { userDataReq } = await jwtService.getUserDataReq(req);
 
-  customer.idUserRegister = userDataReq.id;
-  customer.idLastUserEdit = userDataReq.id;
+  customer.idUserRegister = userDataReq.idUserRegister;
+  customer.idLastUserEdit = userDataReq.idUserRegister;
 
   returnValidate = await validatorCustomer.validateSaveCustomer(customer);
 
@@ -195,8 +195,8 @@ exports.updateCustomer = async (req) => {
 
   }
 
-  if ((resultFindDocument.customer !== null || resultFindDocument.customer !== undefined)
-    && resultFindDocument.customer.id !== customer.id) {
+  if (resultFindDocument.customer !== undefined
+      && resultFindDocument.customer.id !== customer.id) {
 
     response.statusCode = 400;
     response.success = false;
@@ -205,7 +205,9 @@ exports.updateCustomer = async (req) => {
 
   }
 
-  customer.idLastUserEdit = (await jwtService.getUserDataReq(req)).id;
+  const { userDataReq } = await jwtService.getUserDataReq(req);
+  customer.idLastUserEdit = userDataReq.idUserRegister;
+
   const resultUpdate = await customerModel.updateCustomer(customer);
 
   if (!resultUpdate.wasSuccess) {
