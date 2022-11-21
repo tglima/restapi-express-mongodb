@@ -1,4 +1,7 @@
 /* eslint-disable no-restricted-globals */
+
+const cpfCheck = require('cpf-check');
+
 exports.hasValue = (obj) => {
 
   if (obj === undefined || obj === null) {
@@ -196,5 +199,24 @@ exports.isValidAge = (obj) => {
   const isBelowMaxAge = ageNow <= maxAge;
 
   return isOverMinAge && isBelowMaxAge;
+
+};
+
+exports.isValidNuDoc = (obj) => {
+
+  if (!this.hasValue(obj)) {
+
+    return false;
+
+  }
+
+  if (obj.length !== 11) {
+
+    return false;
+
+  }
+
+  const cpf = cpfCheck.format(obj);
+  return cpfCheck.validate(cpf);
 
 };
