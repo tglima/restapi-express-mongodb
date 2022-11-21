@@ -22,7 +22,7 @@ exports.saveNew = async (contactMessage) => {
   try {
 
     result.contactMessage = await ContactMessage.create(contactMessage);
-    result.contactMessage = result.contactMessage == null ? undefined : result.contactMessage;
+    result.contactMessage = result.contactMessage === null ? undefined : result.contactMessage;
     result.wasSuccess = true;
 
   } catch (error) {

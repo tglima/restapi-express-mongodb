@@ -47,7 +47,7 @@ exports.saveNew = async (order) => {
   try {
 
     result.order = await Order.create(newOrder);
-    result.order = result.order == null ? undefined : result.order;
+    result.order = result.order === null ? undefined : result.order;
     result.wasSuccess = true;
 
   } catch (error) {
@@ -89,7 +89,7 @@ exports.updateOrder = async (order) => {
         new: true,
       },
     );
-    result.order = result.order == null ? undefined : result.order;
+    result.order = result.order === null ? undefined : result.order;
     result.wasSuccess = true;
 
   } catch (error) {
@@ -122,7 +122,7 @@ exports.cancelOrderByIdOrder = async (idOrder, idLastUserEdit) => {
       },
     );
 
-    result.order = result.order == null ? undefined : result.order;
+    result.order = result.order === null ? undefined : result.order;
     result.wasSuccess = true;
 
   } catch (error) {
@@ -144,7 +144,7 @@ exports.findOrderByIdCustomer = async (idCustomer) => {
   try {
 
     result.order = await Order.findOne({ idCustomer: `${idCustomer}`, isActive: true });
-    result.order = result.order == null ? undefined : result.order;
+    result.order = result.order === null ? undefined : result.order;
     result.wasSuccess = true;
 
   } catch (error) {
@@ -166,7 +166,7 @@ exports.findOrderByIdOrder = async (idOrder) => {
   try {
 
     result.order = await Order.findOne({ _id: idOrder, isActive: true });
-    result.order = result.order == null ? undefined : result.order;
+    result.order = result.order === null ? undefined : result.order;
     result.wasSuccess = true;
 
   } catch (error) {

@@ -43,7 +43,8 @@ exports.findByUrlBase = async (urlBase) => {
   try {
 
     result.urlAccessControl = await URLAccessControl.findOne({ url: urlBase, isActive: true });
-    result.urlAccessControl = result.urlAccessControl == null ? undefined : result.urlAccessControl;
+    result.urlAccessControl = result.urlAccessControl === null
+      ? undefined : result.urlAccessControl;
     result.wasSuccess = true;
 
   } catch (error) {

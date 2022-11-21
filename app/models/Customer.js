@@ -47,7 +47,7 @@ exports.findByNuDocument = async (nuDoc) => {
   try {
 
     result.customer = await Customer.findOne({ isActive: true, nuDocument: nuDoc });
-    result.customer = result.customer == null ? undefined : result.customer;
+    result.customer = result.customer === null ? undefined : result.customer;
     result.wasSuccess = true;
 
   } catch (error) {
@@ -69,7 +69,7 @@ exports.findByIdCustomer = async (id) => {
   try {
 
     result.customer = await Customer.findOne({ _id: id, isActive: true });
-    result.customer = result.customer == null ? undefined : result.customer;
+    result.customer = result.customer === null ? undefined : result.customer;
     result.wasSuccess = true;
 
   } catch (error) {
@@ -91,7 +91,7 @@ exports.saveNew = async (customer) => {
   try {
 
     result.customer = await Customer.create(customer);
-    result.customer = result.customer == null ? undefined : result.customer;
+    result.customer = result.customer === null ? undefined : result.customer;
     result.wasSuccess = true;
 
   } catch (error) {
@@ -130,7 +130,7 @@ exports.updateCustomer = async (customer) => {
       },
     );
 
-    result.customer = result.customer == null ? undefined : result.customer;
+    result.customer = result.customer === null ? undefined : result.customer;
     result.wasSuccess = true;
 
   } catch (error) {
