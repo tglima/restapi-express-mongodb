@@ -121,7 +121,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"nmCustomer\": \"Evelyn Agatha Carolina Aparício\",\n  \"deGender\": \"F\",\n  \"dtBirth\": \"1990-08-20\",\n  \"nuDocument\": \"41461295912\",\n  \"deEmail\": \"evelyn_aparicio@embraer.com\",\n  \"nuDDD\": \"\",\n  \"nuPhone\": \"\"\n}",
+					"raw": "{\n  \"nmCustomer\": \"Benjamin Benício Baptista\",\n  \"deGender\": \"M\",\n  \"dtBirth\": \"1997-05-10\",\n  \"nuDocument\": \"21119466130\",\n  \"deEmail\": \"benjamin.benicio.baptista@trustsign.com.br\",\n  \"nuDDD\": \"65\",\n  \"nuPhone\": \"38641141\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -231,6 +231,170 @@
 						"product",
 						"find",
 						"id=6362870f78349b02860c0745"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SaveOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idCustomer\": \"636280dd78349b02860c0730\",\n    \"idProduct\": \"6362870f78349b02860c0745\",\n    \"dtStart\": \"2022-11-22\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBaseAPI}}/order/save",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"order",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateOrder",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idCustomer\": \"636280dd78349b02860c0730\",\n    \"idProduct\": \"63754a2e359f40fbe6af544f\",\n    \"dtStart\": \"2022-11-22\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlBaseAPI}}/order/update/id=637bc9176e31f730c339875e",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"order",
+						"update",
+						"id=637bc9176e31f730c339875e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindOrderByNuDocument",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlBaseAPI}}/order/find/customer/nuDocument=21119466130",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"order",
+						"find",
+						"customer",
+						"nuDocument=21119466130"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindOrderByIdCustomer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlBaseAPI}}/order/find/customer/idCustomer=637be86eb088f7089e737e9e",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"order",
+						"find",
+						"customer",
+						"idCustomer=637be86eb088f7089e737e9e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteOrderById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{urlBaseAPI}}/order/delete/id=637bc9176e31f730c339875e",
+					"host": [
+						"{{urlBaseAPI}}"
+					],
+					"path": [
+						"order",
+						"delete",
+						"id=637bc9176e31f730c339875e"
 					]
 				}
 			},
