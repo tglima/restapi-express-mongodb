@@ -6,10 +6,10 @@ const appConfig = {
     tokenType: process.env.TOKEN_TYPE,
   },
   superUser: {
-    idUserRegister: process.env.ID_SUPER_USER, idRole: process.env.ID_SUPER_ROLE,
+    idUserRegister: process.env.ID_SUPER_USER, idRole: Number(process.env.ID_SUPER_ROLE),
   },
   guestUser: {
-    idUserRegister: process.env.ID_GUEST_USER, idRole: process.env.ID_GUEST_ROLE,
+    idUserRegister: process.env.ID_GUEST_USER, idRole: Number(process.env.ID_GUEST_ROLE),
   },
   nuVersionApi: process.env.API_NUVERSION,
   serverPort: process.env.SERVER_PORT,
