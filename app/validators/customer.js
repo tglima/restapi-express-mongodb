@@ -18,6 +18,13 @@ exports.validateSaveCustomer = async (customer) => {
 
   }
 
+  if (!validators.isValidNuDoc(customer.nuDocument)) {
+
+    returnValidate.messages.push('O documento informado é inválido!');
+    returnValidate.wasSuccess = false;
+
+  }
+
   if (!validators.hasValue(customer.deEmail)
       && !validators.hasValue(customer.nuDDD)
       && !validators.hasValue(customer.nuPhone)) {
