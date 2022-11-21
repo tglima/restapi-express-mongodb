@@ -41,6 +41,7 @@ exports.findAllProducts = async () => {
   try {
 
     result.products = await Product.find({ isActive: true });
+    result.products = result.products == null ? undefined : result.products;
     result.wasSuccess = true;
 
   } catch (error) {
@@ -60,7 +61,8 @@ exports.findProductById = async (idProduct) => {
   const result = { wasSuccess: false, product: null, error: null };
   try {
 
-    result.product = await Product.findById({ _id: idProduct, isActive: true });
+    result.product = await Product.findOne({ _id: idProduct, isActive: true });
+    result.product = result.product == null ? undefined : result.product;
     result.wasSuccess = true;
 
   } catch (error) {

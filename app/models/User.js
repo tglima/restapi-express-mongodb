@@ -30,6 +30,7 @@ exports.findByUsernameAndPass = async (username, password) => {
       },
     );
 
+    result.user = result.user == null ? undefined : result.user;
     result.wasSuccess = true;
 
   } catch (error) {
