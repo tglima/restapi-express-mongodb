@@ -64,6 +64,12 @@ const checkPermissionUserReq = async (req) => {
     return true;
 
   }
+  if (req.method.toString().toUpperCase() === 'DELETE'
+      && accessControl.delete.idRolesAllowed.includes(userDataReq.idRole)) {
+
+    return true;
+
+  }
 
   return false;
 
@@ -75,8 +81,7 @@ const generateToken = async (user) => {
   token.access_token = jwt.sign(
     {
       idRole: user.idRole,
-      id: user.id,
-      idUserRegister: user.idUser,
+      idUserRegister: user.id,
     },
     appConfig.token.secret,
     { expiresIn: (60 * appConfig.token.minutesExpiration) },
@@ -162,7 +167,6 @@ exports.getUserDataReq = async (req) => {
 
     }
 
-    result.userDataReq.id = decoded.id;
     result.userDataReq.idUserRegister = decoded.idUserRegister;
     result.userDataReq.idRole = decoded.idRole;
 
