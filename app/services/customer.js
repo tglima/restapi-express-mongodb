@@ -27,7 +27,7 @@ exports.findById = async (req) => {
 
   }
 
-  if (result.customer === undefined || result.customer === null) {
+  if (result.customer === undefined) {
 
     return constant.RESULT_DEF_ERROR_404;
 
@@ -67,7 +67,7 @@ exports.findByNuDocument = async (req) => {
 
   }
 
-  if (result.customer === undefined || result.customer === null) {
+  if (result.customer === undefined) {
 
     return response;
 
@@ -181,7 +181,7 @@ exports.updateCustomer = async (req) => {
 
   }
 
-  if (resultFind.customer === null || resultFind.customer === undefined) {
+  if (resultFind.customer === undefined) {
 
     return response;
 

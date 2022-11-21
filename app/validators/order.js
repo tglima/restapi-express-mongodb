@@ -40,8 +40,7 @@ const validateSaveOrder = async (order) => {
 
   const resultFindCustomer = await customerModel.findByIdCustomer(order.idCustomer);
   if (!resultFindCustomer.wasSuccess
-    || resultFindCustomer.customer === undefined
-    || resultFindCustomer.customer === null) {
+    || resultFindCustomer.customer === undefined) {
 
     returnValidate.messages.push('Não foi possível localizar o cliente informado!');
     returnValidate.wasSuccess = false;
@@ -52,7 +51,6 @@ const validateSaveOrder = async (order) => {
   const resultFindProduct = await productModel.findProductById(order.idProduct);
 
   if (!resultFindProduct.wasSuccess
-      || resultFindProduct.product === null
       || resultFindProduct.product === undefined) {
 
     returnValidate.messages.push('Não foi possível localizar o produto informado!');
@@ -122,7 +120,6 @@ exports.validateUpdateOrder = async (order) => {
   }
 
   if (resultFindOrder.order === undefined
-      || resultFindOrder.order === null
       || resultFindOrder.order.id !== order.id) {
 
     returnValidate.messages.push('A venda informada não foi encontrada ou não pertence ao cliente informado!');

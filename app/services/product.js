@@ -7,21 +7,21 @@ exports.findAll = async () => {
     statusCode: 200, success: true, jsonBody: null,
   };
 
-  const result = await productModel.findAllProducts();
+  const resultFind = await productModel.findAllProducts();
 
-  if (!result.wasSuccess) {
+  if (!resultFind.wasSuccess) {
 
     return constant.RESULT_DEF_ERROR_500;
 
   }
 
-  if (result.products === undefined || result.products === null || result.products.length < 1) {
+  if (resultFind.products === undefined || resultFind.products.length < 1) {
 
     return constant.RESULT_DEF_ERROR_404;
 
   }
 
-  response.jsonBody = result.products;
+  response.jsonBody = resultFind.products;
   return response;
 
 };
@@ -40,21 +40,21 @@ exports.findById = async (req) => {
 
   }
 
-  const result = await productModel.findProductById(id);
+  const resultFind = await productModel.findProductById(id);
 
-  if (!result.wasSuccess) {
+  if (!resultFind.wasSuccess) {
 
     return constant.RESULT_DEF_ERROR_500;
 
   }
 
-  if (result.product === undefined || result.product === null) {
+  if (resultFind.product === undefined) {
 
     return constant.RESULT_DEF_ERROR_404;
 
   }
 
-  response.jsonBody = result.product;
+  response.jsonBody = resultFind.product;
   return response;
 
 };

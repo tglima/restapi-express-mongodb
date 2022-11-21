@@ -103,7 +103,7 @@ exports.checkAuthDb = async (reqBody) => {
 
   const resultFind = await userModel.findByUsernameAndPass(reqBody.username, reqBody.password);
 
-  if (resultFind.user === undefined || resultFind.user === null) {
+  if (resultFind.user === undefined) {
 
     return response;
 

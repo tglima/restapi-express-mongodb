@@ -202,15 +202,15 @@ exports.findAndCancelOrder = async (req) => {
 
   }
 
-  const resultSearch = await orderModel.findOrderByIdOrder(id);
+  const resultFind = await orderModel.findOrderByIdOrder(id);
 
-  if (!resultSearch.wasSuccess) {
+  if (!resultFind.wasSuccess) {
 
     return constant.RESULT_DEF_ERROR_500;
 
   }
 
-  if (resultSearch.order === undefined || resultSearch.order === null) {
+  if (resultFind.order === undefined) {
 
     return constant.RESULT_DEF_ERROR_404;
 
