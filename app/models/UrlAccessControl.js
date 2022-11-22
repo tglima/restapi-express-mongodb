@@ -38,7 +38,7 @@ const URLAccessControl = mongoose.model('urlAccessControl', schema, 'urlAccessCo
 
 exports.findByUrlBase = async (urlBase) => {
 
-  const result = { wasSuccess: false, urlAccessControl: undefined, error: null };
+  const result = { wasSuccess: false, urlAccessControl: undefined, error: undefined };
 
   try {
 
