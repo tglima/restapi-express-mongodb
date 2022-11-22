@@ -21,7 +21,7 @@ const Log = mongoose.model('apiLogs', schema, 'apiLogs');
 
 exports.saveNew = async (log) => {
 
-  const result = { wasSuccess: false, logDB: undefined, error: null };
+  const result = { wasSuccess: false, logDB: undefined, error: undefined };
 
   try {
 

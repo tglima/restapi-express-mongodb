@@ -36,7 +36,7 @@ const Product = mongoose.model('products', schema);
 
 exports.findAllProducts = async () => {
 
-  const result = { wasSuccess: false, products: undefined, error: null };
+  const result = { wasSuccess: false, products: undefined, error: undefined };
 
   try {
 
@@ -58,7 +58,7 @@ exports.findAllProducts = async () => {
 
 exports.findProductById = async (idProduct) => {
 
-  const result = { wasSuccess: false, product: null, error: null };
+  const result = { wasSuccess: false, product: null, error: undefined };
   try {
 
     result.product = await Product.findOne({ _id: idProduct, isActive: true });

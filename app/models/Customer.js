@@ -42,7 +42,7 @@ const Customer = mongoose.model('customers', schema);
 
 exports.findByNuDocument = async (nuDoc) => {
 
-  const result = { wasSuccess: false, customer: undefined, error: null };
+  const result = { wasSuccess: false, customer: undefined, error: undefined };
 
   try {
 
@@ -64,7 +64,7 @@ exports.findByNuDocument = async (nuDoc) => {
 
 exports.findByIdCustomer = async (id) => {
 
-  const result = { wasSuccess: false, customer: undefined, error: null };
+  const result = { wasSuccess: false, customer: undefined, error: undefined };
 
   try {
 
@@ -86,7 +86,7 @@ exports.findByIdCustomer = async (id) => {
 
 exports.saveNew = async (customer) => {
 
-  const result = { wasSuccess: false, customer: undefined, error: null };
+  const result = { wasSuccess: false, customer: undefined, error: undefined };
 
   try {
 
@@ -108,7 +108,7 @@ exports.saveNew = async (customer) => {
 
 exports.updateCustomer = async (customer) => {
 
-  const result = { wasSuccess: false, customer: undefined, error: null };
+  const result = { wasSuccess: false, customer: undefined, error: undefined };
 
   try {
 

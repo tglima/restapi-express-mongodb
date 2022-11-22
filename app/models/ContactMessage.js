@@ -17,7 +17,7 @@ const ContactMessage = mongoose.model('contactMessages', schema, 'contactMessage
 
 exports.saveNew = async (contactMessage) => {
 
-  const result = { wasSuccess: false, contactMessage: undefined, error: null };
+  const result = { wasSuccess: false, contactMessage: undefined, error: undefined };
 
   try {
 

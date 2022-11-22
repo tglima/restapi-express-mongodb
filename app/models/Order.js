@@ -39,7 +39,7 @@ const Order = mongoose.model('orders', schema, 'orders');
 
 exports.saveNew = async (order) => {
 
-  const result = { wasSuccess: false, order: undefined, error: null };
+  const result = { wasSuccess: false, order: undefined, error: undefined };
   const newOrder = order;
   newOrder.dtFinish = new Date(order.dtStart);
   newOrder.dtFinish.setFullYear(newOrder.dtFinish.getFullYear() + appConfig.nuYearsValProduct);
@@ -64,7 +64,7 @@ exports.saveNew = async (order) => {
 
 exports.updateOrder = async (order) => {
 
-  const result = { wasSuccess: false, order: undefined, error: null };
+  const result = { wasSuccess: false, order: undefined, error: undefined };
 
   const orderUpdated = order;
   orderUpdated.dtFinish = new Date(orderUpdated.dtStart);
@@ -106,7 +106,7 @@ exports.updateOrder = async (order) => {
 
 exports.cancelOrderByIdOrder = async (idOrder, idLastUserEdit) => {
 
-  const result = { wasSuccess: false, order: undefined, error: null };
+  const result = { wasSuccess: false, order: undefined, error: undefined };
   try {
 
     result.order = await Order.findOneAndUpdate(
@@ -139,7 +139,7 @@ exports.cancelOrderByIdOrder = async (idOrder, idLastUserEdit) => {
 
 exports.findOrderByIdCustomer = async (idCustomer) => {
 
-  const result = { wasSuccess: false, order: undefined, error: null };
+  const result = { wasSuccess: false, order: undefined, error: undefined };
 
   try {
 
@@ -161,7 +161,7 @@ exports.findOrderByIdCustomer = async (idCustomer) => {
 
 exports.findOrderByIdOrder = async (idOrder) => {
 
-  const result = { wasSuccess: false, order: undefined, error: null };
+  const result = { wasSuccess: false, order: undefined, error: undefined };
 
   try {
 
