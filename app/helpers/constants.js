@@ -27,3 +27,15 @@ exports.RESULT_DEF_ERROR_404 = {
   jsonBody: this.HTTP_MSG_ERROR_404,
   error: undefined,
 };
+
+exports.RESULT_DEF_200 = {
+  statusCode: 200,
+  success: true,
+  jsonBody: undefined,
+};
+
+exports.RESULT_DEF_201 = {
+  statusCode: 201,
+  success: true,
+  jsonBody: undefined,
+};
