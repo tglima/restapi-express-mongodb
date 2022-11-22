@@ -26,6 +26,13 @@ exports.RESULT_DEF_ERROR_400 = {
   error: undefined,
 };
 
+exports.RESULT_DEF_ERROR_401 = {
+  statusCode: 401,
+  success: false,
+  jsonBody: this.HTTP_MSG_ERROR_401,
+  error: undefined,
+};
+
 exports.RESULT_DEF_ERROR_404 = {
   statusCode: 404,
   success: false,

@@ -98,9 +98,7 @@ const generateToken = async (user) => {
 
 exports.checkAuthDb = async (reqBody) => {
 
-  let response = {
-    statusCode: 401, success: false, jsonBody: constant.HTTP_MSG_ERROR_401, error: undefined,
-  };
+  let response = constant.RESULT_DEF_ERROR_401;
 
   const resultFind = await userModel.findByUsernameAndPass(reqBody.username, reqBody.password);
 
@@ -118,8 +116,7 @@ exports.checkAuthDb = async (reqBody) => {
 
   }
 
-  response.statusCode = 200;
-  response.success = true;
+  response = constant.RESULT_DEF_200;
   response.jsonBody = await generateToken(resultFind.user);
 
   return response;
