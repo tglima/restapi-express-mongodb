@@ -11,16 +11,19 @@ exports.RESULT_DEF_ERROR_500 = {
   statusCode: 500,
   success: false,
   jsonBody: this.HTTP_MSG_ERROR_500,
+  error: undefined,
 };
 
 exports.RESULT_DEF_ERROR_400 = {
   statusCode: 400,
   success: false,
   jsonBody: this.HTTP_MSG_ERROR_400,
+  error: undefined,
 };
 
 exports.RESULT_DEF_ERROR_404 = {
   statusCode: 404,
   success: false,
   jsonBody: this.HTTP_MSG_ERROR_404,
+  error: undefined,
 };
