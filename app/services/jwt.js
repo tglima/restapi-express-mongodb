@@ -3,6 +3,7 @@ const appConfig = require('../config/app.config');
 const userModel = require('../models/User');
 const accessControlModel = require('../models/UrlAccessControl');
 const constant = require('../helpers/constants');
+const logService = require('./apiLog');
 
 const checkPermissionUserReq = async (req) => {
 
@@ -128,6 +129,7 @@ exports.checkAuthDb = async (reqBody) => {
 // eslint-disable-next-line consistent-return
 exports.verifyJWT = async (req, res, next) => {
 
+  const dtStart = new Date().toJSON();
   const mustContinue = await checkPermissionUserReq(req);
 
   if (mustContinue) {
@@ -136,7 +138,10 @@ exports.verifyJWT = async (req, res, next) => {
 
   }
 
-  return res.status(401).json({ success: false, message: constant.HTTP_MSG_ERROR_401_ALT });
+  const response = { statusCode: 401, jsonBody: constant.HTTP_MSG_ERROR_401_ALT };
+  await logService.saveLogDB(req, response, dtStart);
+
+  return res.status(response.statusCode).send(response.jsonBody);
 
 };
 
