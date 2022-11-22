@@ -97,8 +97,8 @@ const generateToken = async (user) => {
 
 exports.checkAuthDb = async (reqBody) => {
 
-  const response = {
-    statusCode: 401, success: false, jsonBody: constant.HTTP_MSG_ERROR_401,
+  let response = {
+    statusCode: 401, success: false, jsonBody: constant.HTTP_MSG_ERROR_401, error: undefined,
   };
 
   const resultFind = await userModel.findByUsernameAndPass(reqBody.username, reqBody.password);
@@ -111,7 +111,9 @@ exports.checkAuthDb = async (reqBody) => {
 
   if (!resultFind.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultFind.error;
+    return response;
 
   }
 
@@ -140,7 +142,7 @@ exports.verifyJWT = async (req, res, next) => {
 
 exports.getUserDataReq = async (req) => {
 
-  let result = { wasSuccess: true, userDataReq: appConfig.guestUser, error: null };
+  let result = { wasSuccess: true, userDataReq: appConfig.guestUser, error: undefined };
 
   let bearerHeader;
 
