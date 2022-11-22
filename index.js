@@ -11,12 +11,12 @@ const orderRoutes = require('./app/routes/order');
 const jwtRoutes = require('./app/routes/jwt');
 app.use(bodyParser.json());
 
-app.use(`/api/v${appConfig.nuVersionApi}`, homeRoutes);
 app.use(`/api/v${appConfig.nuVersionApi}/contact`, contactMessageRoutes);
 app.use(`/api/v${appConfig.nuVersionApi}/customer`, customerRoutes);
 app.use(`/api/v${appConfig.nuVersionApi}/product`, productRoutes);
 app.use(`/api/v${appConfig.nuVersionApi}/order`, orderRoutes);
 app.use(`/api/v${appConfig.nuVersionApi}/`, jwtRoutes);
+app.use('**', homeRoutes);
 
 mongoose
   .connect(appConfig.dbConnection)
