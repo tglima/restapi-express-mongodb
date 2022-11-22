@@ -5,17 +5,15 @@ const jwtService = require('./jwt');
 
 exports.findById = async (req) => {
 
-  const response = {
-    statusCode: 200,
-    success: true,
-    jsonBody: null,
-  };
+  const response = constant.RESULT_DEF_200;
 
   const idCustomer = req.params.id;
 
   if (idCustomer === null || idCustomer === undefined) {
 
-    return constant.RESULT_DEF_ERROR_400;
+    const responseWithBadReq = constant.RESULT_DEF_ERROR_400;
+    responseWithBadReq.jsonBody = 'id Não informado!';
+    return constant.responseWithBadReq;
 
   }
 
@@ -23,7 +21,9 @@ exports.findById = async (req) => {
 
   if (!result.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    const responseWithError = constant.RESULT_DEF_ERROR_500;
+    responseWithError.error = result.error;
+    return responseWithError;
 
   }
 
@@ -41,16 +41,12 @@ exports.findById = async (req) => {
 
 exports.findByNuDocument = async (req) => {
 
-  const response = {
-    statusCode: 404, success: false, jsonBody: constant.HTTP_MSG_ERROR_404,
-  };
+  let response = constant.RESULT_DEF_ERROR_404;
 
   const { nuDocument } = req.params;
 
   if (nuDocument === null || nuDocument === undefined) {
 
-    response.statusCode = 400;
-    response.success = false;
     response.jsonBody = 'nuDocument não informado!';
     return response;
 
@@ -60,10 +56,9 @@ exports.findByNuDocument = async (req) => {
 
   if (!result.wasSuccess) {
 
-    response.statusCode = 500;
-    response.success = false;
-    response.jsonBody = constant.HTTP_MSG_ERROR_500;
-    return response;
+    const responseWithError = constant.RESULT_DEF_ERROR_500;
+    responseWithError.error = result.error;
+    return responseWithError;
 
   }
 
@@ -73,8 +68,7 @@ exports.findByNuDocument = async (req) => {
 
   }
 
-  response.statusCode = 200;
-  response.success = true;
+  response = constant.RESULT_DEF_200;
   response.jsonBody = result.customer;
 
   return response;
@@ -83,9 +77,7 @@ exports.findByNuDocument = async (req) => {
 
 exports.saveCustomer = async (req) => {
 
-  const response = {
-    statusCode: 400, success: false, jsonBody: constant.HTTP_MSG_ERROR_400,
-  };
+  let response = constant.RESULT_DEF_ERROR_400;
 
   let returnValidate = { wasSuccess: true, messages: [] };
   const customer = req.body;
@@ -99,25 +91,23 @@ exports.saveCustomer = async (req) => {
 
   if (!returnValidate.wasSuccess) {
 
-    response.statusCode = 400;
-    response.success = false;
     response.jsonBody = JSON.parse(JSON.stringify(returnValidate.messages));
     return response;
 
   }
 
-  const result = await customerModel.findByNuDocument(customer.nuDocument);
+  const resultFind = await customerModel.findByNuDocument(customer.nuDocument);
 
-  if (!result.wasSuccess) {
+  if (!resultFind.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    const responseWithError = constant.RESULT_DEF_ERROR_500;
+    responseWithError.error = resultFind.error;
+    return responseWithError;
 
   }
 
-  if (result.customer !== undefined && result.customer !== null) {
+  if (resultFind.customer !== undefined && resultFind.customer !== null) {
 
-    response.statusCode = 400;
-    response.success = false;
     returnValidate.messages.push('O número do documento informado, já existe!');
     response.jsonBody = JSON.parse(JSON.stringify(returnValidate.messages));
     return response;
@@ -128,12 +118,13 @@ exports.saveCustomer = async (req) => {
 
   if (!resultSave.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    const responseWithError = constant.RESULT_DEF_ERROR_500;
+    responseWithError.error = resultSave.error;
+    return responseWithError;
 
   }
 
-  response.statusCode = 201;
-  response.success = true;
+  response = constant.RESULT_DEF_201;
   response.jsonBody = resultSave.customer;
 
   return response;
@@ -142,11 +133,7 @@ exports.saveCustomer = async (req) => {
 
 exports.updateCustomer = async (req) => {
 
-  const response = {
-    statusCode: 400,
-    success: false,
-    jsonBody: constant.HTTP_MSG_ERROR_400,
-  };
+  let response = constant.RESULT_DEF_ERROR_400;
 
   const idCustomer = req.params.id;
   const customer = req.body;
@@ -154,8 +141,6 @@ exports.updateCustomer = async (req) => {
 
   if (idCustomer === null || idCustomer === undefined) {
 
-    response.statusCode = 400;
-    response.success = false;
     response.jsonBody = 'id Não informado!';
     return response;
 
@@ -166,8 +151,6 @@ exports.updateCustomer = async (req) => {
 
   if (!returnValidate.wasSuccess) {
 
-    response.statusCode = 400;
-    response.success = false;
     response.jsonBody = JSON.parse(JSON.stringify(returnValidate.messages));
     return response;
 
@@ -177,7 +160,9 @@ exports.updateCustomer = async (req) => {
 
   if (!resultFind.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    const responseWithError = constant.RESULT_DEF_ERROR_500;
+    responseWithError.error = resultFind.error;
+    return responseWithError;
 
   }
 
@@ -191,15 +176,15 @@ exports.updateCustomer = async (req) => {
 
   if (!resultFindDocument.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    const responseWithError = constant.RESULT_DEF_ERROR_500;
+    responseWithError.error = resultFindDocument.error;
+    return responseWithError;
 
   }
 
   if (resultFindDocument.customer !== undefined
       && resultFindDocument.customer.id !== customer.id) {
 
-    response.statusCode = 400;
-    response.success = false;
     response.jsonBody = 'O documento informado já pertence a outro cliente!';
     return response;
 
@@ -212,12 +197,13 @@ exports.updateCustomer = async (req) => {
 
   if (!resultUpdate.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    const responseWithError = constant.RESULT_DEF_ERROR_500;
+    responseWithError.error = resultUpdate.error;
+    return responseWithError;
 
   }
 
-  response.statusCode = 200;
-  response.success = true;
+  response = constant.RESULT_DEF_200;
   response.jsonBody = resultUpdate.customer;
 
   return response;
