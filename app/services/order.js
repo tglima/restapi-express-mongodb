@@ -233,7 +233,7 @@ exports.findAndCancelOrder = async (req) => {
 
   }
 
-  response.jsonBody = constant.HTTP_MSG_ERROR_200_DELETE;
+  response.jsonBody = constant.HTTP_MSG_DEF_200_DELETE;
   return response;
 
 };

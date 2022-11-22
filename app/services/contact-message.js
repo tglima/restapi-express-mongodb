@@ -33,7 +33,7 @@ exports.saveMessage = async (req) => {
 
   response.statusCode = 201;
   response.success = true;
-  response.jsonBody = constant.HTTP_MSG_ERROR_201;
+  response.jsonBody = constant.HTTP_MSG_DEF_201;
 
   return response;
 
