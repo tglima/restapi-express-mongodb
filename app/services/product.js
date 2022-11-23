@@ -3,21 +3,22 @@ const constant = require('../helpers/constants');
 
 exports.findAll = async () => {
 
-  const response = {
-    statusCode: 200, success: true, jsonBody: null,
-  };
+  let response = constant.RESULT_DEF_200;
 
   const resultFind = await productModel.findAllProducts();
 
   if (!resultFind.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultFind.error;
+    return response;
 
   }
 
   if (resultFind.products === undefined || resultFind.products.length < 1) {
 
-    return constant.RESULT_DEF_ERROR_404;
+    response = constant.RESULT_DEF_ERROR_404;
+    return response;
 
   }
 
@@ -28,15 +29,15 @@ exports.findAll = async () => {
 
 exports.findById = async (req) => {
 
-  const response = {
-    statusCode: 200, success: true, jsonBody: null,
-  };
+  let response = constant.RESULT_DEF_200;
 
   const { id } = req.params;
 
   if (id === null || id === undefined) {
 
-    return constant.RESULT_DEF_ERROR_400;
+    response = constant.RESULT_DEF_ERROR_400;
+    response.jsonBody = 'id Não informado!';
+    return response;
 
   }
 
@@ -44,13 +45,16 @@ exports.findById = async (req) => {
 
   if (!resultFind.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultFind.error;
+    return response;
 
   }
 
   if (resultFind.product === undefined) {
 
-    return constant.RESULT_DEF_ERROR_404;
+    response = constant.RESULT_DEF_ERROR_404;
+    return response;
 
   }
 
