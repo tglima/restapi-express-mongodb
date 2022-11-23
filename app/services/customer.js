@@ -13,7 +13,7 @@ exports.findById = async (req) => {
 
     const responseWithBadReq = constant.RESULT_DEF_ERROR_400;
     responseWithBadReq.jsonBody = 'id Não informado!';
-    return constant.responseWithBadReq;
+    return responseWithBadReq;
 
   }
 
