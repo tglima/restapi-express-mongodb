@@ -7,15 +7,15 @@ const orderValidator = require('../validators/order');
 
 exports.findOrderByNuDocumentCustomer = async (req) => {
 
-  const response = {
-    statusCode: 200, success: true, jsonBody: null,
-  };
+  let response = constant.RESULT_DEF_200;
 
   const { nuDocument } = req.params;
 
   if (nuDocument === null || nuDocument === undefined) {
 
-    return constant.RESULT_DEF_ERROR_400;
+    response = constant.RESULT_DEF_ERROR_400;
+    response.jsonBody = 'nuDocument Não informado!';
+    return response;
 
   }
 
@@ -23,13 +23,16 @@ exports.findOrderByNuDocumentCustomer = async (req) => {
 
   if (!result.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = result.error;
+    return response;
 
   }
 
   if (result.customer === undefined) {
 
-    return constant.RESULT_DEF_ERROR_404;
+    response = constant.RESULT_DEF_ERROR_404;
+    return response;
 
   }
 
@@ -37,13 +40,16 @@ exports.findOrderByNuDocumentCustomer = async (req) => {
 
   if (!resultOrder.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = result.error;
+    return response;
 
   }
 
   if (resultOrder.order === undefined) {
 
-    return constant.RESULT_DEF_ERROR_404;
+    response = constant.RESULT_DEF_ERROR_404;
+    return response;
 
   }
 
@@ -54,15 +60,15 @@ exports.findOrderByNuDocumentCustomer = async (req) => {
 
 exports.findOrderByIdCustomer = async (req) => {
 
-  const response = {
-    statusCode: 200, success: true, jsonBody: null,
-  };
+  let response = constant.RESULT_DEF_200;
 
   const { idCustomer } = req.params;
 
   if (idCustomer === null || idCustomer === undefined) {
 
-    return constant.RESULT_DEF_ERROR_400;
+    response = constant.RESULT_DEF_ERROR_400;
+    response.jsonBody = 'idCustomer Não informado!';
+    return response;
 
   }
 
@@ -70,13 +76,16 @@ exports.findOrderByIdCustomer = async (req) => {
 
   if (!resultOrder.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultOrder.error;
+    return response;
 
   }
 
   if (resultOrder.order === undefined) {
 
-    return constant.RESULT_DEF_ERROR_404;
+    response = constant.RESULT_DEF_ERROR_404;
+    return response;
 
   }
 
@@ -87,9 +96,7 @@ exports.findOrderByIdCustomer = async (req) => {
 
 exports.saveNewOrder = async (req) => {
 
-  const response = {
-    statusCode: 201, success: true, jsonBody: null,
-  };
+  let response = constant.RESULT_DEF_201;
 
   const order = req.body;
   let returnValidate = { wasSuccess: true, messages: [] };
@@ -97,8 +104,7 @@ exports.saveNewOrder = async (req) => {
 
   if (!returnValidate.wasSuccess) {
 
-    response.statusCode = 400;
-    response.success = false;
+    response = constant.RESULT_DEF_ERROR_400;
     response.jsonBody = JSON.parse(JSON.stringify(returnValidate.messages));
     return response;
 
@@ -108,7 +114,9 @@ exports.saveNewOrder = async (req) => {
 
   if (!resultUserData.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultUserData.error;
+    return response;
 
   }
 
@@ -124,12 +132,12 @@ exports.saveNewOrder = async (req) => {
 
   if (!resultSave.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultSave.error;
+    return response;
 
   }
 
-  response.statusCode = 201;
-  response.success = true;
   response.jsonBody = resultSave.order;
 
   return response;
@@ -138,9 +146,7 @@ exports.saveNewOrder = async (req) => {
 
 exports.updateOrder = async (req) => {
 
-  const response = {
-    statusCode: 200, success: true, jsonBody: null,
-  };
+  let response = constant.RESULT_DEF_200;
 
   const order = req.body;
   order.id = req.params.id;
@@ -150,8 +156,7 @@ exports.updateOrder = async (req) => {
 
   if (!returnValidate.wasSuccess) {
 
-    response.statusCode = 400;
-    response.success = false;
+    response = constant.RESULT_DEF_ERROR_400;
     response.jsonBody = JSON.parse(JSON.stringify(returnValidate.messages));
     return response;
 
@@ -161,13 +166,23 @@ exports.updateOrder = async (req) => {
 
   if (!resultUserData.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultUserData.error;
+    return response;
 
   }
 
   order.idLastUserEdit = resultUserData.userDataReq.idUserRegister;
 
   const resultFindProduct = await productModel.findProductById(order.idProduct);
+
+  if (!resultFindProduct.wasSuccess) {
+
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultFindProduct.error;
+    return response;
+
+  }
 
   order.nmProduct = resultFindProduct.product.nmProduct;
   order.vlMonthPrice = resultFindProduct.product.vlMonthPrice;
@@ -176,12 +191,12 @@ exports.updateOrder = async (req) => {
 
   if (!resultUpdate.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultUpdate.error;
+    return response;
 
   }
 
-  response.statusCode = 200;
-  response.success = true;
   response.jsonBody = resultUpdate.order;
 
   return response;
@@ -190,15 +205,15 @@ exports.updateOrder = async (req) => {
 
 exports.findAndCancelOrder = async (req) => {
 
-  const response = {
-    statusCode: 200, success: true, jsonBody: null,
-  };
+  let response = constant.RESULT_DEF_200;
 
   const { id } = req.params;
 
   if (id === null || id === undefined) {
 
-    return constant.RESULT_DEF_ERROR_400;
+    response = constant.RESULT_DEF_ERROR_400;
+    response.jsonBody = 'id Não informado!';
+    return response;
 
   }
 
@@ -206,13 +221,16 @@ exports.findAndCancelOrder = async (req) => {
 
   if (!resultFind.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultFind.error;
+    return response;
 
   }
 
   if (resultFind.order === undefined) {
 
-    return constant.RESULT_DEF_ERROR_404;
+    response = constant.RESULT_DEF_ERROR_404;
+    return response;
 
   }
 
@@ -220,7 +238,9 @@ exports.findAndCancelOrder = async (req) => {
 
   if (!resultUserData.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultUserData.error;
+    return response;
 
   }
 
@@ -229,7 +249,9 @@ exports.findAndCancelOrder = async (req) => {
 
   if (!resultUpd.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultUpd.error;
+    return response;
 
   }
 
