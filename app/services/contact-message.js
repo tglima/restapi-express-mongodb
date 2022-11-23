@@ -4,9 +4,7 @@ const messageValidator = require('../validators/contact-message');
 
 exports.saveMessage = async (req) => {
 
-  const response = {
-    statusCode: 400, success: false, jsonBody: constant.HTTP_MSG_ERROR_400,
-  };
+  let response = constant.RESULT_DEF_201;
 
   const message = req.body;
   message.deTelephone = message.deTelephone.replace(/[^0-9]/g, '');
@@ -16,8 +14,7 @@ exports.saveMessage = async (req) => {
 
   if (!returnValidate.wasSuccess) {
 
-    response.statusCode = 400;
-    response.success = false;
+    response = constant.RESULT_DEF_ERROR_400;
     response.jsonBody = JSON.parse(JSON.stringify(returnValidate.messages));
     return response;
 
@@ -27,12 +24,12 @@ exports.saveMessage = async (req) => {
 
   if (!resultSave.wasSuccess) {
 
-    return constant.RESULT_DEF_ERROR_500;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultSave.error;
+    return response;
 
   }
 
-  response.statusCode = 201;
-  response.success = true;
   response.jsonBody = constant.HTTP_MSG_DEF_201;
 
   return response;
