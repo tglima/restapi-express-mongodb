@@ -5,15 +5,15 @@ const jwtService = require('./jwt');
 
 exports.findById = async (req) => {
 
-  const response = constant.RESULT_DEF_200;
+  let response = constant.RESULT_DEF_200;
 
   const idCustomer = req.params.id;
 
   if (idCustomer === null || idCustomer === undefined) {
 
-    const responseWithBadReq = constant.RESULT_DEF_ERROR_400;
-    responseWithBadReq.jsonBody = 'id Não informado!';
-    return responseWithBadReq;
+    response = constant.RESULT_DEF_ERROR_400;
+    response.jsonBody = 'id Não informado!';
+    return response;
 
   }
 
@@ -21,15 +21,16 @@ exports.findById = async (req) => {
 
   if (!result.wasSuccess) {
 
-    const responseWithError = constant.RESULT_DEF_ERROR_500;
-    responseWithError.error = result.error;
-    return responseWithError;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = result.error;
+    return response;
 
   }
 
   if (result.customer === undefined) {
 
-    return constant.RESULT_DEF_ERROR_404;
+    response = constant.RESULT_DEF_ERROR_404;
+    return response;
 
   }
 
@@ -41,12 +42,13 @@ exports.findById = async (req) => {
 
 exports.findByNuDocument = async (req) => {
 
-  let response = constant.RESULT_DEF_ERROR_404;
+  let response = constant.RESULT_DEF_200;
 
   const { nuDocument } = req.params;
 
   if (nuDocument === null || nuDocument === undefined) {
 
+    response = constant.RESULT_DEF_ERROR_400;
     response.jsonBody = 'nuDocument não informado!';
     return response;
 
@@ -56,19 +58,19 @@ exports.findByNuDocument = async (req) => {
 
   if (!result.wasSuccess) {
 
-    const responseWithError = constant.RESULT_DEF_ERROR_500;
-    responseWithError.error = result.error;
-    return responseWithError;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = result.error;
+    return response;
 
   }
 
   if (result.customer === undefined) {
 
+    response = constant.RESULT_DEF_ERROR_404;
     return response;
 
   }
 
-  response = constant.RESULT_DEF_200;
   response.jsonBody = result.customer;
 
   return response;
@@ -100,9 +102,9 @@ exports.saveCustomer = async (req) => {
 
   if (!resultFind.wasSuccess) {
 
-    const responseWithError = constant.RESULT_DEF_ERROR_500;
-    responseWithError.error = resultFind.error;
-    return responseWithError;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultFind.error;
+    return response;
 
   }
 
@@ -118,9 +120,9 @@ exports.saveCustomer = async (req) => {
 
   if (!resultSave.wasSuccess) {
 
-    const responseWithError = constant.RESULT_DEF_ERROR_500;
-    responseWithError.error = resultSave.error;
-    return responseWithError;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultSave.error;
+    return response;
 
   }
 
@@ -160,9 +162,9 @@ exports.updateCustomer = async (req) => {
 
   if (!resultFind.wasSuccess) {
 
-    const responseWithError = constant.RESULT_DEF_ERROR_500;
-    responseWithError.error = resultFind.error;
-    return responseWithError;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultFind.error;
+    return response;
 
   }
 
@@ -176,9 +178,9 @@ exports.updateCustomer = async (req) => {
 
   if (!resultFindDocument.wasSuccess) {
 
-    const responseWithError = constant.RESULT_DEF_ERROR_500;
-    responseWithError.error = resultFindDocument.error;
-    return responseWithError;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultFindDocument.error;
+    return response;
 
   }
 
@@ -197,9 +199,9 @@ exports.updateCustomer = async (req) => {
 
   if (!resultUpdate.wasSuccess) {
 
-    const responseWithError = constant.RESULT_DEF_ERROR_500;
-    responseWithError.error = resultUpdate.error;
-    return responseWithError;
+    response = constant.RESULT_DEF_ERROR_500;
+    response.error = resultUpdate.error;
+    return response;
 
   }
 
