@@ -12,6 +12,7 @@ const appConfig = {
     idUserRegister: process.env.ID_GUEST_USER, idRole: Number(process.env.ID_GUEST_ROLE),
   },
   nuVersionApi: process.env.API_NUVERSION,
+  urlBaseApi: `/api/v${this.nuVersionApi}/`,
   serverPort: process.env.SERVER_PORT,
   dbConnection: `${process.env.DB_PREFIX_CONN}://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_SERVER}/${process.env.DB_NAME}`,
   qtMinCharMessage: Number(process.env.QT_MIN_CHAR_MESSAGE),
