@@ -2,7 +2,6 @@
   "_id": {
     "$oid": "636280b978349b02860c072a"
   },
-  "idUser": 1,
   "nmUser": "SysAdmin",
   "deUserName": "tglima.dev",
   "dePassword": "sys.admin",
@@ -17,7 +16,6 @@
   "_id": {
     "$oid": "636280b978349b02860c072b"
   },
-  "idUser": 2,
   "nmUser": "admin",
   "deUserName": "admin",
   "dePassword": "#321@admin",
@@ -32,7 +30,6 @@
   "_id": {
     "$oid": "636280b978349b02860c072c"
   },
-  "idUser": 3,
   "nmUser": "user",
   "deUserName": "user",
   "dePassword": "#321@user",
@@ -47,7 +44,6 @@
   "_id": {
     "$oid": "636280b978349b02860c072d"
   },
-  "idUser": 4,
   "nmUser": "Guest",
   "deUserName": "Guest",
   "dePassword": "",

@@ -167,4 +167,109 @@
   "delete": {
     "idRolesAllowed": []
   }
+},{
+  "_id": {
+    "$oid": "637a9d41f8023206df3ea918"
+  },
+  "url": "/order/find/customer/nuDocument",
+  "isActive": true,
+  "post": {
+    "idRolesAllowed": []
+  },
+  "read": {
+    "idRolesAllowed": [
+      2,
+      3
+    ]
+  },
+  "update": {
+    "idRolesAllowed": []
+  },
+  "delete": {
+    "idRolesAllowed": []
+  }
+},{
+  "_id": {
+    "$oid": "637aa522f8023206df3ea91d"
+  },
+  "url": "/order/delete/id",
+  "isActive": true,
+  "post": {
+    "idRolesAllowed": []
+  },
+  "read": {
+    "idRolesAllowed": []
+  },
+  "update": {
+    "idRolesAllowed": []
+  },
+  "delete": {
+    "idRolesAllowed": [
+      2,
+      3
+    ]
+  }
+},{
+  "_id": {
+    "$oid": "637ab3c9f8023206df3ea932"
+  },
+  "url": "/order/save",
+  "isActive": true,
+  "post": {
+    "idRolesAllowed": [
+      2,
+      3
+    ]
+  },
+  "read": {
+    "idRolesAllowed": []
+  },
+  "update": {
+    "idRolesAllowed": []
+  },
+  "delete": {
+    "idRolesAllowed": []
+  }
+},{
+  "_id": {
+    "$oid": "637b632a8095371f888de7f0"
+  },
+  "url": "/order/find/customer/idCustomer",
+  "isActive": true,
+  "post": {
+    "idRolesAllowed": []
+  },
+  "read": {
+    "idRolesAllowed": [
+      2,
+      3
+    ]
+  },
+  "update": {
+    "idRolesAllowed": []
+  },
+  "delete": {
+    "idRolesAllowed": []
+  }
+},{
+  "_id": {
+    "$oid": "637b63618095371f888de7f1"
+  },
+  "url": "/order/update/id",
+  "isActive": true,
+  "post": {
+    "idRolesAllowed": []
+  },
+  "read": {
+    "idRolesAllowed": []
+  },
+  "update": {
+    "idRolesAllowed": [
+      2,
+      3
+    ]
+  },
+  "delete": {
+    "idRolesAllowed": []
+  }
 }]
