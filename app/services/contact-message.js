@@ -7,7 +7,6 @@ exports.saveMessage = async (req) => {
   let response = constant.RESULT_DEF_201;
 
   const message = req.body;
-  message.deTelephone = message.deTelephone.replace(/[^0-9]/g, '');
 
   let returnValidate = { wasSuccess: true, messages: [] };
   returnValidate = await messageValidator.validateSaveMessage(message);

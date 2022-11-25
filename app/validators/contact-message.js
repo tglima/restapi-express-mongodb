@@ -4,7 +4,9 @@ const appConfig = require('../config/app.config');
 exports.validateSaveMessage = async (message) => {
 
   const returnValidate = { wasSuccess: true, messages: [] };
-  const nuPhoneFull = message.deTelephone;
+
+  const nuPhoneFull = validators.hasValue(message.deTelephone)
+    ? message.deTelephone.replace(/[^0-9]/g, '') : undefined;
 
   if (!validators.isValidName(message.nmContact)) {
 
