@@ -2,21 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
+const swaggerUI = require('swagger-ui-express');
 const appConfig = require('./app/config/app.config');
-const homeRoutes = require('./app/routes/home');
-const contactMessageRoutes = require('./app/routes/contact-message');
-const customerRoutes = require('./app/routes/customer');
-const productRoutes = require('./app/routes/product');
-const orderRoutes = require('./app/routes/order');
-const jwtRoutes = require('./app/routes/jwt');
-app.use(bodyParser.json());
+const router = require('./app/routes/routes');
+const swaggerFile = require('./swagger.json');
 
-app.use(`/api/v${appConfig.nuVersionApi}/contact`, contactMessageRoutes);
-app.use(`/api/v${appConfig.nuVersionApi}/customer`, customerRoutes);
-app.use(`/api/v${appConfig.nuVersionApi}/product`, productRoutes);
-app.use(`/api/v${appConfig.nuVersionApi}/order`, orderRoutes);
-app.use(`/api/v${appConfig.nuVersionApi}/`, jwtRoutes);
-app.use('**', homeRoutes);
+app.use(express.json());
+app.use(bodyParser.json());
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerFile));
+app.use(appConfig.urlBaseApi, router);
 
 mongoose
   .connect(appConfig.dbConnection)
