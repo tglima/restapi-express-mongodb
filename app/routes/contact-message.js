@@ -1,7 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const contactMessageController = require('../controllers/contact-message');
 const jwtService = require('../services/jwt');
+const contactMessageService = require('../services/contact-message');
+const logService = require('../services/apiLog');
 
-router.post('', jwtService.verifyJWT, contactMessageController.save);
+const save = async (req, res) => {
+
+  const dtStart = new Date().toJSON();
+  const response = await contactMessageService.saveMessage(req);
+  await logService.saveLogDB(req, response, dtStart);
+  return res.status(response.statusCode).send(response.jsonBody);
+
+};
+
+router.post('', jwtService.verifyJWT, save);
 module.exports = router;
