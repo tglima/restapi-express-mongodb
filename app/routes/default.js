@@ -3,7 +3,7 @@ const logService = require('../services/apiLog');
 const constant = require('../helpers/constants');
 const router = express.Router();
 
-const getHome = async (req, res) => {
+const getDefault = async (req, res) => {
 
   const dtStart = new Date().toJSON();
   const response = constant.RESULT_DEF_ERROR_404;
@@ -12,8 +12,8 @@ const getHome = async (req, res) => {
 
 };
 
-router.get('/', getHome);
-router.post('/', getHome);
-router.put('/', getHome);
-router.delete('/', getHome);
+router.get('/', getDefault);
+router.post('/', getDefault);
+router.put('/', getDefault);
+router.delete('/', getDefault);
 module.exports = router;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const homeRoutes = require('./home');
+const defaultRoutes = require('./default');
 const contactMessageRoutes = require('./contact-message');
 const customerRoutes = require('./customer');
 const productRoutes = require('./product');
@@ -12,5 +12,5 @@ router.use('/customer', customerRoutes);
 router.use('/product', productRoutes);
 router.use('/order', orderRoutes);
 router.use('/contact', contactMessageRoutes);
-router.use('**', homeRoutes);
+router.use('**', defaultRoutes);
 module.exports = router;
