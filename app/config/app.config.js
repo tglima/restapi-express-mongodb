@@ -17,6 +17,7 @@ const appConfig = {
   dbConnection: `${process.env.DB_PREFIX_CONN}://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_SERVER}/${process.env.DB_NAME}`,
   qtMinCharMessage: Number(process.env.QT_MIN_CHAR_MESSAGE),
   nuYearsValProduct: Number(process.env.NU_YEARS_VAL_PRODUCT),
+  msgServerStarted: `Servidor iniciado - Express rodando na porta: ${process.env.SERVER_PORT}`,
 };
 
 module.exports = appConfig;
