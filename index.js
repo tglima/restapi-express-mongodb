@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -6,10 +7,11 @@ const swaggerUI = require('swagger-ui-express');
 const appConfig = require('./app/config/app.config');
 const router = require('./app/routes/routes');
 const swaggerFile = require('./swagger.json');
+const messageSwaggerUp = `Swagger disponível em: ${appConfig.urlPathSwagger}\n`;
 
 app.use(express.json());
 app.use(bodyParser.json());
-app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerFile));
+app.use(`${appConfig.pathSwagger}`, swaggerUI.serve, swaggerUI.setup(swaggerFile));
 app.use(appConfig.urlBaseApi, router);
 
 mongoose
@@ -18,11 +20,10 @@ mongoose
 
     app.listen(`${appConfig.serverPort}`, () => {
 
-      // eslint-disable-next-line no-console
-      console.log(`MongoDB + Express started! - Express rodando na porta: ${appConfig.serverPort}`);
+      console.log(`\n${appConfig.msgServerStarted}`);
+      console.log(messageSwaggerUp);
 
     });
 
   })
-// eslint-disable-next-line no-console
   .catch((err) => console.error(err));
