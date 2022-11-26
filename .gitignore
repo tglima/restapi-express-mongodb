@@ -58,3 +58,6 @@ typings/
 
 # Pasta node_modules
 node_modules
+
+# Arquivo gerado automáticamente pela aplicação
+swagger.json
