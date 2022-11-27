@@ -5,7 +5,7 @@ const fs = require('fs');
 const jsonTemplate = './docs/swagger/swagger_template.json';
 const fileFinal = './swagger.json';
 const appConfig = require('./app/config/app.config');
-const urlAPI = `${appConfig.urlPathSwagger}${appConfig.urlBaseApi}`;
+const urlAPI = `${appConfig.urlDomain}${appConfig.urlBaseApi}`;
 
 const removeOldFile = (file) => {
 
