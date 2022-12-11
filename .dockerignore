@@ -1,5 +1,10 @@
+.git
+.vscode
+.dockerignore
+.editorconfig
+.eslintrc.json
+.gitignore
+docker-compose.yml
 node_modules
 npm-debug.log
-Dockerfile
-docker-compose.yml
-.dockerignore
+build_container.sh
