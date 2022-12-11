@@ -1,0 +1,17 @@
+FROM node:16-alpine
+WORKDIR /usr/src/app
+RUN mkdir -p /usr/src/app/node_modules && chown -R node:node /usr/src/app
+COPY package*.json ./
+COPY pm2.json ./
+RUN npm i -g pm2
+RUN npm install
+COPY ./docs/shell_script/start_node.sh /usr/local/bin/start_node.sh
+RUN chmod +x /usr/local/bin/start_node.sh
+COPY . .
+RUN rm -rf /usr/src/app/docs/dockerfile
+RUN rm -rf /usr/src/app/docs/dump
+RUN rm -rf /usr/src/app/docs/mongodb
+RUN rm -rf /usr/src/app/docs/postman
+RUN rm -rf /usr/src/app/docs/shell_script
+CMD ["start_node.sh"]
+EXPOSE 4200
