@@ -15,7 +15,7 @@ const appConfig = {
   urlBaseApi: `/api/v${process.env.API_NUVERSION}`,
   urlDomain: `${process.env.URL_DOMAIN}`,
   serverPort: process.env.SERVER_PORT,
-  dbConnection: `${process.env.DB_PREFIX_CONN}://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_SERVER}/${process.env.DB_NAME}`,
+  dbConnection: `${process.env.DB_PREFIX_CONN}://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_SERVER}/${process.env.DB_NAME}?authMechanism=DEFAULT`,
   qtMinCharMessage: Number(process.env.QT_MIN_CHAR_MESSAGE),
   nuYearsValProduct: Number(process.env.NU_YEARS_VAL_PRODUCT),
   msgServerStarted: `Servidor iniciado - Express rodando na porta: ${process.env.SERVER_PORT}`,
