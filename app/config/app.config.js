@@ -19,7 +19,6 @@ const appConfig = {
   qtMinCharMessage: Number(process.env.QT_MIN_CHAR_MESSAGE),
   nuYearsValProduct: Number(process.env.NU_YEARS_VAL_PRODUCT),
   msgServerStarted: `Servidor iniciado - Express rodando na porta: ${process.env.SERVER_PORT}`,
-  urlPathSwagger: `${process.env.URL_DOMAIN}${process.env.PATH_SWAGGER}`,
   pathSwagger: process.env.PATH_SWAGGER,
 };
 
