@@ -4,8 +4,8 @@
 const fs = require('fs');
 const jsonTemplate = './docs/swagger/swagger_template.json';
 const fileFinal = './swagger.json';
-const appConfig = require('./app/config/app.config');
-const urlAPI = `${appConfig.urlDomain}${appConfig.urlBaseApi}`;
+const helpers = require('./docs/nodejs_helper/helpers');
+require('dotenv').config();
 
 const removeOldFile = (file) => {
 
@@ -49,7 +49,7 @@ const updateJSON = (file) => {
 
   try {
 
-    json.servers[0].url = urlAPI;
+    json.servers[0].url = helpers.getUrlAPI();
 
   } catch (error) {
 
