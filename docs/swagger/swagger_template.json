@@ -8,7 +8,7 @@
   "servers":[
      {
         "url":"http://localhost:4200/api/v1",
-        "description":"API no ambiente de desenvolvimento"
+        "description":"URL base da API"
      }
   ],
   "paths":{
