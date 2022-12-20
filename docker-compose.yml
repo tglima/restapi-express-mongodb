@@ -1,34 +1,14 @@
-version: '3.6'
-name: "project"
+version: '3.9'
+name: webapi
 services:
-
-  db:
+  webapi:
     build:
       context: .
-      dockerfile: docs/dockerfile/dc_mongo
-    image: db
-    container_name: db
-    tty: true
-    restart: on-failure
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: tglima
-      MONGO_INITDB_ROOT_PASSWORD: mongoContainer
-      MONGO_INITDB_DATABASE: applicationdb
-      TZ: America/Sao_Paulo
-    network_mode: "host"
-    logging:
-        options:
-            max-size: 8m
-    ports:
-      - "27017:27017"
-
-  app:
-    build:
-      context: .
-      dockerfile: docs/dockerfile/dc_node
-    image: app
-    container_name: app
-    working_dir: /usr/src/app
+    env_file:
+        - .env
+    image: webapi
+    container_name: webapi
+    working_dir: ${PATH_API}
     restart: on-failure
     environment:
       NODE_ENV: production
@@ -37,7 +17,5 @@ services:
     logging:
         options:
             max-size: 8m
-    depends_on:
-      - db
     ports:
-      - "4200:4200"
+      - ${SERVER_PORT}:${SERVER_PORT}
