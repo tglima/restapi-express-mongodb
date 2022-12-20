@@ -10,8 +10,8 @@ node_modules
 npm-debug.log
 build_container.sh
 remove_container.sh
-docs/MongoDB_Docker
-docs/MongoDB_Docker/*
+docs/mongodb_docker
+docs/mongodb_docker/*
 docs/dump
 docs/dump/*
 docs/mongodb
