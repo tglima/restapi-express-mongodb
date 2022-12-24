@@ -1,0 +1,17 @@
+version: '3.9'
+name: mongo_db
+services:
+  mongo_db:
+    build:
+      context: .
+    env_file:
+        - .env
+    image: ${NAME}
+    container_name: ${NAME}
+    restart: on-failure
+    network_mode: "host"
+    logging:
+        options:
+            max-size: 8m
+    ports:
+      - ${DB_PORT}:${DB_PORT}
