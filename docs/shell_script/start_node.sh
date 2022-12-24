@@ -11,7 +11,7 @@ while [ "$RESULT" != "200" ]
 do
   sleep 2;
   RESULT=$(curl -o /dev/null -s -w "%{http_code}\n" $urlDB)
-  echo "Tentando se conectar ao mongodb";
+  echo -e "Tentando se conectar ao mongodb";
   qtAttemp=$((qtAttemp+1))
   if [ $qtAttemp -ge 5 ]
   then
