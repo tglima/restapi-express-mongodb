@@ -21,10 +21,8 @@ do
   fi
 done
 clear
-#Cria o container mas não inicia o mesmo
-docker-compose create --build
-#Inicia o container
-docker-compose start
+#Cria o container e inicia o mesmo
+docker-compose up -d --build
 #Aguarda o container acabar de subir
 sleep 10
 #Captura a url gerada pelo localtunnel
