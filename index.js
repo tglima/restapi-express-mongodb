@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+/* eslint-disable node/no-unpublished-require */
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
