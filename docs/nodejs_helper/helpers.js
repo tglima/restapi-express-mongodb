@@ -78,3 +78,28 @@ exports.getUrlAPI = () => {
   return result;
 
 };
+
+exports.getUrlSwagger = () => {
+
+  let urlDomain;
+
+  try {
+
+    urlDomain = this.getEnvValue('URL_DOMAIN');
+
+  } catch (err) {
+
+    urlDomain = undefined;
+
+  }
+
+  if (urlDomain === undefined) {
+
+    urlDomain = `${process.env.URL_DOMAIN}`;
+
+  }
+
+  return `${urlDomain}${process.env.PATH_SWAGGER}`
+    .replaceAll('"', '').replaceAll('\'', '');
+
+};
