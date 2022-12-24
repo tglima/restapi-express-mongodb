@@ -55,27 +55,26 @@ exports.setEnvValue = (key, value) => {
 
 exports.getUrlAPI = () => {
 
-  let result;
+  let urlDomain;
 
   try {
 
-    result = this.getEnvValue('URL_DOMAIN');
+    urlDomain = this.getEnvValue('URL_DOMAIN');
 
   } catch (err) {
 
-    result = undefined;
+    urlDomain = undefined;
 
   }
 
-  if (result === undefined) {
+  if (urlDomain === undefined) {
 
-    result = `${process.env.URL_DOMAIN}`;
+    urlDomain = `${process.env.URL_DOMAIN}`;
 
   }
 
-  result = `${result}${appConfig.urlBaseApi}`;
-  result = result.replaceAll('"', '');
-  return result;
+  return `${urlDomain}${appConfig.urlBaseApi}`
+    .replaceAll('"', '').replaceAll('\'', '');
 
 };
 
