@@ -27,8 +27,8 @@ Para maiores informações leias as instruções abaixo:
 
 ## Instruções
 
-* [Por onde começar](./docs/tutorials/01-where-to-start.md)
-* Configurando o MongoDB
+* [Por onde começar?](./docs/tutorials/01-where-to-start.md)
+* [Configurando o MongoDB](./docs/tutorials/02-config-mongodb.md)
 * Rodando a aplicação no meu VSCODE
 * Rodando a aplicação em um container
 
