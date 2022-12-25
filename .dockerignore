@@ -6,6 +6,7 @@
 .gitignore
 docker-compose.yml
 Dockerfile
+README.md
 node_modules
 npm-debug.log
 build_container.sh
@@ -18,3 +19,7 @@ docs/mongodb
 docs/mongodb/*
 docs/postman
 docs/postman/*
+docs/tutorials
+docs/tutorials/*
+docs/images
+docs/images/*
