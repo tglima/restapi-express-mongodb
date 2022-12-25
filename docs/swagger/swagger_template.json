@@ -1,7 +1,7 @@
 {
   "openapi":"3.0.0",
   "info":{
-     "title":"REST API com NodeJS e MongoDB",
+     "title":"Rest API com NodeJS e MongoDB",
      "description":"Swagger da API desenvolvida com exemplos e informações de básicas de uso.",
      "version":"1.0.0"
   },
