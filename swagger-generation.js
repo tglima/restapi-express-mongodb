@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 /* eslint-disable security/detect-non-literal-fs-filename */
 
+require('dotenv').config();
 const fs = require('fs');
 const jsonTemplate = './docs/swagger/swagger_template.json';
 const fileFinal = './swagger.json';
 const helpers = require('./docs/nodejs_helper/helpers');
-require('dotenv').config();
 
 const removeOldFile = (file) => {
 
