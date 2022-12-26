@@ -1,20 +1,19 @@
 # Configurando o MongoDB
 
-## Sobre
+## Objetivo
 Como já foi dito na [página inicial](../../README.md), este projeto utiliza o banco de dados não relacional MongoDB. Sendo assim precisamos configurar uma instância do MongoDB, está página serve como um guia básico de como restaurar os backups e criar o usuário específico da aplicação.
 
 Basicamente existem três de formas de configurar o MongoDB para o nosso projeto.
 
  1) [Usando scripts e criando container](#usando-scripts-e-criando-o-container)
  2) [Instalando o MongoDB na sua máquina](#instalando-o-mongodb-na-sua-máquina)
- 3) [Utilizando o MongoDB direto da Web](#acessando-o-mongodb-da-atlas)
+ 3) [Utilizando o MongoDB direto da Web](#acessando-o-mongodb-da-web)
 
-Indiferente de qual seja sua escolha, recomendo fortemente você utilizar a ferramenta [Compass](https://www.mongodb.com/try/download/compass), desta forma você conseguirá acessar e gerenciar o banco de dados de forma independente.
+---
 
 ## Usando scripts e criando o container
 
-Para seguir essas instruções você precisará ter o docker e o docker-compose instalados em sua máquina.
-As versões minímas que devem ser utilizadas estão descritas na [página inicial](../../README.md) deste projeto.
+Para seguir essas instruções você precisará ter o docker e o docker-compose instalados em sua máquina. As versões minímas que devem ser utilizadas estão descritas na [página inicial](../../README.md) deste projeto.
 
 **Os scritps que usaremos a seguir foram feitos para serem executados dentro de um ambiente Linux.** Os script que usaremos se encontram em: "pastaraizdoprojeto/docs/mongodb/docker".
 
@@ -25,6 +24,7 @@ Basicamente usaremos apenas dois scripts.
 1) O build_container.sh será responsável por construir o container e executar os demais scripts que restauram os backups e criam os usuários.
 2) O remove_container.sh será responsável por destruir completamente o container e a imagem que ele gerou.
 
+---
 
 ### Permissão de execução
 
@@ -33,6 +33,8 @@ Para executar os scripts será necessário darmos permissão de execução a ele
 ```bash
 chmod +x build_container.sh && chmod +x remove_container.sh
 ```
+
+---
 
 ### Criando o container
 
@@ -70,6 +72,8 @@ Veja que foi criando um container com o nome mongo_db. Além do MongoDB este con
 
 Você pode [testar o seu MongoDB através do Compass](#testar-o-mongodb-com-o-compass).
 
+---
+
 ### Destruindo o container
 Para destruir o container é tão simples quanto criar. Para destruir o container execute o seguinte comando dentro do diretório onde se encontram os scripts:
 
@@ -85,6 +89,7 @@ Se tudo deu certo, no final da execução do script você verá algo como:
  ⠿ Image mongo_db:latest  Removed                                                                             0.0s
 Tarefa de remoção de container finalizada
 ```
+---
 
 ## Instalando o MongoDB na sua máquina
 
@@ -92,28 +97,34 @@ Para instalar o MongoDB localmente na sua máquina, você deve visitar o [site o
 
 Não vou detalhar aqui o processo de instalação, mas é importante que o usuário ROOT(super administrador) seja "tglima" e sua senha seja "mongoContainer".
 
+---
 
-## Utilizando o MongoDB direto da Atlas
+## Utilizando o MongoDB direto da web
 
-Caso você não queira instalar o MongoDB na sua máquina existe a possibilidade de você criar uma conta gratuita na Atlas e utilizar a base de dados direto da web.
+Caso você não queira instalar o MongoDB na sua máquina, existe a possibilidade de você criar uma conta gratuita no [site oficial do projeto](https://www.mongodb.com/cloud/atlas/register) e utilizar a base de dados direto da web.
 
 ![Site MongoDB Free Plan](../images/site_mongodb_free_plan.png)
 
 Não vou detalhar aqui o processo de criação de conta e nem como configurar, mas é importante que o usuário ROOT(super administrador) seja "tglima" e sua senha seja "mongoContainer".
 
+---
 
 ## Testar o MongoDB com o Compass
 
 O [Compass](https://www.mongodb.com/try/download/compass) é uma excelente ferramenta para gerenciar nossa base de dados no MongoDB. Para o nosso primeiro acesso vamos utilizar o usuário ROOT.
 
-### Acessando o MongoDB local ou do container
+---
+
+### Acessando o MongoDB criado pelo local ou do container
 
 Caso você tenha instalado o seu MongoDB localmente ou através de um container, siga os passos abaixo:
 
-Após abrir o "Compass", clique em "New connection", depois na aba "Authentication", depois na aba "Username/Password"
+Após abrir o "Compass", faça:
 
-No campo Username preencha com: tglima
-No campo Password preencha com: mongoContainer
+1) Clique em "New connection"
+2) Depois na aba "Authentication", Por fim na aba "Username/Password"
+3) No campo Username preencha com: tglima
+4) No campo Password preencha com: mongoContainer
 
 ![Compass create connection root](../images/compass_create_conn_root.png)
 
@@ -132,10 +143,61 @@ Se tudo deu certo você verá algo como a imagem abaixo:
 
 Se você instalou o seu MongoDB através do container, você verá o banco de dados "applicationdb". Sendo assim você pode pular para o item: [Navegando nas tabelas](#navegando-nas-tabelas)
 
+Porém se você instalou o seu MongoDB de forma tradicional, teremos que restaurar os backups e criar os usuários manualmente.
 
+---
 
+### Acessando o MongoDB da Web
 
-### Acessando o MongoDB da Atlas
+Para acessar o seu banco do MongoDB direto da web é simples. Nesta tela clique:
+
+**1) No botão "Connect"**
+
+![Site MongoDB get connection step 1](../images/site_mongodb_get_conn_step_1.png)
+
+**2) Na opção MongoDB Compass**
+
+![Site MongoDB get connection step 2](../images/site_mongodb_get_conn_step_2.png)
+
+**3) Note que temos uma string de conexão. Vamos copiar essa string clicando no botão indicado.**
+
+![Site MongoDB get connection step 3](../images/site_mongodb_get_conn_step_3.png)
+
+**4) Vamos abrir o Compass e siga os passos abaixo:**
+
+ 1) Clique em **"New connection"**
+ 2) No campo **URI** cole a string de conexão que você pegou no site
+ 3) Por fim clique em **"Authentication"**.
+
+![Compass connection com web database step 1](../images/compass_conn_web_root_step_1.png)
+
+**5) Agora na aba Authentication, selecione a opção "Username/Password" e siga os passos abaixo:**
+
+1) No campo Username preencha com: **tglima**
+2) No campo Password preencha com: **mongoContainer**.
+3) Por fim clique em **"Save e Connect"**.
+
+![Compass connection com web database step 2](../images/compass_conn_web_root_step_2.png)
+
+**6) Na tela que vai surgir siga os passos abaixo:**
+
+1) Informe um nome para essa conexão.
+2) Defina uma cor.
+3) Por fim clique em **"Save e Connect"**.
+
+![Compass connection com web database step 3](../images/compass_conn_web_root_step_3.png)
+
+**7) Se tudo deu certo você verá algo muito parecido com a imagem abaixo:**
+
+![Compass connection com web database step 4](../images/compass_conn_web_root_step_4.png)
+
+---
+
+## Criando o usuário
+
+Em construção
+
+## Restaurar Backups
 
 Em construção
 
