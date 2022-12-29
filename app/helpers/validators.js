@@ -28,6 +28,12 @@ exports.hasValue = (obj) => {
 
 exports.hasNumber = (obj) => {
 
+  if (!this.hasValue(obj)) {
+
+    return false;
+
+  }
+
   if (Number.isNaN(Number.parseInt(obj, 2))) {
 
     return false;
@@ -45,6 +51,12 @@ exports.hasNumber = (obj) => {
 };
 
 exports.isValidName = (obj) => {
+
+  if (!this.hasValue(obj)) {
+
+    return false;
+
+  }
 
   const name = obj.trim();
 
@@ -86,6 +98,12 @@ exports.isValidDeGender = (obj) => {
 };
 
 exports.isValidPhoneNumber = (obj) => {
+
+  if (!this.hasValue(obj)) {
+
+    return false;
+
+  }
 
   const num = obj.trim();
   const regNum = /^(?:[2-8]|9[1-9])[0-9]{3}[0-9]{4}$/;
@@ -141,6 +159,12 @@ exports.isValidDate = (obj) => {
 
 exports.isValidDDD = (obj) => {
 
+  if (!this.hasValue(obj)) {
+
+    return false;
+
+  }
+
   const num = Number.parseInt(obj, 10);
   if (Number.isNaN(num)) {
 
@@ -188,6 +212,12 @@ exports.isValidEmail = (obj) => {
 };
 
 exports.isValidAge = (obj) => {
+
+  if (!this.hasValue(obj)) {
+
+    return false;
+
+  }
 
   const minAge = 18;
   const maxAge = 100;
