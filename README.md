@@ -1,10 +1,10 @@
 # Rest API com Node.js, Mongo e Docker
 
-![example-swagger](./docs/images/swagger.png)
+![Imagem exemplo do Swagger](./docs/images/swagger.png)
 
 ## Objetivo
 
-O objetivo deste projeto é disponibilizar uma API REST integrada com um banco não relacional e que seus principais endpoints possam ser acessados através de um swagger.
+O objetivo deste projeto é disponibilizar uma API REST integrada com um banco não relacional e que seus endpoints possam ser acessados através de um swagger.
 
 ---
 
@@ -29,7 +29,7 @@ Para maiores informações leias as instruções abaixo:
 
 * [Por onde começar?](./docs/tutorials/01-where-to-start.md)
 * [Configurando o MongoDB](./docs/tutorials/02-config-mongodb.md)
-* Rodando a aplicação no meu VSCODE
+* Rodando a aplicação no VSCODE
 * Rodando a aplicação em um container
 
 ---
