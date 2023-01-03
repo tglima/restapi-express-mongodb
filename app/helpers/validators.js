@@ -4,7 +4,7 @@ const cpfCheck = require('cpf-check');
 
 exports.hasValue = (obj) => {
 
-  if (obj === undefined || obj === null) {
+  if (obj == null) {
 
     return false;
 
@@ -16,7 +16,7 @@ exports.hasValue = (obj) => {
 
   }
 
-  if (!this.hasNumber(obj) && obj.replace(' ', '').trim().length <= 0) {
+  if (obj.replace(' ', '').trim().length <= 0) {
 
     return false;
 
