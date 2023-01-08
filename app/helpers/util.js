@@ -1,3 +1,4 @@
+const moment = require('moment');
 require('dotenv').config();
 
 /**
@@ -6,12 +7,7 @@ require('dotenv').config();
  */
 exports.getDateNowBrazil = () => {
 
-  let dateBr = new Date().toLocaleString(
-    process.env.LOCALE_DEF,
-    { timeZone: process.env.LOCAL_TIMEZONE },
-  );
-
-  dateBr = (new Date(dateBr)).toISOString();
+  const dateBr = moment().subtract({ hours: 3 }).format('YYYY-MM-DDTHH:mm:ss.sss');
   return dateBr;
 
 };
