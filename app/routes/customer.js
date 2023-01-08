@@ -3,10 +3,11 @@ const router = express.Router();
 const jwtService = require('../services/jwt');
 const customerService = require('../services/customer');
 const logService = require('../services/apiLog');
+const util = require('../helpers/util');
 
 const findById = async (req, res) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
 
   const response = await customerService.findById(req);
 
@@ -18,7 +19,7 @@ const findById = async (req, res) => {
 
 const findByNuDocument = async (req, res) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
 
   const response = await customerService.findByNuDocument(req);
 
@@ -30,7 +31,7 @@ const findByNuDocument = async (req, res) => {
 
 const saveCustomer = async (req, res) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
 
   const response = await customerService.saveCustomer(req);
 
@@ -42,7 +43,7 @@ const saveCustomer = async (req, res) => {
 
 const updateCustomer = async (req, res) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
 
   const response = await customerService.updateCustomer(req);
 

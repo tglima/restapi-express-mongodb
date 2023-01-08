@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const util = require('../helpers/util');
 
 const schema = new mongoose.Schema(
   {
@@ -11,8 +12,8 @@ const schema = new mongoose.Schema(
     nuPhone: String,
     idUserRegister: { type: String, required: true },
     idLastUserEdit: { type: String, required: true },
-    dtRegister: { type: Date, default: new Date().toJSON() },
-    dtLastEdit: { type: Date, default: new Date().toJSON() },
+    dtRegister: { type: Date, default: util.getDateNowBrazil() },
+    dtLastEdit: { type: Date, default: util.getDateNowBrazil() },
     isActive: { type: Boolean, default: true },
   },
   { versionKey: false },
@@ -123,7 +124,7 @@ exports.updateCustomer = async (customer) => {
         nuDDD: customer.nuDDD,
         nuPhone: customer.nuPhone,
         idLastUserEdit: customer.idLastUserEdit,
-        dtLastEdit: new Date().toJSON(),
+        dtLastEdit: util.getDateNowBrazil(),
       },
       {
         new: true,

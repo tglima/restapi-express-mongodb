@@ -3,10 +3,11 @@ const router = express.Router();
 const jwtService = require('../services/jwt');
 const productService = require('../services/product');
 const logService = require('../services/apiLog');
+const util = require('../helpers/util');
 
 const findAll = async (req, res) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
 
   const response = await productService.findAll();
 
@@ -18,7 +19,7 @@ const findAll = async (req, res) => {
 
 const findById = async (req, res) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
 
   const response = await productService.findById(req);
 

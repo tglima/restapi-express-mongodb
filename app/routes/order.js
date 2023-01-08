@@ -3,10 +3,11 @@ const router = express.Router();
 const jwtService = require('../services/jwt');
 const orderService = require('../services/order');
 const logService = require('../services/apiLog');
+const util = require('../helpers/util');
 
 const saveOrder = async (req, res) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
 
   const response = await orderService.saveNewOrder(req);
 
@@ -18,7 +19,7 @@ const saveOrder = async (req, res) => {
 
 const findByNuDocument = async (req, res) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
 
   const response = await orderService.findOrderByNuDocumentCustomer(req);
 
@@ -30,7 +31,7 @@ const findByNuDocument = async (req, res) => {
 
 const findByIdCustomer = async (req, res) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
 
   const response = await orderService.findOrderByIdCustomer(req);
 
@@ -42,7 +43,7 @@ const findByIdCustomer = async (req, res) => {
 
 const updateOrder = async (req, res) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
 
   const response = await orderService.updateOrder(req);
 
@@ -54,7 +55,7 @@ const updateOrder = async (req, res) => {
 
 const cancelOrder = async (req, res) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
 
   const response = await orderService.findAndCancelOrder(req);
 

@@ -3,11 +3,12 @@ const customerModel = require('../models/Customer');
 const productModel = require('../models/Product');
 const orderModel = require('../models/Order');
 const validators = require('../helpers/validators');
+const util = require('../helpers/util');
 
 const validateSaveOrder = async (order) => {
 
   const returnValidate = { wasSuccess: true, messages: [] };
-  const dateNow = new Date().toJSON();
+  const dateNow = util.getDateNowBrazil();
 
   if (order.idCustomer === null || order.idCustomer === undefined) {
 

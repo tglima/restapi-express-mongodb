@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const util = require('../helpers/util');
 
 const schema = new mongoose.Schema(
   {
@@ -11,8 +12,8 @@ const schema = new mongoose.Schema(
     resStatusCode: { type: String },
     resJsonBody: { type: Object },
     error: { type: Object },
-    dtStart: { type: Date, default: new Date().toJSON() },
-    dtFinish: { type: Date, default: new Date().toJSON() },
+    dtStart: { type: Date, default: util.getDateNowBrazil() },
+    dtFinish: { type: Date, default: util.getDateNowBrazil() },
   },
   { versionKey: false },
 );

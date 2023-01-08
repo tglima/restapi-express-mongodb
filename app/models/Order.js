@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const appConfig = require('../config/app.config');
+const util = require('../helpers/util');
 
 const schema = new mongoose.Schema(
   {
@@ -7,10 +8,10 @@ const schema = new mongoose.Schema(
     idProduct: { type: String, required: true },
     nmProduct: { type: String, required: true },
     vlMonthPrice: { type: Number, min: 0, required: true },
-    dtStart: { type: Date, default: new Date().toJSON() },
-    dtFinish: { type: Date, default: new Date().toJSON() },
-    dtRegister: { type: Date, default: new Date().toJSON() },
-    dtLastEdit: { type: Date, default: new Date().toJSON() },
+    dtStart: { type: Date, default: util.getDateNowBrazil() },
+    dtFinish: { type: Date, default: util.getDateNowBrazil() },
+    dtRegister: { type: Date, default: util.getDateNowBrazil() },
+    dtLastEdit: { type: Date, default: util.getDateNowBrazil() },
     idUserRegister: { type: String, required: true },
     idLastUserEdit: { type: String, required: true },
     isActive: { type: Boolean, default: true },
@@ -83,7 +84,7 @@ exports.updateOrder = async (order) => {
         idLastUserEdit: orderUpdated.idLastUserEdit,
         dtStart: orderUpdated.dtStart,
         dtFinish: orderUpdated.dtFinish,
-        dtLastEdit: new Date().toJSON(),
+        dtLastEdit: util.getDateNowBrazil(),
       },
       {
         new: true,
@@ -112,9 +113,9 @@ exports.cancelOrderByIdOrder = async (idOrder, idLastUserEdit) => {
     result.order = await Order.findOneAndUpdate(
       { _id: idOrder },
       {
-        dtFinish: new Date().toJSON(),
+        dtFinish: util.getDateNowBrazil(),
         idLastUserEdit: `${idLastUserEdit}`,
-        dtLastEdit: new Date().toJSON(),
+        dtLastEdit: util.getDateNowBrazil(),
         isActive: false,
       },
       {

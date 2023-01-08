@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
+const util = require('../helpers/util');
 
 const schema = new mongoose.Schema(
   {
     nmContact: { type: String, required: true },
-    dtRegister: { type: Date, default: new Date().toJSON() },
+    dtRegister: { type: Date, default: util.getDateNowBrazil() },
     deEmail: String,
     deTelephone: String,
     deMessage: { type: String, required: true },

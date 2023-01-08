@@ -4,6 +4,7 @@ const userModel = require('../models/User');
 const accessControlModel = require('../models/UrlAccessControl');
 const constant = require('../helpers/constants');
 const logService = require('./apiLog');
+const util = require('../helpers/util');
 
 const checkPermissionUserReq = async (req) => {
 
@@ -126,7 +127,7 @@ exports.checkAuthDb = async (reqBody) => {
 // eslint-disable-next-line consistent-return
 exports.verifyJWT = async (req, res, next) => {
 
-  const dtStart = new Date().toJSON();
+  const dtStart = util.getDateNowBrazil();
   const mustContinue = await checkPermissionUserReq(req);
 
   if (mustContinue) {

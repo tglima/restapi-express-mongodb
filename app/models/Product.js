@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const util = require('../helpers/util');
 
 const schema = new mongoose.Schema(
   {
@@ -10,7 +11,7 @@ const schema = new mongoose.Schema(
       qtSimultaneousScreens: { type: Number, min: 0, required: true },
     },
     idUserRegister: { type: String, required: true },
-    dtRegister: { type: Date, default: new Date().toJSON() },
+    dtRegister: { type: Date, default: util.getDateNowBrazil() },
     isActive: { type: Boolean, default: true },
   },
   { versionKey: false },
