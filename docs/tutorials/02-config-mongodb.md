@@ -195,6 +195,8 @@ Para acessar o seu banco do MongoDB direto da web é simples. Nesta tela clique:
 
 ## Criando o usuário
 
+**Não é possível criar usuários no mongosh, se o seu banco de dados do mongo não for local.**
+
 Para criar usuários no Mongodb não tem muito segredo, usaremos o mongosh para esta tarefa.
 
 **1) Abra o Compass e se conecte ao seu banco de dados.**
