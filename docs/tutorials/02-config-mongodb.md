@@ -195,7 +195,45 @@ Para acessar o seu banco do MongoDB direto da web é simples. Nesta tela clique:
 
 ## Criando o usuário
 
-Em construção
+**Não é possível criar usuários no mongosh, se o seu banco de dados do mongo não for local.**
+
+Para criar usuários no Mongodb não tem muito segredo, usaremos o mongosh para esta tarefa.
+
+**1) Abra o Compass e se conecte ao seu banco de dados.**
+**2) Na parte inferior, você uma pequena linha escura que lembra um terminal. Clique na setinha que se encontra no canto direito**
+
+![Compass show right arrow mongosh](../images/compass_mongosh_arrow.png)
+
+**3) O terminal do mongosh será expadido e estará pronto para ser executado.**
+
+![Compass show mongosh opened](../images/compass_mongosh_opened.png)
+
+**4) Agora devemos executar 2 comandos.**
+
+No primeiro indicamos para qual banco estamos direcionando a ação.
+
+```bash
+use admin
+```
+
+Neste segundo criamos o usuário "userdb", com a senha "userpass_mongodb" e definimos que ele terá permissão de leitura e escrita no banco de dados "applicationdb".
+
+```bash
+db.createUser({ user: "userdb", pwd: "userpass_mongodb", roles: [ { role: "readWrite", db: "applicationdb" } ] })
+```
+
+Repetiremos o processo acima selecionando agora o banco de dados "applicationdb".
+
+```bash
+use applicationdb
+db.createUser({ user: "userdb", pwd: "userpass_mongodb", roles: [ { role: "readWrite", db: "applicationdb" } ] })
+```
+
+Simples não é?
+
+**5) Este procedimento só será necessário se você não utilizou o meu container com o MongoDB e seu Dump totalmente restaurado.**
+
+Os comando acima estão presentes no seguinte caminho: "pastaraizdoprojeto/docs/mongodb/commands/create_users.txt".
 
 ## Restaurar Backups
 
