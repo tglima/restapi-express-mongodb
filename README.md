@@ -19,7 +19,7 @@ Neste projeto foram utilizadas as seguintes tecnologias:
 |Docker           |20    |Não        |
 |Docker-Compose   |2.14  |Não        |
 
-Para a execução simples do projeto não é obrigatório o uso do Docker e do Docker-Compose, ambos são utilizados para facilitar a criação dos ambientes e disponibilidade de serviços como o MongoDB por exemplo. Nada impede de você instalar o MongoDB na sua máquina de forma tradicional ou utilizar o serviço do [MongoDB da Atlas](https://www.mongodb.com/cloud/atlas/register).
+Para a execução simples do projeto não é obrigatório o uso do Docker e do Docker-Compose, ambos são utilizados para facilitar a criação dos ambientes e disponibilidade de serviços como o MongoDB, por exemplo. Nada impede de você instalar o MongoDB na sua máquina de forma tradicional ou utilizar o serviço do [MongoDB da Atlas](https://www.mongodb.com/cloud/atlas/register).
 
 Para maiores informações leias as instruções abaixo:
 
