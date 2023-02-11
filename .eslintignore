@@ -1,0 +1,6 @@
+.vscode
+docs
+node_modules
+.editorconfig
+.prettierrc
+README.md
