@@ -18,9 +18,6 @@ indent_style = space
 #Define que a identacacao deve utilizar dois espacos
 indent_size = 2
 
-#Impede que seja adicionada uma linha em branco no final de todos os arquivos
-insert_final_newline = false
-
 #Remove os espaços em brancos no final de cada linha
 trim_trailing_whitespace = true
 
@@ -28,3 +25,6 @@ trim_trailing_whitespace = true
 #Restringe essa configuracao apenas para arquivos do tipo js
 [*.{js}]
 indent_brace_style = K&R
+
+#Define o número maximo de caracteres em cada linha
+max_line_length = 120
