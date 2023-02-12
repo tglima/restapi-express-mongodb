@@ -6,17 +6,35 @@
     },
     "extends": [
       "airbnb-base",
+      "prettier",
       "plugin:node/recommended",
       "plugin:security/recommended"
     ],
-    "overrides": [
-    ],
+    "plugins": ["prettier"],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "overrides": [],
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": 14
     },
     "rules": {
-        "eol-last": ["error", "never"],
-        "import/newline-after-import": 0,
-        "padded-blocks": ["error", { "blocks": "always" }]
+      "eol-last": "off",
+      "prettier/prettier": "error",
+      "class-methods-use-this": "off",
+      "no-param-reassign": "off",
+      "camelcase": "off",
+      "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
+      "import/newline-after-import": 0,
+      "import/no-import-module-exports": "off",
+      "node/no-unsupported-features/es-syntax": "off",
+      "no-undef": [2, { "typeof": true }],
+      "no-multiple-empty-lines": [2, {"max": 2 }],
+      "no-trailing-spaces": ["error" ,{ "skipBlankLines": true }],
+      "padding-line-between-statements": [
+        "error",
+        { "blankLine": "any", "prev": "*", "next": "*" }
+    ]
     }
 }
