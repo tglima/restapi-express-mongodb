@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const util = require('../helpers/util');
 
 const schema = new mongoose.Schema(
   {
@@ -12,8 +11,8 @@ const schema = new mongoose.Schema(
     resStatusCode: { type: String },
     resJsonBody: { type: Object },
     error: { type: Object },
-    dtStart: { type: Date, default: util.getDateNowBrazil() },
-    dtFinish: { type: Date, default: util.getDateNowBrazil() },
+    dtStart: { type: Date, default: new Date().toJSON() },
+    dtFinish: { type: Date, default: new Date().toJSON() },
   },
   { versionKey: false },
 );
@@ -21,23 +20,17 @@ const schema = new mongoose.Schema(
 const Log = mongoose.model('apiLogs', schema, 'apiLogs');
 
 exports.saveNew = async (log) => {
-
   const result = { wasSuccess: false, logDB: undefined, error: undefined };
 
   try {
-
     result.logDB = await Log.create(log);
     result.logDB = result.logDB === null ? undefined : result.logDB;
     result.wasSuccess = true;
-
   } catch (error) {
-
     result.logDB = undefined;
     result.wasSuccess = false;
     result.error = error;
-
   }
 
   return result;
-
 };

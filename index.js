@@ -13,19 +13,22 @@ const messageSwaggerUp = `Swagger disponível em: ${helpers.getUrlSwagger()}\n`;
 
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(`${appConfig.pathSwagger}`, swaggerUI.serve, swaggerUI.setup(swaggerFile));
+
+app.use(
+  `${appConfig.pathSwagger}`,
+  swaggerUI.serve,
+  swaggerUI.setup(swaggerFile),
+);
+
 app.use(appConfig.urlBaseApi, router);
 
 mongoose
   .connect(appConfig.dbConnection)
   .then(() => {
-
     app.listen(`${appConfig.serverPort}`, () => {
-
       console.log(`\n${appConfig.msgServerStarted}`);
+
       console.log(messageSwaggerUp);
-
     });
-
   })
   .catch((err) => console.error(err));

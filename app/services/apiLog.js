@@ -1,9 +1,7 @@
 const apiLogModel = require('../models/APILog');
 const jwtService = require('./jwt');
-const util = require('../helpers/util');
 
 exports.saveLogDB = async (req, res, dtStart) => {
-
   const { userDataReq } = await jwtService.getUserDataReq(req);
   const { idUserRegister } = userDataReq;
 
@@ -18,9 +16,8 @@ exports.saveLogDB = async (req, res, dtStart) => {
     resJsonBody: res.jsonBody,
     error: res.error,
     dtStart: `${dtStart}`,
-    dtFinish: util.getDateNowBrazil(),
+    dtFinish: new Date().toJSON(),
   };
 
   await apiLogModel.saveNew(log);
-
 };

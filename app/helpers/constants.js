@@ -1,7 +1,8 @@
 exports.HTTP_MSG_DEF_200 = 'OK';
 exports.HTTP_MSG_DEF_200_DELETE = 'Registro apagado/cancelado com sucesso!';
 exports.HTTP_MSG_DEF_201 = 'Criado com sucesso!';
-exports.HTTP_MSG_ERROR_400 = 'Ocorreu uma falha/erro na sua requisição. Reveja os dados enviados e tente novamente!';
+exports.HTTP_MSG_ERROR_400 =
+  'Ocorreu uma falha/erro na sua requisição. Reveja os dados enviados e tente novamente!';
 exports.HTTP_MSG_ERROR_401 = 'Credenciais inválidas!';
 exports.HTTP_MSG_ERROR_401_ALT = 'Usuário sem permissão ou Token inválido!';
 exports.HTTP_MSG_ERROR_404 = 'Não encontrado!';

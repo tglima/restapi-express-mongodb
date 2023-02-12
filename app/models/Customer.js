@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const util = require('../helpers/util');
 
 const schema = new mongoose.Schema(
   {
@@ -12,15 +11,14 @@ const schema = new mongoose.Schema(
     nuPhone: String,
     idUserRegister: { type: String, required: true },
     idLastUserEdit: { type: String, required: true },
-    dtRegister: { type: Date, default: util.getDateNowBrazil() },
-    dtLastEdit: { type: Date, default: util.getDateNowBrazil() },
+    dtRegister: { type: Date, default: new Date().toJSON() },
+    dtLastEdit: { type: Date, default: new Date().toJSON() },
     isActive: { type: Boolean, default: true },
   },
   { versionKey: false },
 );
 
 schema.methods.toJSON = function toJSON() {
-
   const customerJSON = {};
   const obj = this.toObject();
   const dtBirth = obj.dtBirth.toISOString().split('T')[0];
@@ -36,83 +34,65 @@ schema.methods.toJSON = function toJSON() {
   customerJSON.nuPhone = obj.nuPhone;
 
   return customerJSON;
-
 };
 
 const Customer = mongoose.model('customers', schema);
 
 exports.findByNuDocument = async (nuDoc) => {
-
   const result = { wasSuccess: false, customer: undefined, error: undefined };
 
   try {
-
-    result.customer = await Customer.findOne({ isActive: true, nuDocument: nuDoc });
+    result.customer = await Customer.findOne({
+      isActive: true,
+      nuDocument: nuDoc,
+    });
     result.customer = result.customer === null ? undefined : result.customer;
     result.wasSuccess = true;
-
   } catch (error) {
-
     result.customer = undefined;
     result.wasSuccess = false;
     result.error = error;
-
   }
 
   return result;
-
 };
 
 exports.findByIdCustomer = async (id) => {
-
   const result = { wasSuccess: false, customer: undefined, error: undefined };
 
   try {
-
     result.customer = await Customer.findOne({ _id: id, isActive: true });
     result.customer = result.customer === null ? undefined : result.customer;
     result.wasSuccess = true;
-
   } catch (error) {
-
     result.customer = undefined;
     result.wasSuccess = false;
     result.error = error;
-
   }
 
   return result;
-
 };
 
 exports.saveNew = async (customer) => {
-
   const result = { wasSuccess: false, customer: undefined, error: undefined };
 
   try {
-
     result.customer = await Customer.create(customer);
     result.customer = result.customer === null ? undefined : result.customer;
     result.wasSuccess = true;
-
   } catch (error) {
-
     result.customer = undefined;
     result.wasSuccess = false;
     result.error = error;
-
   }
 
   return result;
-
 };
 
 exports.updateCustomer = async (customer) => {
-
   const result = { wasSuccess: false, customer: undefined, error: undefined };
 
   try {
-
     result.customer = await Customer.findOneAndUpdate(
       { _id: customer.id },
       {
@@ -124,7 +104,7 @@ exports.updateCustomer = async (customer) => {
         nuDDD: customer.nuDDD,
         nuPhone: customer.nuPhone,
         idLastUserEdit: customer.idLastUserEdit,
-        dtLastEdit: util.getDateNowBrazil(),
+        dtLastEdit: new Date().toJSON(),
       },
       {
         new: true,
@@ -133,15 +113,11 @@ exports.updateCustomer = async (customer) => {
 
     result.customer = result.customer === null ? undefined : result.customer;
     result.wasSuccess = true;
-
   } catch (error) {
-
     result.customer = undefined;
     result.wasSuccess = false;
     result.error = error;
-
   }
 
   return result;
-
 };

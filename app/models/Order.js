@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const appConfig = require('../config/app.config');
-const util = require('../helpers/util');
 
 const schema = new mongoose.Schema(
   {
@@ -8,10 +7,10 @@ const schema = new mongoose.Schema(
     idProduct: { type: String, required: true },
     nmProduct: { type: String, required: true },
     vlMonthPrice: { type: Number, min: 0, required: true },
-    dtStart: { type: Date, default: util.getDateNowBrazil() },
-    dtFinish: { type: Date, default: util.getDateNowBrazil() },
-    dtRegister: { type: Date, default: util.getDateNowBrazil() },
-    dtLastEdit: { type: Date, default: util.getDateNowBrazil() },
+    dtStart: { type: Date, default: new Date().toJSON() },
+    dtFinish: { type: Date, default: new Date().toJSON() },
+    dtRegister: { type: Date, default: new Date().toJSON() },
+    dtLastEdit: { type: Date, default: new Date().toJSON() },
     idUserRegister: { type: String, required: true },
     idLastUserEdit: { type: String, required: true },
     isActive: { type: Boolean, default: true },
@@ -20,7 +19,6 @@ const schema = new mongoose.Schema(
 );
 
 schema.methods.toJSON = function toJSON() {
-
   const orderJSON = {};
   const obj = this.toObject();
 
@@ -33,38 +31,32 @@ schema.methods.toJSON = function toJSON() {
   orderJSON.dtStart = obj.dtStart;
   orderJSON.dtFinish = obj.dtFinish;
   return orderJSON;
-
 };
 
 const Order = mongoose.model('orders', schema, 'orders');
 
 exports.saveNew = async (order) => {
-
   const result = { wasSuccess: false, order: undefined, error: undefined };
   const newOrder = order;
   newOrder.dtFinish = new Date(order.dtStart);
-  newOrder.dtFinish.setFullYear(newOrder.dtFinish.getFullYear() + appConfig.nuYearsValProduct);
+  newOrder.dtFinish.setFullYear(
+    newOrder.dtFinish.getFullYear() + appConfig.nuYearsValProduct,
+  );
 
   try {
-
     result.order = await Order.create(newOrder);
     result.order = result.order === null ? undefined : result.order;
     result.wasSuccess = true;
-
   } catch (error) {
-
     result.order = undefined;
     result.wasSuccess = false;
     result.error = error;
-
   }
 
   return result;
-
 };
 
 exports.updateOrder = async (order) => {
-
   const result = { wasSuccess: false, order: undefined, error: undefined };
 
   const orderUpdated = order;
@@ -74,7 +66,6 @@ exports.updateOrder = async (order) => {
   );
 
   try {
-
     result.order = await Order.findOneAndUpdate(
       { _id: orderUpdated.id },
       {
@@ -84,7 +75,7 @@ exports.updateOrder = async (order) => {
         idLastUserEdit: orderUpdated.idLastUserEdit,
         dtStart: orderUpdated.dtStart,
         dtFinish: orderUpdated.dtFinish,
-        dtLastEdit: util.getDateNowBrazil(),
+        dtLastEdit: new Date().toJSON(),
       },
       {
         new: true,
@@ -92,30 +83,24 @@ exports.updateOrder = async (order) => {
     );
     result.order = result.order === null ? undefined : result.order;
     result.wasSuccess = true;
-
   } catch (error) {
-
     result.order = undefined;
     result.wasSuccess = false;
     result.error = error;
-
   }
 
   return result;
-
 };
 
 exports.cancelOrderByIdOrder = async (idOrder, idLastUserEdit) => {
-
   const result = { wasSuccess: false, order: undefined, error: undefined };
   try {
-
     result.order = await Order.findOneAndUpdate(
       { _id: idOrder },
       {
-        dtFinish: util.getDateNowBrazil(),
+        dtFinish: new Date().toJSON(),
         idLastUserEdit: `${idLastUserEdit}`,
-        dtLastEdit: util.getDateNowBrazil(),
+        dtLastEdit: new Date().toJSON(),
         isActive: false,
       },
       {
@@ -125,59 +110,46 @@ exports.cancelOrderByIdOrder = async (idOrder, idLastUserEdit) => {
 
     result.order = result.order === null ? undefined : result.order;
     result.wasSuccess = true;
-
   } catch (error) {
-
     result.order = undefined;
     result.wasSuccess = false;
     result.error = error;
-
   }
 
   return result;
-
 };
 
 exports.findOrderByIdCustomer = async (idCustomer) => {
-
   const result = { wasSuccess: false, order: undefined, error: undefined };
 
   try {
-
-    result.order = await Order.findOne({ idCustomer: `${idCustomer}`, isActive: true });
+    result.order = await Order.findOne({
+      idCustomer: `${idCustomer}`,
+      isActive: true,
+    });
     result.order = result.order === null ? undefined : result.order;
     result.wasSuccess = true;
-
   } catch (error) {
-
     result.order = undefined;
     result.wasSuccess = false;
     result.error = error;
-
   }
 
   return result;
-
 };
 
 exports.findOrderByIdOrder = async (idOrder) => {
-
   const result = { wasSuccess: false, order: undefined, error: undefined };
 
   try {
-
     result.order = await Order.findOne({ _id: idOrder, isActive: true });
     result.order = result.order === null ? undefined : result.order;
     result.wasSuccess = true;
-
   } catch (error) {
-
     result.order = undefined;
     result.wasSuccess = false;
     result.error = error;
-
   }
 
   return result;
-
 };
