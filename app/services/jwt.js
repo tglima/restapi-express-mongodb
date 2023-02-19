@@ -76,13 +76,13 @@ const generateToken = async (user) => {
       idUserRegister: user.id,
     },
     appConfig.token.secret,
-    { expiresIn: 60 * appConfig.token.minutesExpiration },
+    { expiresIn: 60 * appConfig.token.minutesExpiration }
   );
 
   token.token_type = appConfig.token.tokenType;
   token.expires_in = 60 * appConfig.token.minutesExpiration;
   token.date_time_expiration = new Date(
-    +new Date() + 60 * appConfig.token.minutesExpiration,
+    +new Date() + 60 * appConfig.token.minutesExpiration
   );
 
   return token;
@@ -93,7 +93,7 @@ exports.checkAuthDb = async (reqBody) => {
 
   const resultFind = await userModel.findByUsernameAndPass(
     reqBody.username,
-    reqBody.password,
+    reqBody.password
   );
 
   if (resultFind.user === undefined) {
@@ -110,6 +110,21 @@ exports.checkAuthDb = async (reqBody) => {
   response.jsonBody = await generateToken(resultFind.user);
 
   return response;
+};
+
+exports.ValidateMustContinueReq = async (req) => {
+  const dtStart = new Date().toJSON();
+  const mustContinue = await checkPermissionUserReq(req);
+
+  if (!mustContinue) {
+    const response = {
+      statusCode: 401,
+      jsonBody: constant.HTTP_MSG_ERROR_401_ALT,
+    };
+    await logService.saveLogDB(req, response, dtStart);
+  }
+
+  return mustContinue;
 };
 
 // eslint-disable-next-line consistent-return
@@ -164,7 +179,7 @@ exports.getUserDataReq = async (req) => {
       result.userDataReq.idRole = decoded.idRole;
 
       return result;
-    },
+    }
   );
 
   return result;
