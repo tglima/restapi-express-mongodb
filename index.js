@@ -12,6 +12,9 @@ const router = require('./app/routes/routes');
 const swaggerFile = require('./swagger.json');
 const helpers = require('./docs/nodejs_helper/helpers');
 const messageSwaggerUp = `Swagger disponível em: ${helpers.getUrlSwagger()}\n`;
+const jwtService = require('./app/services/jwt');
+const constant = require('./app/helpers/constants');
+//
 
 const apiLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minutes
@@ -29,8 +32,19 @@ app.use('/', apiLimiter);
 app.use(
   `${appConfig.pathSwagger}`,
   swaggerUI.serve,
-  swaggerUI.setup(swaggerFile),
+  swaggerUI.setup(swaggerFile)
 );
+
+app.use(async (req, res, next) => {
+  const mustContinueReq = await jwtService.ValidateMustContinueReq(req);
+
+  if (!mustContinueReq) {
+    res.status(401).send(constant.HTTP_MSG_ERROR_401_ALT);
+    return;
+  }
+
+  next();
+});
 
 app.use(appConfig.urlBaseApi, router);
 

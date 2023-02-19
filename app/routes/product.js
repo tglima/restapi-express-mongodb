@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const jwtService = require('../services/jwt');
 const productService = require('../services/product');
 const logService = require('../services/apiLog');
 
@@ -24,6 +23,6 @@ const findById = async (req, res) => {
   return res.status(response.statusCode).send(response.jsonBody);
 };
 
-router.get('/find', jwtService.verifyJWT, findAll);
-router.get('/find/id=:id', jwtService.verifyJWT, findById);
+router.get('/find', findAll);
+router.get('/find/id=:id', findById);
 module.exports = router;

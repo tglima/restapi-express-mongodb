@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const jwtService = require('../services/jwt');
 const customerService = require('../services/customer');
 const logService = require('../services/apiLog');
 
@@ -44,12 +43,8 @@ const updateCustomer = async (req, res) => {
   return res.status(response.statusCode).send(response.jsonBody);
 };
 
-router.post('/save', jwtService.verifyJWT, saveCustomer);
-router.put('/update/id=:id', jwtService.verifyJWT, updateCustomer);
-router.get('/find/id=:id', jwtService.verifyJWT, findById);
-router.get(
-  '/find/nuDocument=:nuDocument',
-  jwtService.verifyJWT,
-  findByNuDocument,
-);
+router.post('/save', saveCustomer);
+router.put('/update/id=:id', updateCustomer);
+router.get('/find/id=:id', findById);
+router.get('/find/nuDocument=:nuDocument', findByNuDocument);
 module.exports = router;

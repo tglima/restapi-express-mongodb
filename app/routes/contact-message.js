@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const jwtService = require('../services/jwt');
 const contactMessageService = require('../services/contact-message');
 const logService = require('../services/apiLog');
 
@@ -11,5 +10,5 @@ const save = async (req, res) => {
   return res.status(response.statusCode).send(response.jsonBody);
 };
 
-router.post('', jwtService.verifyJWT, save);
+router.post('', save);
 module.exports = router;
