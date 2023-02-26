@@ -21,10 +21,9 @@ indent_size = 2
 #Remove os espaços em brancos no final de cada linha
 trim_trailing_whitespace = true
 
+insert_final_newline = true
+
 #Define e forca como sera o estilo de chaves que sera usado
 #Restringe essa configuracao apenas para arquivos do tipo js
 [*.{js}]
 indent_brace_style = K&R
-
-#Define o número maximo de caracteres em cada linha
-max_line_length = 120
