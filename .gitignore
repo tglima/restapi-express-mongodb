@@ -62,5 +62,10 @@ node_modules
 # Arquivo gerado automáticamente pela aplicação
 swagger.json
 
-# Past dist que contêm os arquivos compilados
+# Pasta dist que contêm os arquivos compilados
 dist
+/dist
+
+# Arquivos com configurações do ambiente de Homologação e Produção
+config/env/homologation.env
+config/env/production.env
