@@ -200,7 +200,7 @@ async function findAndCancelOrder(req) {
     );
   }
 
-  if (validator.hasValue(resultFindOrder.jsonBody)) {
+  if (!validator.hasValue(resultFindOrder.jsonBody)) {
     return new ReturnDTO(
       404,
       false,

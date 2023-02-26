@@ -30,7 +30,7 @@ class User {
     const returnDTO = new ReturnDTO(0, false, undefined);
 
     try {
-      returnDTO.user = await dbModel.findOne({
+      returnDTO.jsonBody = await dbModel.findOne({
         deUserName: username,
         dePassword: password,
         isActive: true,
