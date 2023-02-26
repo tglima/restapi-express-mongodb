@@ -8,7 +8,6 @@ docker-compose.yml
 Dockerfile
 README.md
 node_modules
-dist
 npm-debug.log
 build_container.sh
 remove_container.sh
@@ -24,3 +23,5 @@ docs/tutorials
 docs/tutorials/*
 docs/images
 docs/images/*
+src/*
+src/
