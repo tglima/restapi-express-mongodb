@@ -1,14 +1,29 @@
 {
   "name": "restapi-express-mongodb",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "API Rest desenvolvida com NodeJs, Express e Mongodb",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start:dev": "node swagger-generation.js && nodemon server",
-    "start": "node index.js",
+    "dev": "export NODE_ENV=development && node swagger-generation && nodemon src/index.js",
+    "homolog": "export NODE_ENV=homologation && node swagger-generation && node ./dist/index.js",
+    "start": "export NODE_ENV=production && node swagger-generation && node ./dist/index.js",
+    "build": "sucrase ./src -d ./dist --transforms imports",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tglima/restapi-express-mongodb.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "node",
+    "node-js",
+    "rest-api",
+    "rest",
+    "tglima",
+    "mongodb"
+  ],
   "author": "Thiago Lima <tglimatech@outlook.com> (https://github.com/tglima/restapi-express-mongodb)",
   "license": "MIT",
   "bugs": {
@@ -16,31 +31,39 @@
   },
   "homepage": "https://github.com/tglima/restapi-express-mongodb#readme",
   "dependencies": {
-    "body-parser": "^1.20.0",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
     "cpf-check": "^3.0.0",
     "dotenv": "^16.0.3",
-    "express": "^4.18.1",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
     "express-rate-limit": "^6.7.0",
     "helmet": "^6.0.1",
     "jsonwebtoken": "^9.0.0",
-    "localtunnel": "^2.0.2",
-    "moment": "^2.29.4",
-    "mongoose": "^6.7.0",
-    "swagger-ui-express": "^4.6.0"
+    "mongoose": "^6.9.2",
+    "morgan-body": "^2.6.8",
+    "ngrok": "^4.3.3",
+    "swagger-ui-express": "^4.6.1",
+    "youch": "^3.2.3"
   },
   "devDependencies": {
-    "eslint": "^8.25.0",
+    "eslint": "^8.34.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-security": "^1.5.0",
+    "eslint-plugin-security": "^1.7.1",
     "nodemon": "^2.0.20",
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.4",
+    "sucrase": "^3.29.0"
   },
   "nodemonConfig": {
+    "execMap": {
+      "js": "node -r sucrase/register"
+    },
     "ignore": [
+      "doc",
       "./swagger.json"
     ]
   }
