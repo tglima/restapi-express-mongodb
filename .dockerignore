@@ -8,6 +8,7 @@ docker-compose.yml
 Dockerfile
 README.md
 node_modules
+dist
 npm-debug.log
 build_container.sh
 remove_container.sh

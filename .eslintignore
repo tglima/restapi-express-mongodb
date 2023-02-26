@@ -1,6 +1,8 @@
 .vscode
 docs
-node_modules
+node_modules/*
 .editorconfig
 .prettierrc
 README.md
+dist
+doc
