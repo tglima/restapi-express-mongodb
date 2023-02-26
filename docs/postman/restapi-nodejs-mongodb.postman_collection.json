@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "665aa3cd-a54d-4243-9b7d-54cbd982db63",
+		"_postman_id": "1ae3bb38-819d-47f3-99cb-9d3b47bacb5e",
 		"name": "restapi-nodejs-mongodb",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -106,6 +106,19 @@
 		},
 		{
 			"name": "SaveCustomer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();",
+							"pm.collectionVariables.set(\"idCustomerNew\", responseJson.id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -121,7 +134,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"nmCustomer\": \"Benjamin Benício Baptista\",\n  \"deGender\": \"M\",\n  \"dtBirth\": \"1997-05-10\",\n  \"nuDocument\": \"21119466130\",\n  \"deEmail\": \"benjamin.benicio.baptista@trustsign.com.br\",\n  \"nuDDD\": \"65\",\n  \"nuPhone\": \"38641141\"\n}",
+					"raw": "{\n  \"nmCustomer\": \"Benjamin Benício Baptista\",\n  \"dtBirth\": \"1997-05-10\",\n  \"deGender\": \"M\",\n  \"nuDocument\": \"21119466130\",\n  \"deEmail\": \"benjamin.benicio.baptista@trustsign.com.br\",\n  \"nuDDD\": \"65\",\n  \"nuPhone\": \"38641141\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -158,7 +171,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nmCustomer\": \"Simone Eduarda Fernanda Pires\",\n    \"dtBirth\": \"1965-07-02\",\n    \"deGender\": \"F\",\n    \"nuDocument\": \"17816020937\",\n    \"deEmail\": \"simoneeduardapires@lordello.com.br\",\n    \"nuDDD\": \"47\",\n    \"nuPhone\": \"992636586\"\n}",
+					"raw": "{\n  \"nmCustomer\": \"Benjamin Baptista\",\n  \"dtBirth\": \"1987-05-10\",\n  \"deGender\": \"M\",\n  \"nuDocument\": \"21119466130\",\n  \"deEmail\": \"benjamin.baptista@trustsign.com.br\",\n  \"nuDDD\": \"47\",\n  \"nuPhone\": \"38641141\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -166,14 +179,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{urlBaseAPI}}/customer/update/id=636280dd78349b02860c0730",
+					"raw": "{{urlBaseAPI}}/customer/update/id={{idCustomerNew}}",
 					"host": [
 						"{{urlBaseAPI}}"
 					],
 					"path": [
 						"customer",
 						"update",
-						"id=636280dd78349b02860c0730"
+						"id={{idCustomerNew}}"
 					]
 				}
 			},
@@ -238,6 +251,19 @@
 		},
 		{
 			"name": "SaveOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = pm.response.json();",
+							"pm.collectionVariables.set(\"idOrderNew\", responseJson.id);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -253,7 +279,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"idCustomer\": \"636280dd78349b02860c0730\",\n    \"idProduct\": \"6362870f78349b02860c0745\",\n    \"dtStart\": \"2022-11-22\"\n}",
+					"raw": "{\n    \"idCustomer\": \"{{idCustomerNew}}\",\n    \"idProduct\": \"6362870f78349b02860c0745\",\n    \"dtStart\": \"{{tomorrowDate}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -290,7 +316,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"idCustomer\": \"636280dd78349b02860c0730\",\n    \"idProduct\": \"63754a2e359f40fbe6af544f\",\n    \"dtStart\": \"2022-11-22\"\n}",
+					"raw": "{\n    \"idCustomer\": \"{{idCustomerNew}}\",\n    \"idProduct\": \"63754a2e359f40fbe6af544f\",\n    \"dtStart\": \"2030-01-01\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -298,14 +324,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{urlBaseAPI}}/order/update/id=637bc9176e31f730c339875e",
+					"raw": "{{urlBaseAPI}}/order/update/id={{idOrderNew}}",
 					"host": [
 						"{{urlBaseAPI}}"
 					],
 					"path": [
 						"order",
 						"update",
-						"id=637bc9176e31f730c339875e"
+						"id={{idOrderNew}}"
 					]
 				}
 			},
@@ -357,7 +383,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{urlBaseAPI}}/order/find/customer/idCustomer=637be86eb088f7089e737e9e",
+					"raw": "{{urlBaseAPI}}/order/find/customer/idCustomer={{idCustomerNew}}",
 					"host": [
 						"{{urlBaseAPI}}"
 					],
@@ -365,7 +391,7 @@
 						"order",
 						"find",
 						"customer",
-						"idCustomer=637be86eb088f7089e737e9e"
+						"idCustomer={{idCustomerNew}}"
 					]
 				}
 			},
@@ -387,14 +413,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{urlBaseAPI}}/order/delete/id=637bc9176e31f730c339875e",
+					"raw": "{{urlBaseAPI}}/order/delete/id={{idOrderNew}}",
 					"host": [
 						"{{urlBaseAPI}}"
 					],
 					"path": [
 						"order",
 						"delete",
-						"id=637bc9176e31f730c339875e"
+						"id={{idOrderNew}}"
 					]
 				}
 			},
@@ -433,7 +459,9 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					""
+					"const moment = require('moment');",
+					"const tomorrowDate = moment().add(1, 'days').format((\"YYYY-MM-DD\"));",
+					"pm.collectionVariables.set(\"tomorrowDate\", tomorrowDate);"
 				]
 			}
 		},
@@ -460,11 +488,26 @@
 		},
 		{
 			"key": "urlBaseAPI",
-			"value": "http://localhost:4200/api/v1",
+			"value": "http://localhost:30000/api/v1",
 			"type": "default"
 		},
 		{
 			"key": "accessToken",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "idCustomerNew",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "idOrderNew",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "tomorrowDate",
 			"value": "",
 			"type": "default"
 		}
