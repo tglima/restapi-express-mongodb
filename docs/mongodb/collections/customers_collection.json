@@ -110,32 +110,4 @@
     }
   },
   "isActive": true
-},{
-  "_id": {
-    "$oid": "6371567ea3137ac56a605a1e"
-  },
-  "nmCustomer": "Evelyn Agatha Carolina Aparício",
-  "deGender": "F",
-  "dtBirth": {
-    "$date": {
-      "$numberLong": "651110400000"
-    }
-  },
-  "nuDocument": "41461295912",
-  "deEmail": "evelyn_aparicio@embraer.com",
-  "nuDDD": "",
-  "nuPhone": "",
-  "idUserRegister": "636280b978349b02860c072c",
-  "idLastUserEdit": "636280b978349b02860c072c",
-  "dtRegister": {
-    "$date": {
-      "$numberLong": "1668371984275"
-    }
-  },
-  "dtLastEdit": {
-    "$date": {
-      "$numberLong": "1668371984275"
-    }
-  },
-  "isActive": true
 }]

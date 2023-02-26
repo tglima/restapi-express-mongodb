@@ -272,4 +272,48 @@
   "delete": {
     "idRolesAllowed": []
   }
+},{
+  "_id": {
+    "$oid": "63f2a29cbd56b012765c313d"
+  },
+  "url": "/healthcheck",
+  "isActive": true,
+  "post": {
+    "idRolesAllowed": []
+  },
+  "read": {
+    "idRolesAllowed": [
+      2,
+      3,
+      999
+    ]
+  },
+  "update": {
+    "idRolesAllowed": []
+  },
+  "delete": {
+    "idRolesAllowed": []
+  }
+},{
+  "_id": {
+    "$oid": "63f521d2049cbdafb5cd8e70"
+  },
+  "url": "/auth",
+  "isActive": true,
+  "post": {
+    "idRolesAllowed": [
+      2,
+      3,
+      999
+    ]
+  },
+  "read": {
+    "idRolesAllowed": []
+  },
+  "update": {
+    "idRolesAllowed": []
+  },
+  "delete": {
+    "idRolesAllowed": []
+  }
 }]
