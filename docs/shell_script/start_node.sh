@@ -19,7 +19,7 @@ do
       exit 1
   fi
 done
-#Carrega o localtunnel
+#Carrega a URL externa
 node /usr/src/webapi/docs/nodejs_helper/load-external-uri.js &
 #Caso exista o arquivo swagger.json removemos
 rm -f /usr/src/webapi/swagger.json;
