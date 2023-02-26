@@ -4,7 +4,7 @@
 qtAttemp=0;
 prefix="DB_SERVER=";
 #Pega a URL do mongo que está configurada no arquivo .env
-urlDB=`cat .env | grep $prefix | sed "s/'//g" | sed "s/$prefix//g"`
+urlDB=`cat ./config/env/production.env | grep $prefix | sed "s/'//g" | sed "s/$prefix//g"`
 #Tenta se conectar ao mongo antes de tentar criar o container
 clear
 RESULT=''
@@ -21,6 +21,8 @@ do
   fi
 done
 clear
+#Gera o build da aplicação
+npx sucrase ./src -d ./dist --transforms imports
 #Cria o container e inicia o mesmo
 docker-compose up -d --build
 #Aguarda o container acabar de subir
