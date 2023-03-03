@@ -44,7 +44,7 @@ function setEnvValue(key, value) {
 
 async function loadExternalURI() {
   const serverPort = +process.env.SERVER_PORT || 30000;
-  const urlDefault = `'http://localhost:${serverPort}'`;
+  const urlDefault = `http://localhost:${serverPort}`;
   const ngrokToken = +process.env.NGROK_TOKEN;
 
   if (envMode === development || ngrokToken === undefined) {
