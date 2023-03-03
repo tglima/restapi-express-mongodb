@@ -12,7 +12,7 @@ import config from './app/utils/config.util';
 import routes from './routes';
 
 const Constants = require('./app/utils/constants.util');
-const swaggerFile = require('../swagger.json');
+const swaggerFile = require('./swagger.json');
 
 const apiLimiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minutes

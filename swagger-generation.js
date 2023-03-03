@@ -4,7 +4,7 @@ const development = 'development';
 const envMode = process.env.NODE_ENV || development;
 const path = `./config/env/${envMode}.env`;
 const jsonTemplate = './docs/swagger/swagger_template.json';
-const fileFinal = './swagger.json';
+const fileFinal = './src/swagger.json';
 const dotenv = require('dotenv');
 const fs = require('fs');
 
@@ -76,7 +76,6 @@ function updateJSON(file) {
 
 function generateSwaggerFile() {
   removeOldFile(fileFinal);
-
   const result = updateJSON(jsonTemplate);
 
   if (!result.wasSuccess && result.error) {
