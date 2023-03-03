@@ -4,9 +4,9 @@
   "description": "API Rest desenvolvida com NodeJs, Express e Mongodb",
   "main": "server.js",
   "scripts": {
-    "dev": "export NODE_ENV=development && node swagger-generation && nodemon src/index.js",
-    "homolog": "export NODE_ENV=homologation && node swagger-generation && node ./dist/index.js",
-    "start": "export NODE_ENV=production && node index.js",
+    "dev": "node swagger-generation && nodemon src/index.js",
+    "homolog": "node swagger-generation && node ./dist/index.js",
+    "start": "node index.js",
     "build": "sucrase ./src -d ./dist --transforms imports",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
