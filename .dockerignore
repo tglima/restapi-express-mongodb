@@ -11,6 +11,7 @@ node_modules
 npm-debug.log
 build_container.sh
 remove_container.sh
+swagger-generation.js
 docs/mongodb_docker
 docs/mongodb_docker/*
 docs/dump
@@ -23,5 +24,9 @@ docs/tutorials
 docs/tutorials/*
 docs/images
 docs/images/*
+docs/swagger
+docs/swagger/*
+docs/nodejs_helper
+docs/nodejs_helper/*
 src/*
 src/
