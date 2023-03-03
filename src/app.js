@@ -56,10 +56,7 @@ class App {
     this.server.use(async (req, res, next) => {
       // Condicional para ignorar a req relacionado ao favicon
       if (req.originalUrl === '/favicon.ico') {
-        res.status(404).send({
-          success: false,
-          message: Constants.MsgStatus404,
-        });
+        res.status(404).send();
         return;
       }
 
