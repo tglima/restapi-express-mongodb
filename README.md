@@ -16,8 +16,8 @@ Neste projeto foram utilizadas as seguintes tecnologias:
 |:---------------:|:----:|:---------:|
 |Node.js          |16    |Sim        |
 |MongoDb          |6     |Sim        |
-|Docker           |20    |Não        |
-|Docker-Compose   |2.14  |Não        |
+|Docker           |23    |Não        |
+|Docker-Compose   |2.16  |Não        |
 
 Para a execução simples do projeto não é obrigatório o uso do Docker e do Docker-Compose, ambos são utilizados para facilitar a criação dos ambientes e disponibilidade de serviços como o MongoDB, por exemplo. Nada impede de você instalar o MongoDB na sua máquina de forma tradicional ou utilizar o serviço do [MongoDB da Atlas](https://www.mongodb.com/cloud/atlas/register).
 
@@ -29,8 +29,8 @@ Para maiores informações leias as instruções abaixo:
 
 * [Por onde começar?](./docs/tutorials/01-where-to-start.md)
 * [Configurando o MongoDB](./docs/tutorials/02-config-mongodb.md)
-* Rodando a aplicação no VSCODE
-* Rodando a aplicação em um container
+* [Rodando a aplicação no VSCODE](./docs/tutorials/03-running-app-vscode.md)
+* [Rodando a aplicação em um container](./docs/tutorials/04-running-app-container.md)
 
 ---
 
