@@ -7,7 +7,7 @@ services:
     image: webapi
     container_name: webapi
     working_dir: /usr/src/webapi/
-    restart: 'no'
+    restart: on-failure
     environment:
       NODE_ENV: production
       TZ: America/Sao_Paulo
