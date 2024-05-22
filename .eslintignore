@@ -1,0 +1,11 @@
+.vscode/*
+.github/*
+.editorconfig
+.prettierrc
+node_modules/*
+dist
+doc
+README.md
+LICENSE
+Dockerfile
+jest.config.js
