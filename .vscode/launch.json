@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "request": "launch",
+            "type": "node-terminal",
+            "name": "Debug RUN DEV",
+            "command": "npm run dev",
+            "cwd": "${workspaceFolder}",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+        }
+    ]
+}
