@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import morganBody from 'morgan-body';
 import Youch from 'youch';
 import routes from './routes';
-import { NU_PORT } from './configs/config-manager';
+import { NU_PORT, TRUST_PROXY, TRUST_PROXY_VALUE } from './configs/config-manager';
 import { INTERNAL_SERVER_ERROR } from './messages/error-messages';
 import { MSG_START_SERVER } from './messages/server-messages';
 
@@ -24,7 +24,7 @@ const exceptionHandler = () => {
 const middlewares = () => {
   server.use(express.json());
   server.use(helmet());
-  server.set('trust proxy', 0);
+  server.set(TRUST_PROXY, TRUST_PROXY_VALUE);
   server.use(routes);
   morganBody(server);
   exceptionHandler();
