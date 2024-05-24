@@ -4,6 +4,9 @@ import helmet from 'helmet';
 import morganBody from 'morgan-body';
 import Youch from 'youch';
 import routes from './routes';
+import { NU_PORT } from './configs/config-manager';
+import { INTERNAL_SERVER_ERROR } from './messages/error-messages';
+import { MSG_START_SERVER } from './messages/server-messages';
 
 const server = express();
 
@@ -13,7 +16,7 @@ const exceptionHandler = () => {
     console.error(errors);
 
     console.error({ method: 'exceptionHandler', error: err }).then(() => {
-      return response.status(500).json({ messages: ['Erro interno no servidor!'] });
+      return response.status(500).json({ messages: [INTERNAL_SERVER_ERROR] });
     });
   });
 };
@@ -28,10 +31,9 @@ const middlewares = () => {
 };
 
 async function startServer() {
-  const nuPort = 8081;
   middlewares();
-  server.listen(nuPort, () => {
-    console.log(`'Listen ${nuPort}`);
+  server.listen(NU_PORT, () => {
+    console.log(MSG_START_SERVER);
   });
 }
 
