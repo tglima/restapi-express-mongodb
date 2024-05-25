@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/tglima/restapi-express-mongodb#readme",
   "dependencies": {
+    "@babel/runtime": "^7.24.6",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -49,7 +50,6 @@
     "@babel/node": "^7.23.9",
     "@babel/plugin-transform-runtime": "^7.24.3",
     "@babel/preset-env": "^7.24.5",
-    "@babel/runtime": "^7.24.5",
     "@types/jest": "^29.5.12",
     "@types/supertest": "^6.0.2",
     "babel-jest": "^29.7.0",
