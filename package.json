@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec npx babel-node ./src/server.js",
-    "start": "node ./server.js"
+    "start": "node ./server.js",
+    "prebuild": "node ./build-scripts/prebuild.js",
+    "build": "babel ./src -d ./dist/",
+    "postbuild": "node ./build-scripts/postbuild.js"
   },
   "repository": {
     "type": "git",
