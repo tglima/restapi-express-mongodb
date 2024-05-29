@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-export const getDbConnection = () => {
+export default function getDbConnection() {
   const envMode = `${process.env.NODE_ENV || 'develop'}`;
 
   const connectionString = process.env.MONGODB_CONNECTION_STRING.replace(
@@ -11,4 +11,4 @@ export const getDbConnection = () => {
   if (envMode !== 'test') {
     mongoose.connect(connectionString);
   }
-};
+}
