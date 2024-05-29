@@ -7,7 +7,7 @@ import routes from './routes';
 import { NU_PORT, TRUST_PROXY, TRUST_PROXY_VALUE } from './configs/config-manager';
 import { INTERNAL_SERVER_ERROR } from './messages/error-messages';
 import { MSG_START_SERVER } from './messages/server-messages';
-import { getDbConnection } from './database/connections/connection-manager';
+import getDbConnection from './database/connections/connection-manager';
 
 const server = express();
 
