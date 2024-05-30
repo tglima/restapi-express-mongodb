@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import morganBody from 'morgan-body';
 import Youch from 'youch';
 import routes from './routes';
-import { NU_PORT, TRUST_PROXY, TRUST_PROXY_VALUE } from './configs/config-manager';
+import { NU_PORT, TRUST_PROXY, TRUST_PROXY_VALUE } from './services/configServices';
 import { INTERNAL_SERVER_ERROR } from './messages/error-messages';
 import { MSG_START_SERVER } from './messages/server-messages';
 import getDbConnection from './database/connections/connection-manager';
