@@ -1,5 +1,5 @@
 import express from 'express';
-import { RESOURCE_NOT_FOUND } from '../messages/error-messages';
+import { RESOURCE_NOT_FOUND } from '../messages/errorMessages';
 
 const router = express.Router();
 
