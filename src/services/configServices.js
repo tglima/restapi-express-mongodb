@@ -1,4 +1,18 @@
+import mongoose from 'mongoose';
 import appRepository from '../database/repositories/mongodb/AppRepository';
+
+export const getDbConnection = () => {
+  const envMode = `${process.env.NODE_ENV || 'develop'}`;
+
+  const connectionString = process.env.MONGODB_CONNECTION_STRING.replace(
+    '<password>',
+    process.env.MONGODB_PASS
+  );
+
+  if (envMode !== 'test') {
+    mongoose.connect(connectionString);
+  }
+};
 
 const appConfig = async () => {
   return appRepository.getAppConfigById(process.env.APP_ID);
