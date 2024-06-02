@@ -4,6 +4,8 @@ import helmet from 'helmet';
 import morganBody from 'morgan-body';
 import Youch from 'youch';
 import routes from './routes';
+import { checkAuth } from './services/validatorServices';
+import { startLogRequest } from './services/loggerServices';
 import { NU_PORT, TRUST_PROXY, TRUST_PROXY_VALUE, getDbConnection } from './services/configServices';
 import { INTERNAL_SERVER_ERROR } from './constants/errorMessages';
 import { MSG_START_SERVER } from './constants/serverMessages';
@@ -23,8 +25,10 @@ const exceptionHandler = () => {
 
 const middlewares = () => {
   server.use(express.json());
+  server.use(startLogRequest);
   server.use(helmet());
   server.set(TRUST_PROXY, TRUST_PROXY_VALUE);
+  server.use(checkAuth);
   server.use(routes);
   morganBody(server);
   exceptionHandler();
