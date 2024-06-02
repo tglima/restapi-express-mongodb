@@ -1,10 +1,10 @@
 class AppEntity {
-  constructor(id, appName, appType, appConfig, appVersion) {
+  constructor(id, app_name, app_type, app_config, app_version) {
     this.id = id;
-    this.appName = appName;
-    this.appType = appType;
-    this.appConfig = appConfig;
-    this.appVersion = appVersion;
+    this.app_name = app_name;
+    this.app_type = app_type;
+    this.app_config = app_config;
+    this.app_version = app_version;
   }
 }
 

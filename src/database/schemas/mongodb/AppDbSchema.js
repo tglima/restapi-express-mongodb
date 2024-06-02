@@ -3,8 +3,8 @@ import { Schema } from 'mongoose';
 const userSchema = new Schema(
   {
     key: { type: String, required: true },
-    isActive: { type: Boolean, required: true },
-    dateRegister: { type: String, required: true },
+    is_active: { type: Boolean, required: true },
+    dt_register: { type: String, required: true },
   },
   { _id: false }
 );
@@ -19,9 +19,9 @@ const authSchema = new Schema(
 
 const appConfigSchema = new Schema(
   {
-    displayName: { type: String, required: true },
-    sessionTimeout: { type: Number, required: true },
-    cacheTimeout: { type: Number, required: true },
+    display_name: { type: String, required: true },
+    session_timeout: { type: Number, required: true },
+    cache_timeout: { type: Number, required: true },
     uri: { type: String, required: false },
     auth: authSchema,
   },
@@ -38,10 +38,10 @@ const gitInfoSchema = new Schema(
 
 const AppDbSchema = new Schema(
   {
-    appName: { type: String, required: true },
-    appType: { type: String, required: true },
-    appConfig: appConfigSchema,
-    appVersion: { type: String, required: true },
+    app_name: { type: String, required: true },
+    app_type: { type: String, required: true },
+    app_config: appConfigSchema,
+    app_version: { type: String, required: true },
     gitInfo: gitInfoSchema,
   },
   { versionKey: false }
