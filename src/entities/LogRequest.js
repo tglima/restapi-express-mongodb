@@ -1,8 +1,9 @@
 import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
 
 class LogRequest {
-  constructor(request_id) {
-    this.request_id = request_id;
+  constructor() {
+    this.request_id = uuidv4();
     this.dt_start = moment().toISOString();
     this.dt_finish = null;
     this.url_base = null;
