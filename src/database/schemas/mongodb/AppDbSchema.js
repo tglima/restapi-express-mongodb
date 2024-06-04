@@ -39,6 +39,7 @@ const gitInfoSchema = new Schema(
 const AppDbSchema = new Schema(
   {
     app_name: { type: String, required: true },
+    app_id: { type: Number, required: true },
     app_type: { type: String, required: true },
     app_config: appConfigSchema,
     app_version: { type: String, required: true },

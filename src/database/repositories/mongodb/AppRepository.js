@@ -8,7 +8,7 @@ const appDbSchema = model('appModel', AppDbSchema, 'apps');
 
 class AppRepository {
   async getAppConfigById(id) {
-    const appDB = await appDbSchema.findById({ _id: id });
+    const appDB = await appDbSchema.findOne({ app_id: id });
 
     if (!appDB) {
       throw new AppException('', '');

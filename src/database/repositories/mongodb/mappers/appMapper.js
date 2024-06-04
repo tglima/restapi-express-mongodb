@@ -3,6 +3,7 @@
 export default function toEntity(appSchemaDB) {
   return {
     id: appSchemaDB._id.toString(),
+    app_id: appSchemaDB.app_id,
     app_name: appSchemaDB.app_name,
     app_type: appSchemaDB.app_type,
     app_config: appSchemaDB.app_config,
