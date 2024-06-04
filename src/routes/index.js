@@ -1,5 +1,6 @@
 import express from 'express';
 import ResponseAPI from '../entities/ResponseApi';
+import productFind from '../controllers/productController';
 import { saveLogRequest } from '../services/loggerServices';
 import { RESOURCE_NOT_FOUND } from '../constants/errorMessages';
 import { NOT_FOUND_STATUS, OK_STATUS } from '../constants/httpStatus';
@@ -10,6 +11,10 @@ router.get('/health-check', (req, res) => {
   res.status(OK_STATUS).json({
     messages: ['OK'],
   });
+});
+
+router.get('/products', async (req, res) => {
+  await productFind(req, res);
 });
 
 router.use((req, res, next) => {
