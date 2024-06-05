@@ -8,6 +8,10 @@ class LogEvent {
     this.was_error = false;
     this.messages = [];
   }
+
+  setDtFinish() {
+    this.dt_finish = moment().toISOString();
+  }
 }
 
 export default LogEvent;
