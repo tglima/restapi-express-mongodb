@@ -40,7 +40,7 @@ const validateMustContinueRequest = async (req) => {
 const validateNuDocument = (nuDocument) => {
   if (!nuDocument) return false;
   const onlyNumbers = nuDocument.replace(/\D/g, '');
-  if (onlyNumbers.length < 11) return false;
+  if (onlyNumbers.length !== 11) return false;
 
   // Check if all digits are the same (invalid CPF)
   const allSameDigits = new Set(onlyNumbers).size === 1;
@@ -48,13 +48,26 @@ const validateNuDocument = (nuDocument) => {
     return false;
   }
 
-  // Validate the last two digits using the CPF algorithm
-  const digits = onlyNumbers.split('').map(Number);
-  const sumFirstNine = digits.slice(0, 9).reduce((acc, digit, index) => acc + digit * (10 - index), 0);
-  const firstDigit = (sumFirstNine * 10) % 11;
-  const secondDigit = ((sumFirstNine + firstDigit * 9) * 10) % 11;
+  function digit(partial) {
+    const remainder =
+      partial
+        .map((value, index) => (partial.length + 1 - index) * value)
+        .reduce((accumulator, value) => accumulator + value, 0) % 11;
 
-  return digits[9] === firstDigit && digits[10] === secondDigit;
+    return remainder < 2 ? 0 : 11 - remainder;
+  }
+
+  const numbers = onlyNumbers.split('').map((char) => parseInt(char, 10));
+
+  if (numbers[9] !== digit(numbers.slice(0, 9))) {
+    return false;
+  }
+
+  if (numbers[10] !== digit(numbers.slice(0, 10))) {
+    return false;
+  }
+
+  return true;
 };
 
 export const checkAuth = async (req, res, next) => {
