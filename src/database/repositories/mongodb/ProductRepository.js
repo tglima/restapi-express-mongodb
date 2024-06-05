@@ -1,5 +1,4 @@
 import { model } from 'mongoose';
-import moment from 'moment';
 import ProductSchema from '../../schemas/mongodb/ProductSchema';
 import toEntity from './mappers/productMapper';
 import LogEvent from '../../../entities/LogEvent';
@@ -21,7 +20,7 @@ class ProducRepository {
 
     logEvent.messages.push(`products.length: ${products.length}`);
 
-    logEvent.dt_finish = moment().toISOString();
+    logEvent.setDtFinish();
     logRequest.events.push(logEvent);
     return products;
   }
@@ -33,7 +32,7 @@ class ProducRepository {
 
     logEvent.messages.push(`product: ${product}`);
 
-    logEvent.dt_finish = moment().toISOString();
+    logEvent.setDtFinish();
     logRequest.events.push(logEvent);
     return product;
   }
