@@ -1,4 +1,3 @@
-import moment from 'moment';
 import repository from '../database/repositories/mongodb/ProductRepository';
 import LogEvent from '../entities/LogEvent';
 import { saveLogRequest } from '../services/loggerServices';
@@ -32,7 +31,7 @@ const findAll = async (req) => {
       messages: [INTERNAL_SERVER_ERROR],
     };
   }
-  logEvent.dt_finish = moment().toISOString();
+  logEvent.setDtFinish();
   req.LogRequest.events.push(logEvent);
 };
 
@@ -66,7 +65,7 @@ const findById = async (req, id) => {
     };
   }
 
-  logEvent.dt_finish = moment().toISOString();
+  logEvent.setDtFinish();
   req.LogRequest.events.push(logEvent);
 };
 
