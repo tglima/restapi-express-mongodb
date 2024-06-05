@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { GetApiKeys } from './configServices';
 import { UNAUTHORIZED_MSG } from '../constants/errorMessages';
 import { UNAUTHORIZED_STATUS } from '../constants/httpStatus';
@@ -31,7 +30,7 @@ const validateMustContinueRequest = async (req) => {
 
   req.LogRequest.key = apiKey;
   req.LogRequest.url_base = urlBase;
-  logEvent.dt_finish = moment().toISOString();
+  logEvent.setDtFinish();
   req.LogRequest.events.push(logEvent);
 
   return mustContinueRequest;
@@ -80,14 +79,14 @@ export const checkAuth = async (req, res, next) => {
     const messages = [UNAUTHORIZED_MSG];
     const bodyResponse = { request_id: req.LogRequest.request_id, messages };
     req.LogRequest.output_resquest = bodyResponse;
-    logEvent.dt_finish = moment().toISOString();
+    logEvent.setDtFinish();
     req.LogRequest.events.push(logEvent);
     res.status(UNAUTHORIZED_STATUS).json(bodyResponse);
     saveLogRequest(req, res);
     return;
   }
 
-  logEvent.dt_finish = moment().toISOString();
+  logEvent.setDtFinish();
   req.LogRequest.events.push(logEvent);
   next();
 };
