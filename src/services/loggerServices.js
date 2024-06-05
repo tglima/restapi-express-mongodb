@@ -1,3 +1,4 @@
+import moment from 'moment';
 import repository from '../database/repositories/mongodb/LogRequestRepository';
 import LogRequest from '../entities/LogRequest';
 
@@ -19,7 +20,8 @@ export const startLogRequest = (req, res, next) => {
   next();
 };
 
+// eslint-disable-next-line no-unused-vars
 export const saveLogRequest = async (req, res) => {
-  req.LogRequest.status_code = res.statusCode;
+  req.LogRequest.dt_finish = moment().toISOString();
   await repository.saveLogRequest(req.LogRequest);
 };
