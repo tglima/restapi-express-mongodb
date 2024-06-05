@@ -37,6 +37,26 @@ const validateMustContinueRequest = async (req) => {
   return mustContinueRequest;
 };
 
+const validateNuDocument = (nuDocument) => {
+  if (!nuDocument) return false;
+  const onlyNumbers = nuDocument.replace(/\D/g, '');
+  if (onlyNumbers.length < 11) return false;
+
+  // Check if all digits are the same (invalid CPF)
+  const allSameDigits = new Set(onlyNumbers).size === 1;
+  if (allSameDigits) {
+    return false;
+  }
+
+  // Validate the last two digits using the CPF algorithm
+  const digits = onlyNumbers.split('').map(Number);
+  const sumFirstNine = digits.slice(0, 9).reduce((acc, digit, index) => acc + digit * (10 - index), 0);
+  const firstDigit = (sumFirstNine * 10) % 11;
+  const secondDigit = ((sumFirstNine + firstDigit * 9) * 10) % 11;
+
+  return digits[9] === firstDigit && digits[10] === secondDigit;
+};
+
 export const checkAuth = async (req, res, next) => {
   const logEvent = new LogEvent('checkAuth');
 
@@ -59,6 +79,27 @@ export const checkAuth = async (req, res, next) => {
   next();
 };
 
-export const validateUser = () => {
-  return true;
+export const validateFindCustomer = (logRequest, query) => {
+  const logEvent = new LogEvent('validateFindCustomer');
+  const { id, nu_document } = query;
+  let isValid = Object.keys(query).length === 1 && (id !== undefined || nu_document !== undefined);
+
+  logEvent.messages.push(`query: ${query}`);
+
+  logEvent.messages.push(`query.length: ${Object.keys(query).length}`);
+
+  if (isValid && nu_document && !validateNuDocument(nu_document)) {
+    isValid = false;
+    logEvent.messages.push('invalid nu_document');
+  }
+
+  if (isValid && id && id.length <= 2) {
+    isValid = false;
+    logEvent.messages.push('invalid id');
+  }
+
+  logEvent.messages.push(`isValid: ${isValid}`);
+  logEvent.setDtFinish();
+  logRequest.events.push(logEvent);
+  return isValid;
 };
