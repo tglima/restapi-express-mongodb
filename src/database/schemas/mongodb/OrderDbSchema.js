@@ -11,6 +11,7 @@ const OrderSchema = new Schema({
   last_user_edit: { type: String, required: true },
   dtStart: { type: Date, default: getCurrentDateTime() },
   dtFinish: { type: Date, required: true },
+  payment_status: { type: String, enum: ['APPROVED', 'CANCELLED', 'PENDING'], required: true },
   is_active: { type: Boolean, default: true },
 });
 
