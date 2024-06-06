@@ -7,3 +7,7 @@ export const getCurrentDateTime = () => {
 export const getCurrentEpoch = () => {
   return moment().valueOf();
 };
+
+export const getFutureDate = (days) => {
+  return moment().add(days, 'days').toISOString();
+};
