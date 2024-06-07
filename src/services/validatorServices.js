@@ -4,6 +4,11 @@ import { UNAUTHORIZED_STATUS } from '../constants/httpStatus';
 import { saveLogRequest } from './loggerServices';
 import LogEvent from '../entities/LogEvent';
 
+const hasValue = (value) => {
+  value = value ? value.trim() : value;
+  return !!value;
+};
+
 const checkIsPublicRoute = (urlBase) => {
   const publicRoutes = ['/swagger', '/health-check', '/favicon'];
   return urlBase === '/' || publicRoutes.some((route) => urlBase.includes(route));
@@ -108,6 +113,33 @@ export const validateFindCustomer = (logRequest, query) => {
   if (isValid && id && id.length <= 2) {
     isValid = false;
     logEvent.messages.push('invalid id');
+  }
+
+  logEvent.messages.push(`isValid: ${isValid}`);
+  logEvent.setDtFinish();
+  logRequest.events.push(logEvent);
+  return isValid;
+};
+
+export const validateFindOrder = (logRequest, query) => {
+  const logEvent = new LogEvent('validateFindOrder');
+  const { id, id_customer, nu_document } = query;
+  let isValid =
+    Object.keys(query).length === 1 && (!hasValue(id) || !hasValue(id_customer) || hasValue(nu_document));
+
+  logEvent.messages.push(`query: ${query}`);
+
+  logEvent.messages.push(`query.length: ${Object.keys(query).length}`);
+
+  if (isValid && nu_document && !validateNuDocument(nu_document)) {
+    isValid = false;
+    logEvent.messages.push('invalid nu_document');
+  } else if (isValid && id && id.length <= 2) {
+    isValid = false;
+    logEvent.messages.push('invalid id');
+  } else if (isValid && id_customer && id_customer.length <= 2) {
+    isValid = false;
+    logEvent.messages.push('invalid id_customer');
   }
 
   logEvent.messages.push(`isValid: ${isValid}`);
