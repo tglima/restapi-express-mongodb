@@ -9,8 +9,8 @@ const OrderSchema = new Schema({
   dt_last_edit: { type: Date, default: getCurrentDateTime() },
   user_register: { type: String, required: true },
   last_user_edit: { type: String, required: true },
-  dtStart: { type: Date, default: getCurrentDateTime() },
-  dtFinish: { type: Date, required: true },
+  dt_start: { type: Date, default: getCurrentDateTime() },
+  dt_finish: { type: Date, required: true },
   payment_status: { type: String, enum: ['APPROVED', 'CANCELLED', 'PENDING'], required: true },
   is_active: { type: Boolean, default: true },
 });
