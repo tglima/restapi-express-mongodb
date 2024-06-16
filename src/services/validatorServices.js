@@ -5,7 +5,7 @@ import { saveLogRequest } from './loggerServices';
 import LogEvent from '../entities/LogEvent';
 
 const hasValue = (value) => {
-  value = value ? value.trim() : value;
+  value = typeof value === 'string' ? value.trim() : value;
   return !!value;
 };
 
@@ -125,7 +125,10 @@ export const validateFindOrder = (logRequest, query) => {
   const logEvent = new LogEvent('validateFindOrder');
   const { id, id_customer, nu_document } = query;
   let isValid =
-    Object.keys(query).length === 1 && (!hasValue(id) || !hasValue(id_customer) || hasValue(nu_document));
+    Object.keys(query).length === 1 &&
+    ((hasValue(id) && typeof id === 'string') ||
+      (hasValue(id_customer) && typeof id_customer === 'string') ||
+      (hasValue(nu_document) && typeof nu_document === 'string'));
 
   logEvent.messages.push(`query: ${query}`);
 
