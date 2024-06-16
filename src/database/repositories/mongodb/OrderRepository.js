@@ -67,7 +67,7 @@ class OrderRepository {
 
   async saveOrder(logRequest, order) {
     const logEvent = new LogEvent('OrderRepository.saveOrder');
-    logEvent.messages.push(`customer: ${order}`);
+    logEvent.messages.push(`order: ${order}`);
     const resultDb = await dbSchema.create(toSchema(order));
     const id = !resultDb ? null : resultDb._id.toString();
     logEvent.messages.push(`id: ${id}`);
