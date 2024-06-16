@@ -22,7 +22,8 @@ router.get('/customers', customerFind);
 
 router.use((req, res, next) => {
   const bodyResponse = new ResponseAPI(req.LogRequest.request_id, [RESOURCE_NOT_FOUND]);
-  res.status(NOT_FOUND_STATUS).json(bodyResponse);
+  req.LogRequest.status_code = NOT_FOUND_STATUS;
+  res.status(req.LogRequest.status_code).json(bodyResponse);
   req.LogRequest.output_resquest = bodyResponse;
   saveLogRequest(req, res);
 });
