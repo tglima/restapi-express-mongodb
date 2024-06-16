@@ -51,7 +51,7 @@ class OrderRepository {
       return orders;
     }
 
-    const resultDb = await this.findOrderByIdCustomer(logRequest, resultFindCustomer._id.toString());
+    const resultDb = await this.findOrderByIdCustomer(logRequest, resultFindCustomer.id.toString());
 
     if (resultDb) {
       resultDb.forEach((orderDb) => {
