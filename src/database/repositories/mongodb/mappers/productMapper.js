@@ -6,6 +6,7 @@ export const toEntity = (productSchema) => {
     nm_videoQuality: productSchema.nm_videoQuality,
     nm_resolution: productSchema.nm_resolution,
     qt_simultaneous_screens: productSchema.qt_simultaneous_screens,
+    is_active: productSchema.is_active ? productSchema.is_active : true,
   };
 };
 
@@ -17,5 +18,6 @@ export const toSchema = (product) => {
     nm_videoQuality: product.nm_videoQuality,
     nm_resolution: product.nm_resolution,
     qt_simultaneous_screens: product.qt_simultaneous_screens,
+    is_active: product.is_active ? product.is_active : true,
   };
 };
