@@ -1,6 +1,6 @@
 import { model } from 'mongoose';
 import ProductSchema from '../../schemas/mongodb/ProductSchema';
-import toEntity from './mappers/productMapper';
+import { toEntity } from './mappers/productMapper';
 import LogEvent from '../../../entities/LogEvent';
 
 const dbSchema = model('productModel', ProductSchema, 'products');
