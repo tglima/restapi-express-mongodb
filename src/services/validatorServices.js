@@ -2,11 +2,18 @@ import { GetApiKeys } from './configServices';
 import { UNAUTHORIZED_MSG } from '../constants/errorMessages';
 import { UNAUTHORIZED_STATUS } from '../constants/httpStatus';
 import { saveLogRequest } from './loggerServices';
+import customerRepository from '../database/repositories/mongodb/CustomerRepository';
+import productRepository from '../database/repositories/mongodb/ProductRepository';
+import orderRepository from '../database/repositories/mongodb/OrderRepository';
 import LogEvent from '../entities/LogEvent';
 
 const hasValue = (value) => {
   value = typeof value === 'string' ? value.trim() : value;
   return !!value;
+};
+
+const hasNumber = (value) => {
+  return hasValue(value) && typeof +value === 'number';
 };
 
 const checkIsPublicRoute = (urlBase) => {
@@ -149,4 +156,54 @@ export const validateFindOrder = (logRequest, query) => {
   logEvent.setDtFinish();
   logRequest.events.push(logEvent);
   return isValid;
+};
+
+export const validateSaveOrder = async (req) => {
+  const logRequest = req.LogRequest;
+  const resultSaveOrderDTO = { isValid: true, messages: [] };
+  const logEvent = new LogEvent('validateSaveOrder');
+  const { id_customer, id_product } = req.body;
+  logEvent.messages.push(`req.body: ${JSON.stringify(req.body)}`);
+  resultSaveOrderDTO.isValid = hasValue(id_customer) && hasNumber(id_product);
+
+  if (!resultSaveOrderDTO.isValid) {
+    resultSaveOrderDTO.messages.push('Verifique as propriedades id_customer e id_product');
+  } else {
+    try {
+      const customer = await customerRepository.findById(logRequest, id_customer);
+      logEvent.messages.push(`customer: ${JSON.stringify(customer)}`);
+      const product = await productRepository.findByIdProduct(logRequest, id_product);
+      logEvent.messages.push(`product: ${JSON.stringify(product)}`);
+      const ordersDB = await orderRepository.findOrderByIdCustomer(logRequest, id_customer);
+      logEvent.messages.push(`ordersDB: ${JSON.stringify(ordersDB)}`);
+
+      if (!customer?.is_active) {
+        resultSaveOrderDTO.isValid = false;
+        resultSaveOrderDTO.messages.push('O id_customer informado não é válido');
+      }
+
+      if (!product?.is_active) {
+        resultSaveOrderDTO.isValid = false;
+        resultSaveOrderDTO.messages.push('O id_product informado não é válido');
+      }
+
+      if (resultSaveOrderDTO.isValid && ordersDB?.length > 0) {
+        const ordersActive = ordersDB.filter(
+          (order) =>
+            order.is_active === true || (order.payment_status !== 'CANCELLED' && order.is_active === true)
+        );
+        if (ordersActive.length > 0) {
+          resultSaveOrderDTO.messages.push('Já existe uma venda para este cliente');
+          resultSaveOrderDTO.isValid = false;
+        }
+      }
+    } catch (error) {
+      resultSaveOrderDTO.isValid = false;
+      resultSaveOrderDTO.messages.push('Verifique os valores informados');
+    }
+  }
+  logEvent.messages.push(`resultSaveOrderDTO: ${JSON.stringify(resultSaveOrderDTO)}`);
+  logEvent.setDtFinish();
+  logRequest.events.push(logEvent);
+  return resultSaveOrderDTO;
 };
