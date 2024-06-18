@@ -36,7 +36,7 @@ const gitInfoSchema = new Schema(
   { _id: false }
 );
 
-const AppDbSchema = new Schema(
+const AppSchema = new Schema(
   {
     app_name: { type: String, required: true },
     app_id: { type: Number, required: true },
@@ -48,4 +48,4 @@ const AppDbSchema = new Schema(
   { versionKey: false }
 );
 
-export default AppDbSchema;
+export default AppSchema;
