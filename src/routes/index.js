@@ -1,7 +1,7 @@
 import express from 'express';
 import ResponseAPI from '../entities/ResponseApi';
-import productFind from '../controllers/productController';
-import { find as customerFind } from '../controllers/customerController';
+import CustomerRoutes from './customer.routes';
+import ProductRoutes from './product.routes';
 import OrderRoutes from './orders.routes';
 import { saveLogRequest } from '../services/loggerServices';
 import { RESOURCE_NOT_FOUND } from '../constants/errorMessages';
@@ -14,12 +14,8 @@ router.get('/health-check', (req, res) => {
   });
 });
 
-router.get('/products', async (req, res) => {
-  await productFind(req, res);
-});
-
-router.get('/customers', customerFind);
-
+router.use('/products', ProductRoutes);
+router.use('/customers', CustomerRoutes);
 router.use('/orders', OrderRoutes);
 
 router.use((req, res, next) => {
