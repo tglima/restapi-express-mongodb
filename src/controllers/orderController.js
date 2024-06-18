@@ -5,7 +5,6 @@ import repository from '../database/repositories/mongodb/OrderRepository';
 import productRepository from '../database/repositories/mongodb/ProductRepository';
 import { validateFindOrder, validateSaveOrder } from '../services/validatorServices';
 import * as errMsgs from '../constants/errorMessages';
-import * as httpStatus from '../constants/httpStatus';
 import { getCurrentDateTime, getFutureDate } from '../helpers';
 
 const saveNewOrder = async (req) => {
@@ -51,7 +50,7 @@ const saveNewOrder = async (req) => {
   try {
     const id_order = await repository.saveOrder(req.LogRequest, newOrder);
     logEvent.messages.push(`id_order: ${id_order}`);
-    req.LogRequest.status_code = 200;
+    req.LogRequest.status_code = 201;
     req.LogRequest.output_resquest = {
       request_id: req.LogRequest.request_id,
       id_order,
@@ -201,7 +200,7 @@ export const find = async (req, res) => {
     }
     //
   } else {
-    req.LogRequest.status_code = httpStatus.BAD_REQUEST_STATUS;
+    req.LogRequest.status_code = 400;
     req.LogRequest.output_resquest = {
       request_id: req.LogRequest.request_id,
       messages: [errMsgs.BAD_REQUEST],

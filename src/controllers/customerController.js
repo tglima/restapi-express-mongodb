@@ -3,8 +3,6 @@ import { saveLogRequest } from '../services/loggerServices';
 import repository from '../database/repositories/mongodb/CustomerRepository';
 import { validateFindCustomer } from '../services/validatorServices';
 import * as errMsgs from '../constants/errorMessages';
-import * as httpStatus from '../constants/httpStatus';
-import { getCurrentEpoch } from '../helpers/index';
 
 const findById = async (req, id) => {
   const logEvent = new LogEvent('ProductController.findAll');
@@ -15,13 +13,13 @@ const findById = async (req, id) => {
     logEvent.messages.push(`resultDb: ${resultDb}`);
 
     if (resultDb) {
-      req.LogRequest.status_code = httpStatus.OK_STATUS;
+      req.LogRequest.status_code = 200;
       req.LogRequest.output_resquest = {
         request_id: req.LogRequest.request_id,
         customer: resultDb,
       };
     } else {
-      req.LogRequest.status_code = httpStatus.NOT_FOUND_STATUS;
+      req.LogRequest.status_code = 401;
       req.LogRequest.output_resquest = {
         request_id: req.LogRequest.request_id,
         messages: [errMsgs.RESOURCE_NOT_FOUND],
@@ -29,7 +27,7 @@ const findById = async (req, id) => {
     }
   } catch (error) {
     logEvent.was_error = true;
-    req.LogRequest.status_code = httpStatus.INTERNAL_SERVER_ERROR_STATUS;
+    req.LogRequest.status_code = 500;
     req.LogRequest.output_resquest = {
       request_id: req.LogRequest.request_id,
       messages: [errMsgs.INTERNAL_SERVER_ERROR],
@@ -49,13 +47,13 @@ const findByNuDocument = async (req, nuDocument) => {
     logEvent.messages.push(`resultDb: ${resultDb}`);
 
     if (resultDb) {
-      req.LogRequest.status_code = httpStatus.OK_STATUS;
+      req.LogRequest.status_code = 200;
       req.LogRequest.output_resquest = {
         request_id: req.LogRequest.request_id,
         customer: resultDb,
       };
     } else {
-      req.LogRequest.status_code = httpStatus.NOT_FOUND_STATUS;
+      req.LogRequest.status_code = 404;
       req.LogRequest.output_resquest = {
         request_id: req.LogRequest.request_id,
         messages: [errMsgs.RESOURCE_NOT_FOUND],
@@ -63,7 +61,7 @@ const findByNuDocument = async (req, nuDocument) => {
     }
   } catch (error) {
     logEvent.was_error = true;
-    req.LogRequest.status_code = httpStatus.INTERNAL_SERVER_ERROR_STATUS;
+    req.LogRequest.status_code = 500;
     req.LogRequest.output_resquest = {
       request_id: req.LogRequest.request_id,
       messages: [errMsgs.INTERNAL_SERVER_ERROR],
@@ -75,16 +73,13 @@ const findByNuDocument = async (req, nuDocument) => {
 };
 
 export const find = async (req, res) => {
-  const x = getCurrentEpoch();
-  console.log(x);
-
   if (validateFindCustomer(req.LogRequest, req.query)) {
     const { id, nu_document } = req.query;
 
     await (id ? findById(req, id) : findByNuDocument(req, nu_document));
     //
   } else {
-    req.LogRequest.status_code = httpStatus.BAD_REQUEST_STATUS;
+    req.LogRequest.status_code = 400;
     req.LogRequest.output_resquest = {
       request_id: req.LogRequest.request_id,
       messages: [errMsgs.BAD_REQUEST],

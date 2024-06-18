@@ -1,6 +1,5 @@
 import { GetApiKeys } from './configServices';
 import { UNAUTHORIZED_MSG } from '../constants/errorMessages';
-import { UNAUTHORIZED_STATUS } from '../constants/httpStatus';
 import { saveLogRequest } from './loggerServices';
 import customerRepository from '../database/repositories/mongodb/CustomerRepository';
 import productRepository from '../database/repositories/mongodb/ProductRepository';
@@ -93,7 +92,7 @@ export const checkAuth = async (req, res, next) => {
     req.LogRequest.output_resquest = bodyResponse;
     logEvent.setDtFinish();
     req.LogRequest.events.push(logEvent);
-    res.status(UNAUTHORIZED_STATUS).json(bodyResponse);
+    res.status(401).json(bodyResponse);
     saveLogRequest(req, res);
     return;
   }
