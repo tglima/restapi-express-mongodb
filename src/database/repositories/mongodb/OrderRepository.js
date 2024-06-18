@@ -2,7 +2,7 @@
 import { model } from 'mongoose';
 import { toEntity, toSchema } from './mappers/orderMapper';
 import LogEvent from '../../../entities/LogEvent';
-import OrderSchema from '../../schemas/mongodb/OrderDbSchema';
+import OrderSchema from '../../schemas/mongodb/OrderSchema';
 import CustomerRepository from './CustomerRepository';
 
 const dbSchema = model('orderModel', OrderSchema, 'orders');
