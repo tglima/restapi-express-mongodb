@@ -94,21 +94,14 @@ class OrderRepository {
     return id;
   }
 
-  async updatePaymentStatus(logRequest, idOrder, paymentStatus) {
+  async updatePaymentStatus(logRequest, orderToUpdate) {
     const logEvent = new LogEvent('OrderRepository.updatePaymentStatus');
-    logEvent.messages.push(`idOrder: ${idOrder}`);
-    logEvent.messages.push(`order: ${paymentStatus}`);
-
-    const resultDb = await dbSchema.findOneAndUpdate({ _id: idOrder }, { payment_status: paymentStatus });
-
-    logEvent.messages.push(`order.payment_status: ${resultDb.payment_status}`);
-    const id = !resultDb ? null : resultDb._id.toString();
-
-    logEvent.messages.push(`id: ${id}`);
-
+    logEvent.messages.push(`orderToUpdate: ${orderToUpdate}`);
+    const { id_order } = orderToUpdate;
+    delete orderToUpdate.id_order;
+    await dbSchema.updateOne({ _id: id_order }, orderToUpdate);
     logEvent.setDtFinish();
     logRequest.events.push(logEvent);
-    return id;
   }
 }
 
