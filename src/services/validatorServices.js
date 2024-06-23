@@ -5,7 +5,7 @@ import customerRepository from '../database/repositories/mongodb/CustomerReposit
 import productRepository from '../database/repositories/mongodb/ProductRepository';
 import orderRepository from '../database/repositories/mongodb/OrderRepository';
 import LogEvent from '../entities/LogEvent';
-import { PAYMENT_STATUS } from '../constants/entities.constant';
+import { PAYMENT_STATUS } from '../constants/entitiesConstants';
 
 const hasValue = (value) => {
   value = typeof value === 'string' ? value.trim() : value;
