@@ -3,9 +3,50 @@ import LogEvent from '../entities/LogEvent';
 import { saveLogRequest } from '../services/loggerServices';
 import repository from '../database/repositories/mongodb/OrderRepository';
 import productRepository from '../database/repositories/mongodb/ProductRepository';
-import { validateFindOrder, validateSaveOrder } from '../services/validatorServices';
 import * as errMsgs from '../constants/errorMessages';
 import { getCurrentDateTime, getFutureDate } from '../helpers';
+import {
+  validateFindOrder,
+  validateSaveOrder,
+  validateUpdatePaymentStatus,
+} from '../services/validatorServices';
+
+const updatePaymentStatusDB = async (req) => {
+  const logEvent = new LogEvent('orderController.updatePaymentStatusDB');
+  const { payment_status } = req.body;
+  const { id_order } = req.params;
+  const user_id = req.header('api-key');
+
+  logEvent.messages.push(`req.body: ${JSON.stringify(req.body)}`);
+  logEvent.messages.push(`user_id: ${JSON.stringify(user_id)}`);
+
+  const orderToUpdate = {
+    id_order,
+    payment_status,
+    last_user_edit: user_id,
+    dt_last_edit: getCurrentDateTime(),
+  };
+
+  logEvent.messages.push(`orderToUpdate: ${JSON.stringify(orderToUpdate)}`);
+
+  try {
+    await repository.updatePaymentStatus(req.LogRequest, orderToUpdate);
+    req.LogRequest.status_code = 200;
+    req.LogRequest.output_resquest = {
+      request_id: req.LogRequest.request_id,
+      id_order,
+    };
+  } catch (error) {
+    logEvent.was_error = true;
+    req.LogRequest.status_code = 500;
+    req.LogRequest.output_resquest = {
+      request_id: req.LogRequest.request_id,
+      messages: [errMsgs.INTERNAL_SERVER_ERROR],
+    };
+    logEvent.setDtFinish();
+    req.LogRequest.events.push(logEvent);
+  }
+};
 
 const saveNewOrder = async (req) => {
   const logEvent = new LogEvent('orderController.saveNewOrder');
@@ -207,6 +248,22 @@ export const find = async (req, res) => {
     };
   }
 
+  await saveLogRequest(req, res);
+  return res.status(req.LogRequest.status_code).json(req.LogRequest.output_resquest);
+};
+
+export const updatePaymentStatus = async (req, res) => {
+  const resultValUpdPaymentDTO = await validateUpdatePaymentStatus(req);
+  if (resultValUpdPaymentDTO.isValid) {
+    await updatePaymentStatusDB(req);
+  } else {
+    req.LogRequest.status_code = 400;
+    resultValUpdPaymentDTO.messages.unshift(errMsgs.BAD_REQUEST);
+    req.LogRequest.output_resquest = {
+      request_id: req.LogRequest.request_id,
+      messages: resultValUpdPaymentDTO.messages,
+    };
+  }
   await saveLogRequest(req, res);
   return res.status(req.LogRequest.status_code).json(req.LogRequest.output_resquest);
 };
