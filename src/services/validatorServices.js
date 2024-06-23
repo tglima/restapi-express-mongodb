@@ -5,6 +5,7 @@ import customerRepository from '../database/repositories/mongodb/CustomerReposit
 import productRepository from '../database/repositories/mongodb/ProductRepository';
 import orderRepository from '../database/repositories/mongodb/OrderRepository';
 import LogEvent from '../entities/LogEvent';
+import { PAYMENT_STATUS } from '../constants/entities.constant';
 
 const hasValue = (value) => {
   value = typeof value === 'string' ? value.trim() : value;
@@ -205,4 +206,46 @@ export const validateSaveOrder = async (req) => {
   logEvent.setDtFinish();
   logRequest.events.push(logEvent);
   return resultSaveOrderDTO;
+};
+
+export const validateUpdatePaymentStatus = async (req) => {
+  const logRequest = req.LogRequest;
+  const resultValidateDTO = { isValid: true, messages: [] };
+  const logEvent = new LogEvent('validateUpdatePaymentStatus');
+  const { payment_status } = req.body;
+  const { id_order } = req.params;
+  logEvent.messages.push(`req.body: ${JSON.stringify(req.body)}`);
+  logEvent.messages.push(`req.params: ${JSON.stringify(req.params)}`);
+  resultValidateDTO.isValid = hasValue(payment_status) && hasValue(id_order);
+  logEvent.messages.push(`resultValidateDTO.isValid: ${JSON.stringify(resultValidateDTO.isValid)}`);
+
+  if (!resultValidateDTO.isValid) {
+    resultValidateDTO.isValid = false;
+    resultValidateDTO.messages.push('Verifique as propriedades payment_status e id_order');
+  } else if (!PAYMENT_STATUS.includes(payment_status)) {
+    resultValidateDTO.isValid = false;
+    resultValidateDTO.messages.push('payment_status enviado é inválido!');
+    logEvent.messages.push(`PAYMENT_STATUS: invalid`);
+  }
+
+  if (resultValidateDTO.isValid) {
+    const msgFail = 'Não é possível atualizar a venda informada';
+    try {
+      const order = await orderRepository.findOrderByIdOrder(logRequest, id_order);
+      if (!order) {
+        resultValidateDTO.isValid = false;
+        resultValidateDTO.messages.push(msgFail);
+        logEvent.messages.push(`order: notfound`);
+      }
+    } catch (error) {
+      resultValidateDTO.isValid = false;
+      resultValidateDTO.messages.push(msgFail);
+      logEvent.messages.push(`hasError`);
+    }
+  }
+
+  logEvent.messages.push(`resultValidateDTO: ${JSON.stringify(resultValidateDTO)}`);
+  logEvent.setDtFinish();
+  logRequest.events.push(logEvent);
+  return resultValidateDTO;
 };
