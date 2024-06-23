@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { find as orderFind, save as orderSave } from '../controllers/orderController';
+import { find, save, updatePaymentStatus } from '../controllers/orderController';
 
 const router = Router();
 
-router.get('/', orderFind);
+router.get('/', find);
 
-router.post('/', orderSave);
+router.post('/', save);
 
+router.patch('/id_order=:id_order/payment-status', updatePaymentStatus);
 export default router;
