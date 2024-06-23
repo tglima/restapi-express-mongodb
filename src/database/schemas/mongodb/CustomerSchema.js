@@ -1,10 +1,11 @@
 import { Schema } from 'mongoose';
 import { getCurrentDateTime } from '../../../helpers';
+import { GENDERS } from '../../../constants/entitiesConstants';
 
 const CustomerSchema = new Schema(
   {
     name: { type: String, required: true },
-    gender: { type: String, enum: ['F', 'M'], required: true },
+    gender: { type: String, enum: GENDERS, required: true },
     dt_birth: { type: Date, required: true },
     nu_document: { type: String, required: true, unique: true },
     email: { type: String },
